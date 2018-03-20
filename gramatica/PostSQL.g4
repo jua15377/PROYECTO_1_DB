@@ -1,16 +1,25 @@
 grammar PostSQL
 
-COLON:                   ':';
-SEMICOLON:               ';';
-CREATE:             'CREATE';
-TABLE: 			'TABLE';
-DATABASE:	'DATABASE';
-DROP:		'DROP';
+COLON: ':';
+SEMICOLON: ';';
+CREATE: 'CREATE';
+TABLE: 'TABLE';
+DATABASE: 'DATABASE';
+DROP: 'DROP';
 SHOW: 'SHOW';
-PRIMARY_KEY: 'PRIMARY KEY'
-FOREING_kEY: 'FOREING KEY'
-CONSTRAINT: 'CONSTRAINT'
-REFERENCES: 'REFERENCES'
+KEY: 'KEY';
+PRIMARY: 'PRIMARY';
+FOREING: 'FOREING';
+CONSTRAINT: 'CONSTRAINT';
+REFERENCES: 'REFERENCES';
+
+CHECK: 'CHECK';
+ALTER: 'ALTER';
+TABLE: 'TABLE';
+RENAME: 'RENAME';
+TO: 'TO'
+ADD: 'ADD';
+COLUMN: 'COLUMN';
 
 ragment LETTER : ('a'..'z'|'A'..'Z') ;
 fragment DIGIT :'0'..'9' ;
@@ -64,12 +73,49 @@ columDeclaration
 	;
 
 primaryKeyDeclaration
-	: CONSTRAINT PRIMARY_KEY '(' (ID | ID(',' ID)*) ')'  
+	: CONSTRAINT PRIMARY KEY '(' (ID | ID(',' ID)*) ')'
 	;
 
+// SE DEBE DE TERMINAR EL REFERENCIES ID
 foreingKeyDeclaration
-	: CONSTRAINT FOREING_kEY '(' (ID | ID(',' ID)*) ')' REFERENCES ID 	
+	: CONSTRAINT FOREING kEY '(' (ID | ID(',' ID)*) ')' REFERENCES ID
 	;
+
+
+checkDeclaration
+	: ID CHECK '(' Exp ')'
+	;
+
+Exp
+	:True
+	|False
+	|(expression((eq_op|eq_sgn) expression)*)
+	;
+
+eq_OP
+	:AND
+	|OR
+	|NOT
+	;
+
+eq_sgn
+	:<
+	|>
+	|<=
+	|>=
+	|<>
+	|=
+	;
+
+alter_table
+	: ALTER TABLE ID RENAME TO ID
+	| ALTER TABLE action_alter_table
+	;
+
+action_alter_table
+	: ADD COLUMN ID varType CONTRAINT
+	;
+
 
 drop_table
 	: DROP TABLE ID
@@ -78,7 +124,6 @@ drop_table
 fuck_database
 	: 'FUCK DATABASE' #deleteAll
 	;
-
 
 
 varType                                         
