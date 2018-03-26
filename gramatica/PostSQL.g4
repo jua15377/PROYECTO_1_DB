@@ -17,10 +17,13 @@ CHECK: 'CHECK';
 ALTER: 'ALTER';
 TABLE: 'TABLE';
 RENAME: 'RENAME';
-TO: 'TO'
+TO: 'TO';
 ADD: 'ADD';
 COLUMN: 'COLUMN';
-
+INSERT_INTO: 'INSERT INTO'; 
+VALUES: 'VALUES';
+UPDATE: 'UPDATE';
+SET: 'SET';
 ragment LETTER : ('a'..'z'|'A'..'Z') ;
 fragment DIGIT :'0'..'9' ;
 
@@ -51,6 +54,10 @@ unit_statement
 	| show_table
 	| drop_table
 	| fuck_database
+	| insert_into
+	| update
+	| delete
+	| select
 	;
 
 create_database
@@ -87,32 +94,29 @@ primaryKeyDeclaration
 foreingKeyDeclaration
 	: CONSTRAINT 'FK_'ID FOREIGN KEY '(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')'
 	;
-----------------------------------------------------------------------------
+
 checkDeclaration
 	: CONSTRAINT 'CH_'ID CHECK '(' Exp ')'
 	;
 
 Exp
-	:True
-	|False
-	|(expression((eq_op|eq_sgn) expression)*)
-	;
+	:  (ID | NUM) (eq_op| eq_sgn) (ID | NUM)
+    ;
 
-eq_OP
+eq_op
 	:AND
 	|OR
 	|NOT
 	;
 
 eq_sgn
-	:<
-	|>
-	|<=
-	|>=
-	|<>
-	|=
+	:'<'
+	|'>'
+	|'<='
+	|'>='
+	|'<>'
+	|'='
 	;
------------------------------------------------
 
 alter_table
 	: ALTER TABLE ID RENAME TO ID
@@ -143,9 +147,15 @@ fuck_database
 	: 'FUCK DATABASE' #deleteAll
 	;
 
+insert_into
+	: INSERT_INTO ID '(' ID (',' ID)* ')' VALUES '(' varType (',' varType)* ')'
+
+update
+	: UPDATE ID SET ID '=' (valor) WHERE
 
 varType                                         
 	: 	INT				            #var_int
 	|	CHAR				        #var_char
 	|	BOOLEAN				        #var_boolean
 	;
+
