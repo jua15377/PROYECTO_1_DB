@@ -7,12 +7,12 @@ TABLE: 'TABLE';
 DATABASE: 'DATABASE';
 DROP: 'DROP';
 SHOW: 'SHOW';
+PRIMARY: 'PRIMARY'
 KEY: 'KEY';
-PRIMARY: 'PRIMARY';
-FOREING: 'FOREING';
+FOREIGN: 'FOREIGN';
 CONSTRAINT: 'CONSTRAINT';
 REFERENCES: 'REFERENCES';
-
+FROM: 'FROM'
 CHECK: 'CHECK';
 ALTER: 'ALTER';
 TABLE: 'TABLE';
@@ -28,6 +28,7 @@ fragment DIGIT :'0'..'9' ;
 ID : LETTER ( LETTER | DIGIT )* ;
 NUM : DIGIT ( DIGIT )* ;
 Char : LETTER;
+
 
 
 WS : 
@@ -65,25 +66,30 @@ show_database
 	;
 
 create_table
-    : CREATE TABLE ID '(' columDeclaration (columDeclaration)* primaryKeyDeclaration? ')'
+    : CREATE TABLE ID '(' columDeclaration  constraints* ')'
     ;
 
+constraints
+	: primaryKeyDeclaration
+	| foreingKeyDeclaration
+	| checkDeclaration
+	;
+
+
 columDeclaration 
-	: ID varType ','
+	: ID varType | ID  varType (','ID  varType)*
 	;
 
 primaryKeyDeclaration
-	: CONSTRAINT PRIMARY KEY '(' (ID | ID(',' ID)*) ')'
+	: CONSTRAINT 'PK_'ID PRIMARY KEY '(' ID | ID(','ID)* ')'
 	;
 
-// SE DEBE DE TERMINAR EL REFERENCIES ID
 foreingKeyDeclaration
-	: CONSTRAINT FOREING kEY '(' (ID | ID(',' ID)*) ')' REFERENCES ID
+	: CONSTRAINT 'FK_'ID FOREIGN KEY '(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')'
 	;
-
-
+----------------------------------------------------------------------------
 checkDeclaration
-	: ID CHECK '(' Exp ')'
+	: CONSTRAINT 'CH_'ID CHECK '(' Exp ')'
 	;
 
 Exp
@@ -106,19 +112,31 @@ eq_sgn
 	|<>
 	|=
 	;
+-----------------------------------------------
 
 alter_table
 	: ALTER TABLE ID RENAME TO ID
-	| ALTER TABLE action_alter_table
+	| ALTER TABLE ID action_alter_table 
 	;
 
 action_alter_table
-	: ADD COLUMN ID varType CONTRAINT
+	: ADD COLUMN ID varType constraints*
+	| ADD constraints*
+	| DROP COLUMN ID
+	| DROP CONSTRAINT ID
 	;
 
 
 drop_table
 	: DROP TABLE ID
+	;
+
+show_tabLe
+	: 'SHOW 11'
+	;
+
+show_column
+	: 'SHOW COLUMNS' FROM ID
 	;
 
 fuck_database
