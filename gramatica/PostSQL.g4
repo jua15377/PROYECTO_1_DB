@@ -1,4 +1,4 @@
-grammar PostSQL
+grammar PostSQL;
 
 COLON: ':';
 SEMICOLON: ';';
@@ -7,15 +7,14 @@ TABLE: 'TABLE';
 DATABASE: 'DATABASE';
 DROP: 'DROP';
 SHOW: 'SHOW';
-PRIMARY: 'PRIMARY'
+PRIMARY: 'PRIMARY';
 KEY: 'KEY';
 FOREIGN: 'FOREIGN';
 CONSTRAINT: 'CONSTRAINT';
 REFERENCES: 'REFERENCES';
-FROM: 'FROM'
+FROM: 'FROM';
 CHECK: 'CHECK';
 ALTER: 'ALTER';
-TABLE: 'TABLE';
 RENAME: 'RENAME';
 TO: 'TO';
 ADD: 'ADD';
@@ -26,11 +25,18 @@ UPDATE: 'UPDATE';
 SET: 'SET';
 DELETE: 'DELETE';
 WHERE: 'WHERE';
-FROM : 'FROM';
-ORDER_BY: 'ORDER BY'
+ORDER_BY: 'ORDER BY';
 ASC: 'ASC'; 
 DESC: 'DESC';
-ragment LETTER : ('a'..'z'|'A'..'Z') ;
+INT: 'INT'; 
+CHAR: 'CHAR';
+BOOLEAN: 'BOOLEAN';
+AND: 'AND';
+OR: 'OR';
+NOT: 'NOT';
+SELECT: 'SELECT';
+
+fragment LETTER : ('a'..'z'|'A'..'Z') ;
 fragment DIGIT :'0'..'9' ;
 
 
@@ -39,31 +45,23 @@ NUM : DIGIT ( DIGIT )* ;
 Char : LETTER;
 
 
-
-WS : 
-    [\t\r\n\f ]+ -> skip
-    ;
-
-
-
 sql_script
-    : ((unit_statement) SEMICOLON?)* 
+    : ((unit_statement) SEMICOLON?)* 											#sqlScript
     ;
 
 unit_statement
-	: create_database
-	| drop_database
-	| show_database
-	| use_database
-	| create_table
-	| alter_table
-	| show_table
-	| drop_table
-	| fuck_database
-	| insert_into
-	| update
-	| delete
-	| select
+	: create_database															#STMcreateDB
+	| drop_database																#STMdropDB
+	| show_database																#STMshowDB
+	| create_table																#STMcreateDB
+	| alter_table 																#STMalterTable
+	| show_table 																#STMshowTable
+	| drop_table 																#STMdropTable
+	| fuck_database 															#STMfuckTable
+	| insert_into 																#STMinsertInto
+	| update 																	#STMupdate
+	| delete 																	#STMdelete
+	| select 																	#STMselect
 	;
 
 create_database
@@ -90,24 +88,25 @@ constraints
 
 
 columDeclaration 
-	: ID varType | ID  varType (','ID  varType)*								#columnDecl
+	: ID varType 																#simpleColumn
+	| ID  varType (','ID  varType)*												#multipleColumn		
 	;
 
 primaryKeyDeclaration
-	: CONSTRAINT 'PK_'ID PRIMARY KEY '(' ID | ID(','ID)* ')'					#primaryKeyDecl
+	: CONSTRAINT 'PK_'ID PRIMARY KEY ('(' ID | ID(','ID)* ')')					#primaryKeyDecl
 	;
 
 foreignKeyDeclaration
-	: CONSTRAINT 'FK_'ID FOREIGN KEY '(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')' #foreignDecl
+	: CONSTRAINT 'FK_'ID FOREIGN KEY ('(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')') #foreignDecl
 	;
 
 checkDeclaration
-	: CONSTRAINT 'CH_'ID CHECK '(' Exp ')'										#checkDecl
+	: CONSTRAINT 'CH_'ID CHECK '(' exp ')'										#checkDecl
 	;
 
-Exp
-	:  (ID | NUM) (eq_op| eq_sgn) (ID | NUM)									#expression
-    ;
+exp
+	:  (ID | NUM) (eq_op| eq_sgn) (ID | NUM)	  								#expDecl
+	;
 
 eq_op
 	:AND																		#andOperation
@@ -116,12 +115,12 @@ eq_op
 	;
 
 eq_sgn
-	:<																		#menorQueOp
+	:'<'																		#menorQueOp
 	|'>' 																		#mayorQueOP
-	|'<=' 																		#menorIgualQueOp	
-	|'>=' 																		#mayorIgualQueOp
-	|'<>'  																		#diferenteOP
-	|'=' 																		#igualOP
+	|'<='																		#menorIgualQueOp	
+	|'>='																		#mayorIgualQueOp
+	|'<>'																		#diferenteOP
+	|'='																		#igualOP
 	;
 
 alter_table
@@ -141,8 +140,8 @@ drop_table
 	: DROP TABLE ID 															#dropTable
 	;
 
-show_tabLe
-	: 'SHOW TABLE' 																#showTable
+show_table
+	: SHOW TABLE 																#showTable
 	;
 
 show_column
@@ -150,27 +149,27 @@ show_column
 	;
 
 fuck_database
-	: 'FUCK DATABASE' #deleteAll 												#fuckDatabase
+	: 'FUCK DATABASE' 			 												#fuckDatabase
 	;
 
 insert_into
-	: INSERT_INTO ID '(' ID (',' ID)* ')' VALUES '(' varType (',' varType)* ')'						#insertInto
+	: INSERT_INTO ID '(' ID (',' ID)* ')' VALUES '(' varType (',' varType)* ')'					#insertInto
 	;
 
 update
-	: UPDATE ID SET ID '=' '(' varType (',' varType)* ')' WHERE condicion (eq_op condicion)* 		#update
+	: UPDATE ID SET ID '=' '(' varType (',' varType)* ')' WHERE condicion (eq_op condicion)* 	#updateDecl
 	;
 
 condicion
-	: ID eq_sgn ID																					#condicion
+	: ID eq_sgn ID																				#condicionDecl
 	;
 
 delete
-	: DELETE FROM ID WHERE condicion (eq_op condicion)* 											#delete
+	: DELETE FROM ID WHERE condicion (eq_op condicion)* 										#deleteDecl
 	;
 
 select
-	: SELECT ('*'|ID (','ID)) FROM ID WHERE condicion ORDER_BY ID (ASC |DESC) (',' ID (ADC |DESC)) 	#select
+	: SELECT ('*'|ID (','ID)) FROM ID WHERE condicion ORDER_BY ID (ASC |DESC) (',' ID (ASC |DESC)) 	#selectDecl
 	;
 
 varType                                         
@@ -179,3 +178,6 @@ varType
 	|	BOOLEAN				        #var_boolean
 	;
 
+WS : 
+    [\t\r\n\f ]+ -> skip
+    ;
