@@ -8,13 +8,12 @@ public final class FolderCreator {
 
     private FolderCreator(){
     }
-
-    public static void createFolder(String dataBaseName, String filepath){
+    public static String createFolder(String dataBaseName){
         File theDir = new File(dataBaseName);
 
         //si el folder no existe crea el folder
         if (!theDir.exists()) {
-            System.out.println("creating directory: " + theDir.getName());
+            System.out.println("Creando base de Datos: " + theDir.getName());
             boolean result = false;
 
             try{
@@ -25,13 +24,17 @@ public final class FolderCreator {
                 //handle it
             }
             if(result) {
-                System.out.println("DIR created");
+                return "Se creo la base de datos: \t" + dataBaseName;
             }
             else{
                 System.out.println("Error");
             }
         }
-
+        else {
+            return  "la Base de datos: " + dataBaseName + ", ya existe!";
+        }
+        return "no debe de pasar";
     }
+
 
 }

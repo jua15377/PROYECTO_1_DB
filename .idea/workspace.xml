@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b61c4724-3d3d-465b-a9dc-ce9337b5b7af" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/principal/EvalVisitor.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/PROYECTO 1/fileManagement/FolderCreator.class" afterPath="$PROJECT_DIR$/out/production/PROYECTO 1/fileManagement/FolderCreator.class" />
       <change beforePath="$PROJECT_DIR$/out/production/PROYECTO 1/packDePruebas/TestPrincipal.class" afterPath="$PROJECT_DIR$/out/production/PROYECTO 1/packDePruebas/TestPrincipal.class" />
@@ -286,7 +285,7 @@
       <workItem from="1520918969649" duration="16000" />
       <workItem from="1521522429722" duration="2039000" />
       <workItem from="1521680647969" duration="1310000" />
-      <workItem from="1522179202865" duration="3294000" />
+      <workItem from="1522179202865" duration="3354000" />
     </task>
     <task id="LOCAL-00001" summary="se agregan las primeras etapas de la gramtica">
       <created>1521523186715</created>
@@ -323,11 +322,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522182321883</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="se crea los paquetes principal donde se implemenmta las clases de antlr">
+      <created>1522182663362</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1522182663362</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10352000" />
+    <option name="totallyTimeSpent" value="10412000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="754" extended-state="6" />
@@ -402,7 +408,8 @@
     <MESSAGE value="se agregan las primeras etapas de la gramtica" />
     <MESSAGE value="adding .gitignore" />
     <MESSAGE value="agregando archivos generados por Antlr" />
-    <option name="LAST_COMMIT_MESSAGE" value="agregando archivos generados por Antlr" />
+    <MESSAGE value="se crea los paquetes principal donde se implemenmta las clases de antlr" />
+    <option name="LAST_COMMIT_MESSAGE" value="se crea los paquetes principal donde se implemenmta las clases de antlr" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
