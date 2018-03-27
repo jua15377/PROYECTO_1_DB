@@ -24,6 +24,12 @@ INSERT_INTO: 'INSERT INTO';
 VALUES: 'VALUES';
 UPDATE: 'UPDATE';
 SET: 'SET';
+DELETE: 'DELETE';
+WHERE: 'WHERE';
+FROM : 'FROM';
+ORDER_BY: 'ORDER BY'
+ASC: 'ASC'; 
+DESC: 'DESC';
 ragment LETTER : ('a'..'z'|'A'..'Z') ;
 fragment DIGIT :'0'..'9' ;
 
@@ -149,9 +155,23 @@ fuck_database
 
 insert_into
 	: INSERT_INTO ID '(' ID (',' ID)* ')' VALUES '(' varType (',' varType)* ')'
+	;
 
 update
-	: UPDATE ID SET ID '=' (valor) WHERE
+	: UPDATE ID SET ID '=' '(' varType (',' varType)* ')' WHERE condicion (eq_op condicion)*
+	;
+
+condicion
+	: ID eq_sgn ID
+	;
+
+delete
+	: DELETE FROM ID WHERE condicion (eq_op condicion)*
+	;
+
+select
+	: SELECT ('*'|ID (','ID)) FROM ID WHERE condicion ORDER_BY ID (ASC |DESC) (',' ID (ADC |DESC))
+	;
 
 varType                                         
 	: 	INT				            #var_int
