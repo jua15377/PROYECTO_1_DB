@@ -67,110 +67,110 @@ unit_statement
 	;
 
 create_database
-	: CREATE DATABASE ID 
+	: CREATE DATABASE ID														#createDatabase
 	;
 
 drop_database
-	: DROP DATABASE ID 
+	: DROP DATABASE ID 															#dropDatabase
 	;
 
 show_database
-	: SHOW DATABASE
+	: SHOW DATABASE     														#showDatabase
 	;
 
 create_table
-    : CREATE TABLE ID '(' columDeclaration  constraints* ')'
+    : CREATE TABLE ID '(' columDeclaration  constraints* ')' 					#createTable
     ;
 
 constraints
-	: primaryKeyDeclaration
-	| foreingKeyDeclaration
-	| checkDeclaration
+	: primaryKeyDeclaration 													#primaryKeyDeclConstr
+	| foreignKeyDeclaration 													#foreignKeyDeclConstr
+	| checkDeclaration															#checkDeclConstr
 	;
 
 
 columDeclaration 
-	: ID varType | ID  varType (','ID  varType)*
+	: ID varType | ID  varType (','ID  varType)*								#columnDecl
 	;
 
 primaryKeyDeclaration
-	: CONSTRAINT 'PK_'ID PRIMARY KEY '(' ID | ID(','ID)* ')'
+	: CONSTRAINT 'PK_'ID PRIMARY KEY '(' ID | ID(','ID)* ')'					#primaryKeyDecl
 	;
 
-foreingKeyDeclaration
-	: CONSTRAINT 'FK_'ID FOREIGN KEY '(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')'
+foreignKeyDeclaration
+	: CONSTRAINT 'FK_'ID FOREIGN KEY '(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')' #foreignDecl
 	;
 
 checkDeclaration
-	: CONSTRAINT 'CH_'ID CHECK '(' Exp ')'
+	: CONSTRAINT 'CH_'ID CHECK '(' Exp ')'										#checkDecl
 	;
 
 Exp
-	:  (ID | NUM) (eq_op| eq_sgn) (ID | NUM)
+	:  (ID | NUM) (eq_op| eq_sgn) (ID | NUM)									#expression
     ;
 
 eq_op
-	:AND
-	|OR
-	|NOT
+	:AND																		#andOperation
+	|OR 																		#orOperation
+	|NOT 																		#notOperation
 	;
 
 eq_sgn
-	:'<'
-	|'>'
-	|'<='
-	|'>='
-	|'<>'
-	|'='
+	:<																		#menorQueOp
+	|'>' 																		#mayorQueOP
+	|'<=' 																		#menorIgualQueOp	
+	|'>=' 																		#mayorIgualQueOp
+	|'<>'  																		#diferenteOP
+	|'=' 																		#igualOP
 	;
 
 alter_table
-	: ALTER TABLE ID RENAME TO ID
-	| ALTER TABLE ID action_alter_table 
+	: ALTER TABLE ID RENAME TO ID 												#renameTable
+	| ALTER TABLE ID action_alter_table  										#alterTable
 	;
 
 action_alter_table
-	: ADD COLUMN ID varType constraints*
-	| ADD constraints*
-	| DROP COLUMN ID
-	| DROP CONSTRAINT ID
+	: ADD COLUMN ID varType constraints* 										#addColumn
+	| ADD constraints* 															#addConstraints
+	| DROP COLUMN ID 															#dropColumn
+	| DROP CONSTRAINT ID 														#dropConstraints
 	;
 
 
 drop_table
-	: DROP TABLE ID
+	: DROP TABLE ID 															#dropTable
 	;
 
 show_tabLe
-	: 'SHOW 11'
+	: 'SHOW TABLE' 																#showTable
 	;
 
 show_column
-	: 'SHOW COLUMNS' FROM ID
+	: 'SHOW COLUMNS' FROM ID													#showColumn
 	;
 
 fuck_database
-	: 'FUCK DATABASE' #deleteAll
+	: 'FUCK DATABASE' #deleteAll 												#fuckDatabase
 	;
 
 insert_into
-	: INSERT_INTO ID '(' ID (',' ID)* ')' VALUES '(' varType (',' varType)* ')'
+	: INSERT_INTO ID '(' ID (',' ID)* ')' VALUES '(' varType (',' varType)* ')'						#insertInto
 	;
 
 update
-	: UPDATE ID SET ID '=' '(' varType (',' varType)* ')' WHERE condicion (eq_op condicion)*
+	: UPDATE ID SET ID '=' '(' varType (',' varType)* ')' WHERE condicion (eq_op condicion)* 		#update
 	;
 
 condicion
-	: ID eq_sgn ID
+	: ID eq_sgn ID																					#condicion
 	;
 
 delete
-	: DELETE FROM ID WHERE condicion (eq_op condicion)*
+	: DELETE FROM ID WHERE condicion (eq_op condicion)* 											#delete
 	;
 
 select
-	: SELECT ('*'|ID (','ID)) FROM ID WHERE condicion ORDER_BY ID (ASC |DESC) (',' ID (ADC |DESC))
+	: SELECT ('*'|ID (','ID)) FROM ID WHERE condicion ORDER_BY ID (ASC |DESC) (',' ID (ADC |DESC)) 	#select
 	;
 
 varType                                         
