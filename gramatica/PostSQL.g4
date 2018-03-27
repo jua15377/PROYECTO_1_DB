@@ -1,4 +1,4 @@
-grammar PostSQL
+grammar PostSQL;
 
 COLON: ':';
 SEMICOLON: ';';
@@ -7,15 +7,14 @@ TABLE: 'TABLE';
 DATABASE: 'DATABASE';
 DROP: 'DROP';
 SHOW: 'SHOW';
-PRIMARY: 'PRIMARY'
+PRIMARY: 'PRIMARY';
 KEY: 'KEY';
 FOREIGN: 'FOREIGN';
 CONSTRAINT: 'CONSTRAINT';
 REFERENCES: 'REFERENCES';
-FROM: 'FROM'
+FROM: 'FROM';
 CHECK: 'CHECK';
 ALTER: 'ALTER';
-TABLE: 'TABLE';
 RENAME: 'RENAME';
 TO: 'TO';
 ADD: 'ADD';
@@ -26,11 +25,10 @@ UPDATE: 'UPDATE';
 SET: 'SET';
 DELETE: 'DELETE';
 WHERE: 'WHERE';
-FROM : 'FROM';
-ORDER_BY: 'ORDER BY'
+ORDER_BY: 'ORDER BY';
 ASC: 'ASC'; 
 DESC: 'DESC';
-ragment LETTER : ('a'..'z'|'A'..'Z') ;
+fragment LETTER : ('a'..'z'|'A'..'Z') ;
 fragment DIGIT :'0'..'9' ;
 
 
@@ -39,31 +37,23 @@ NUM : DIGIT ( DIGIT )* ;
 Char : LETTER;
 
 
-
-WS : 
-    [\t\r\n\f ]+ -> skip
-    ;
-
-
-
 sql_script
-    : ((unit_statement) SEMICOLON?)* 
+    : ((unit_statement) SEMICOLON?)* 											#sqlScript
     ;
 
 unit_statement
-	: create_database
-	| drop_database
-	| show_database
-	| use_database
-	| create_table
-	| alter_table
-	| show_table
-	| drop_table
-	| fuck_database
-	| insert_into
-	| update
-	| delete
-	| select
+	: create_database															#createDB_STM
+	| drop_database																#dropDB_STM
+	| show_database																#showDB_STM
+	| create_table																#createDB_STM
+	| alter_table 																#alterTable_STM
+	| show_table 																#showTable_STM
+	| drop_table 																#dropTable_STM
+	| fuck_database 															#fuckTable_STM
+	| insert_into 																#insertInto_STM
+	| update 																	#update_STM
+	| delete 																	#delete_STM
+	| select 																	#select_STM
 	;
 
 create_database
@@ -102,12 +92,12 @@ foreignKeyDeclaration
 	;
 
 checkDeclaration
-	: CONSTRAINT 'CH_'ID CHECK '(' Exp ')'										#checkDecl
+	: CONSTRAINT 'CH_'ID CHECK '(' exp ')'										#checkDecl
 	;
 
-Exp
-	:  (ID | NUM) (eq_op| eq_sgn) (ID | NUM)									#expression
-    ;
+exp
+	:  (ID | NUM) (eq_op| eq_sgn) (ID | NUM)	  								#expDecl
+	;
 
 eq_op
 	:AND																		#andOperation
@@ -116,12 +106,12 @@ eq_op
 	;
 
 eq_sgn
-	:<																		#menorQueOp
+	:'<'																		#menorQueOp
 	|'>' 																		#mayorQueOP
-	|'<=' 																		#menorIgualQueOp	
-	|'>=' 																		#mayorIgualQueOp
-	|'<>'  																		#diferenteOP
-	|'=' 																		#igualOP
+	|'<='																		#menorIgualQueOp	
+	|'>='																		#mayorIgualQueOp
+	|'<>'																		#diferenteOP
+	|'='																		#igualOP
 	;
 
 alter_table
@@ -150,7 +140,7 @@ show_column
 	;
 
 fuck_database
-	: 'FUCK DATABASE' #deleteAll 												#fuckDatabase
+	: 'FUCK DATABASE' 			 												#fuckDatabase
 	;
 
 insert_into
@@ -179,3 +169,6 @@ varType
 	|	BOOLEAN				        #var_boolean
 	;
 
+WS : 
+    [\t\r\n\f ]+ -> skip
+    ;
