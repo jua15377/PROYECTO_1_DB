@@ -28,6 +28,14 @@ WHERE: 'WHERE';
 ORDER_BY: 'ORDER BY';
 ASC: 'ASC'; 
 DESC: 'DESC';
+INT: 'INT'; 
+CHAR: 'CHAR';
+BOOLEAN: 'BOOLEAN';
+AND: 'AND';
+OR: 'OR';
+NOT: 'NOT';
+SELECT: 'SELECT';
+
 fragment LETTER : ('a'..'z'|'A'..'Z') ;
 fragment DIGIT :'0'..'9' ;
 
@@ -42,18 +50,18 @@ sql_script
     ;
 
 unit_statement
-	: create_database															#createDB_STM
-	| drop_database																#dropDB_STM
-	| show_database																#showDB_STM
-	| create_table																#createDB_STM
-	| alter_table 																#alterTable_STM
-	| show_table 																#showTable_STM
-	| drop_table 																#dropTable_STM
-	| fuck_database 															#fuckTable_STM
-	| insert_into 																#insertInto_STM
-	| update 																	#update_STM
-	| delete 																	#delete_STM
-	| select 																	#select_STM
+	: create_database															#STMcreateDB
+	| drop_database																#STMdropDB
+	| show_database																#STMshowDB
+	| create_table																#STMcreateDB
+	| alter_table 																#STMalterTable
+	| show_table 																#STMshowTable
+	| drop_table 																#STMdropTable
+	| fuck_database 															#STMfuckTable
+	| insert_into 																#STMinsertInto
+	| update 																	#STMupdate
+	| delete 																	#STMdelete
+	| select 																	#STMselect
 	;
 
 create_database
@@ -80,15 +88,16 @@ constraints
 
 
 columDeclaration 
-	: ID varType | ID  varType (','ID  varType)*								#columnDecl
+	: ID varType 																#simpleColumn
+	| ID  varType (','ID  varType)*												#multipleColumn		
 	;
 
 primaryKeyDeclaration
-	: CONSTRAINT 'PK_'ID PRIMARY KEY '(' ID | ID(','ID)* ')'					#primaryKeyDecl
+	: CONSTRAINT 'PK_'ID PRIMARY KEY ('(' ID | ID(','ID)* ')')					#primaryKeyDecl
 	;
 
 foreignKeyDeclaration
-	: CONSTRAINT 'FK_'ID FOREIGN KEY '(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')' #foreignDecl
+	: CONSTRAINT 'FK_'ID FOREIGN KEY ('(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')') #foreignDecl
 	;
 
 checkDeclaration
@@ -131,8 +140,8 @@ drop_table
 	: DROP TABLE ID 															#dropTable
 	;
 
-show_tabLe
-	: 'SHOW TABLE' 																#showTable
+show_table
+	: SHOW TABLE 																#showTable
 	;
 
 show_column
@@ -144,23 +153,23 @@ fuck_database
 	;
 
 insert_into
-	: INSERT_INTO ID '(' ID (',' ID)* ')' VALUES '(' varType (',' varType)* ')'						#insertInto
+	: INSERT_INTO ID '(' ID (',' ID)* ')' VALUES '(' varType (',' varType)* ')'					#insertInto
 	;
 
 update
-	: UPDATE ID SET ID '=' '(' varType (',' varType)* ')' WHERE condicion (eq_op condicion)* 		#update
+	: UPDATE ID SET ID '=' '(' varType (',' varType)* ')' WHERE condicion (eq_op condicion)* 	#updateDecl
 	;
 
 condicion
-	: ID eq_sgn ID																					#condicion
+	: ID eq_sgn ID																				#condicionDecl
 	;
 
 delete
-	: DELETE FROM ID WHERE condicion (eq_op condicion)* 											#delete
+	: DELETE FROM ID WHERE condicion (eq_op condicion)* 										#deleteDecl
 	;
 
 select
-	: SELECT ('*'|ID (','ID)) FROM ID WHERE condicion ORDER_BY ID (ASC |DESC) (',' ID (ADC |DESC)) 	#select
+	: SELECT ('*'|ID (','ID)) FROM ID WHERE condicion ORDER_BY ID (ASC |DESC) (',' ID (ASC |DESC)) 	#selectDecl
 	;
 
 varType                                         
