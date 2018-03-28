@@ -13,6 +13,10 @@ public class BaseDeDatos implements Serializable {
         //set nombre
         this.name = name;
     }
+    
+
+
+
     public void agregarRegsitroDeTabla(String nombre){
         nombresDeTablas.add(nombre);
     }
