@@ -10,7 +10,7 @@ public class BaseDeDatos implements java.io.Serializable{
         // crear la carptea de la DB
         //set nombre
     }
-    
+
 
     public String toString(){
         return  "Nombre de la DB: " + name + "\n"+
