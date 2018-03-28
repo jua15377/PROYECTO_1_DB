@@ -11,9 +11,10 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * {@link #visitChildren} on {@code ctx}.</p>
      * GRAMMAR: ((unit_statement) SEMICOLON?)*;
      */
-    @Override
-    public T visitSqlScript(PostSQLParser.SqlScriptContext ctx) {
-        return visitChildren(ctx);
+    @Override /*QUEDO PENDIENTE DE ESTO NO SE QUE DEVOLVER O COMO ENTRARLE. HA DE SER LA RAIZ PERO NO SE
+    QUE ESPERAR O QUE PEDIRLE A LA RAIZ :D*/
+    public String visitSqlScript(PostSQLParser.SqlScriptContext ctx) {
+        return "";
     }
     /**
      * {@inheritDoc}
@@ -22,7 +23,9 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * {@link #visitChildren} on {@code ctx}.</p>
      * GRAMMAR: create_database;
      */
-    @Override public T visitSTMcreateDB(PostSQLParser.STMcreateDBContext ctx) { return visitChildren(ctx); }
+    @Override public String visitSTMcreateDB(PostSQLParser.STMcreateDBContext ctx) {
+        return visitChildren(ctx.create_database());
+    }
     /**
      * {@inheritDoc}
      *
