@@ -1,17 +1,12 @@
 package fileManagement;
 
-import java.io.File;
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 
 public final class FolderManager {
     private String dataBaseName;
     private String filepath;
 
-    //CREATE DATABASE
+
     public static String createFolder(String dataBaseName){
         File theDir = new File(dataBaseName);
 
@@ -39,7 +34,20 @@ public final class FolderManager {
         }
         return "no debe de pasar";
     }
-    // DROP DATABASE
+    public static String renameFolder(String viejoNombre, String nuevoNombre){
+        File dir = new File(viejoNombre);
+        File newName = new File(nuevoNombre);
+        if ( dir.isDirectory() && dir.exists() ) {
+            dir.renameTo(newName);
+            return "nombre cambiado a: " + nuevoNombre+"\n";
+        }
+        else {
+            return "No fue posible encontar el archivo";
+        }
+
+    }
+
+
     public static String deleteFolder(String dataBaseName){
         File theDir = new File(dataBaseName);
 
