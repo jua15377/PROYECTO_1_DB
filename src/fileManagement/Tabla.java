@@ -17,4 +17,9 @@ public class Tabla implements Serializable{
     public Tabla(String name){
         this.name = name;
     }
+
+    @Override
+    public String toString() {
+        return "soy una tabla y me llamo " + name;
+    }
 }

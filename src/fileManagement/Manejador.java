@@ -62,6 +62,10 @@ public class Manejador implements Serializable {
     public String toString() {
         return super.toString();
     }
+    public BaseDeDatos getASpecificDb(String db){
+        int indice = dbsNames.indexOf(db);
+        return dbs.get(indice);
+    }
 
     public void generateMetada(){
          String texto = "";

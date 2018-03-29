@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class BaseDeDatos implements Serializable {
-    private ArrayList nombresDeTablas = new ArrayList<String>();
+    private ArrayList<String> nombresDeTablas = new ArrayList<>();
     private String name;
 
     public BaseDeDatos(String name){
@@ -14,12 +14,19 @@ public class BaseDeDatos implements Serializable {
         //set nombre
         this.name = name;
     }
+    //crea taba temporal
+    public void createTable(String tableName) {
+        String path = FolderManager.createPath(this.name, tableName);
+        Tabla tabla = new Tabla(tableName);
+        FolderManager.toFile(tabla, path);
+        nombresDeTablas.add(tableName);
+    }
     
     public String dropTable(String nombre){
         String baseDeDatos = this.name;
         String diagnostico = "";
         try{
-            File archivo = new File(baseDeDatos + "\\" + nombre + ".ser" );
+            File archivo = new File(baseDeDatos + "/" + nombre + ".ser" );
             if(archivo.delete()){
                 diagnostico =  "Tabla " + nombre + " eliminada con exito";
             }
@@ -35,7 +42,7 @@ public class BaseDeDatos implements Serializable {
     }
 
     public String showColumn(String nombre ){
-        File archivo  =new File(this.name + "\\" + nombre + ".ser");
+        File archivo  =new File(this.name + "/" + nombre + ".ser");
         String respuestaTemporal  ="";
         return respuestaTemporal; 
 

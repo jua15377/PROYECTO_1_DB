@@ -99,7 +99,7 @@ public final class FolderManager {
 //para la serializacion del objetio
 
     // toFile and toObject are taken from: http://tinyurl.com/69h8l7x
-    public static void toFile(Object obj, String locationAndName) throws IOException {
+    public static void toFile(Object obj, String locationAndName) {
         try {
             FileOutputStream fileOut = new FileOutputStream(locationAndName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
@@ -114,7 +114,7 @@ public final class FolderManager {
 
     }
 
-    public static Object toObject(String locationAndName) throws IOException, ClassNotFoundException {
+    public static Object toObject(String locationAndName){
         Object obj = null;
         //ByteArrayInputStream bis = null;
         ObjectInputStream ois = null;
@@ -123,16 +123,23 @@ public final class FolderManager {
             fileIn = new FileInputStream(locationAndName);
             ois = new ObjectInputStream(fileIn);
             obj = ois.readObject();
+            fileIn.close();
+            ois.close();
+
         }
-        finally {
-            if (fileIn != null) {
-                fileIn.close();
-            }
-            if (ois != null) {
-                ois.close();
-            }
+        catch (IOException i) {
+            i.printStackTrace();
+        }
+        catch (ClassNotFoundException c) {
+            System.out.println("class not found");
+            c.printStackTrace();
         }
         return obj;
+    }
+
+    public static String createPath(String dataBaseName, String tableName){
+        return  dataBaseName + "\\" + tableName + ".ser";
+
     }
 
     public static String toString(byte[] bytes) {
