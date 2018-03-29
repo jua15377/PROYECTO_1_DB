@@ -12,7 +12,7 @@ public final class FolderManager {
 
         //si el folder no existe crea el folder
         if (!theDir.exists()) {
-            System.out.println("Creando base de Datos: " + theDir.getName());
+            //System.out.println("Creando base de Datos: " + theDir.getName() +"\n");
             boolean result = false;
 
             try{
@@ -23,7 +23,7 @@ public final class FolderManager {
                 //handle it
             }
             if(result) {
-                return "Se creo la base de datos: \t" + dataBaseName;
+                return "\nSe creo la base de datos: \t" + dataBaseName;
             }
             else{
                 System.out.println("Error");
@@ -34,16 +34,35 @@ public final class FolderManager {
         }
         return "no debe de pasar";
     }
+
+
     public static String renameFolder(String viejoNombre, String nuevoNombre){
         File dir = new File(viejoNombre);
         File newName = new File(nuevoNombre);
-        if ( dir.isDirectory() && dir.exists() ) {
-            dir.renameTo(newName);
-            return "nombre cambiado a: " + nuevoNombre+"\n";
+
+        //si el folder existe crea el folder
+        if (dir.exists() && dir.isDirectory()) {
+
+            boolean result = false;
+            try{
+                dir.renameTo(newName);
+                result  = true;
+
+            }
+            catch(SecurityException se){
+                //handle it
+            }
+            if(result) {
+                return "\nnombre cambiado a: " + nuevoNombre+"\n";
+            }
+            else{
+                System.out.println("Error");
+            }
         }
         else {
             return "No fue posible encontar el archivo";
         }
+        return "no debe de pasar";
 
     }
 
@@ -53,7 +72,7 @@ public final class FolderManager {
 
         //si el folder existe crea el folder
         if (theDir.exists()) {
-            System.out.println("BORRANDO base de Datos: " + theDir.getName());
+            //System.out.println("BORRANDO base de Datos: " + theDir.getName()+ "\n");
             boolean result = false;
 
             try{
@@ -76,11 +95,13 @@ public final class FolderManager {
         return "no debe de pasar";
     }
 
+
 //para la serializacion del objetio
 
     // toByteArray and toObject are taken from: http://tinyurl.com/69h8l7x
     public static byte[] toByteArray(Object obj) throws IOException {
         byte[] bytes = null;
+
         ByteArrayOutputStream bos = null;
         ObjectOutputStream oos = null;
         try {
