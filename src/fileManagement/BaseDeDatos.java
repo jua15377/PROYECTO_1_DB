@@ -21,12 +21,12 @@ public class BaseDeDatos implements Serializable {
         FolderManager.toFile(tabla, path);
         nombresDeTablas.add(tableName);
     }
-    
+
     public String dropTable(String nombre){
         String baseDeDatos = this.name;
         String diagnostico = "";
         try{
-            File archivo = new File(baseDeDatos + "/" + nombre + ".ser" );
+            File archivo = new File(baseDeDatos + "\\" + nombre + ".ser" );
             if(archivo.delete()){
                 diagnostico =  "Tabla " + nombre + " eliminada con exito";
             }
@@ -75,4 +75,32 @@ public class BaseDeDatos implements Serializable {
                 "cantidad de tablas: " + nombresDeTablas.size() +"\n";
 
     }
+
+    public void renameTable(String nombre, String nuevoNombre){
+
+    }
+
+    public void addColumn(String nombreTabla, ArrayList<String> constraints){
+
+    }
+
+    public void addConstraint(){
+
+    }
+
+    public void dropColumn(){
+
+    }
+
+    public void dropConstraint(){
+
+    }
+
+    public String showColumn(String nombre ){
+        File archivo  =new File(this.name + "\\" + nombre + ".ser");
+        return "";
+
+    }
+
+
 }
