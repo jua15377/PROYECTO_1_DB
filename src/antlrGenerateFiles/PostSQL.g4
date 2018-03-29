@@ -35,6 +35,7 @@ AND: 'AND';
 OR: 'OR';
 NOT: 'NOT';
 SELECT: 'SELECT';
+USE: 'USE';
 
 fragment LETTER : ('a'..'z'|'A'..'Z') ;
 fragment DIGIT :'0'..'9' ;
@@ -56,6 +57,7 @@ unit_statement
 	| create_table																#STMcreateDB
 	| alter_table 																#STMalterTable
 	| show_table 																#STMshowTable
+	| use_databse                                                               #STMuseDB
 	| drop_table 																#STMdropTable
 	| fuck_database 															#STMfuckTable
 	| insert_into 																#STMinsertInto
@@ -75,6 +77,10 @@ drop_database
 show_database
 	: SHOW DATABASE     														#showDatabase
 	;
+
+use_database
+    : USE DATABASE ID                                                           #useDatabase
+    ;
 
 create_table
     : CREATE TABLE ID '(' columDeclaration  constraints* ')' 					#createTable
