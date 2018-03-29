@@ -4,9 +4,6 @@
     <list default="true" id="b61c4724-3d3d-465b-a9dc-ce9337b5b7af" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/PROYECTO 1/packDePruebas/TestPrincipal.class" afterPath="$PROJECT_DIR$/out/production/PROYECTO 1/packDePruebas/TestPrincipal.class" />
-      <change beforePath="$PROJECT_DIR$/src/fileManagement/BaseDeDatos.java" afterPath="$PROJECT_DIR$/src/fileManagement/BaseDeDatos.java" />
-      <change beforePath="$PROJECT_DIR$/src/fileManagement/FolderManager.java" afterPath="$PROJECT_DIR$/src/fileManagement/FolderManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/packDePruebas/TestPrincipal.java" afterPath="$PROJECT_DIR$/src/packDePruebas/TestPrincipal.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -364,7 +361,7 @@
       <workItem from="1521680647969" duration="1310000" />
       <workItem from="1522179202865" duration="6654000" />
       <workItem from="1522259117297" duration="5271000" />
-      <workItem from="1522265241418" duration="22201000" />
+      <workItem from="1522265241418" duration="22248000" />
     </task>
     <task id="LOCAL-00001" summary="se agregan las primeras etapas de la gramtica">
       <created>1521523186715</created>
@@ -478,11 +475,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522299636192</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="un objeto de prueba">
+      <created>1522299655254</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1522299655254</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41184000" />
+    <option name="totallyTimeSpent" value="41231000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="754" extended-state="6" />
