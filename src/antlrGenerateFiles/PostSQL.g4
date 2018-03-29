@@ -57,7 +57,7 @@ unit_statement
 	| create_table																#STMcreateDB
 	| alter_table 																#STMalterTable
 	| show_table 																#STMshowTable
-	| use_databse                                                               #STMuseDB
+	| use_database                                                               #STMuseDB
 	| drop_table 																#STMdropTable
 	| fuck_database 															#STMfuckTable
 	| insert_into 																#STMinsertInto

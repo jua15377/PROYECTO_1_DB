@@ -88,6 +88,18 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSTMuseDB(PostSQLParser.STMuseDBContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSTMuseDB(PostSQLParser.STMuseDBContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSTMdropTable(PostSQLParser.STMdropTableContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -191,6 +203,18 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitShowDatabase(PostSQLParser.ShowDatabaseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUseDatabase(PostSQLParser.UseDatabaseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUseDatabase(PostSQLParser.UseDatabaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

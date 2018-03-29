@@ -80,6 +80,18 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitSTMshowTable(PostSQLParser.STMshowTableContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code STMuseDB}
+	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTMuseDB(PostSQLParser.STMuseDBContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STMuseDB}
+	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTMuseDB(PostSQLParser.STMuseDBContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code STMdropTable}
 	 * labeled alternative in {@link PostSQLParser#unit_statement}.
 	 * @param ctx the parse tree
@@ -187,6 +199,18 @@ public interface PostSQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitShowDatabase(PostSQLParser.ShowDatabaseContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code useDatabase}
+	 * labeled alternative in {@link PostSQLParser#use_database}.
+	 * @param ctx the parse tree
+	 */
+	void enterUseDatabase(PostSQLParser.UseDatabaseContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code useDatabase}
+	 * labeled alternative in {@link PostSQLParser#use_database}.
+	 * @param ctx the parse tree
+	 */
+	void exitUseDatabase(PostSQLParser.UseDatabaseContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code createTable}
 	 * labeled alternative in {@link PostSQLParser#create_table}.

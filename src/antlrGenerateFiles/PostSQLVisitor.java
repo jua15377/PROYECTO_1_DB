@@ -53,6 +53,13 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSTMshowTable(PostSQLParser.STMshowTableContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code STMuseDB}
+	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTMuseDB(PostSQLParser.STMuseDBContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code STMdropTable}
 	 * labeled alternative in {@link PostSQLParser#unit_statement}.
 	 * @param ctx the parse tree
@@ -115,6 +122,13 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitShowDatabase(PostSQLParser.ShowDatabaseContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code useDatabase}
+	 * labeled alternative in {@link PostSQLParser#use_database}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUseDatabase(PostSQLParser.UseDatabaseContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code createTable}
 	 * labeled alternative in {@link PostSQLParser#create_table}.
