@@ -1,5 +1,6 @@
 package fileManagement;
 
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -14,13 +15,37 @@ public class BaseDeDatos implements Serializable {
         this.name = name;
     }
     
+    public String dropTable(String nombre){
+        String baseDeDatos = this.name;
+        String diagnostico = "";
+        try{
+            File archivo = new File(baseDeDatos + "\\" + nombre + ".ser" );
+            if(archivo.delete()){
+                diagnostico =  "Tabla " + nombre + " eliminada con exito";
+            }
+            else{
+                diagnostico =  "ERROR: Tabla no existente en Base de Datos " + this.name;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return diagnostico;
 
 
+    }
+
+    public String showColumn(String nombre ){
+        File archivo  =new File(this.name + "\\" + nombre + ".ser");
+        String respuestaTemporal  ="";
+        return respuestaTemporal; 
+
+    }
 
     public void agregarRegsitroDeTabla(String nombre){
         nombresDeTablas.add(nombre);
     }
 
+    //SHOW TABLES
     public ArrayList getNombresDeTablas() {
         return nombresDeTablas;
     }
