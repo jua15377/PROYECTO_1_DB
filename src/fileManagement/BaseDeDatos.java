@@ -33,14 +33,6 @@ public class BaseDeDatos implements Serializable {
 
 
     }
-
-    public String showColumn(String nombre ){
-        File archivo  =new File(this.name + "\\" + nombre + ".ser");
-        String respuestaTemporal  ="";
-        return respuestaTemporal; 
-
-    }
-
     public void agregarRegsitroDeTabla(String nombre){
         nombresDeTablas.add(nombre);
     }
@@ -68,4 +60,32 @@ public class BaseDeDatos implements Serializable {
                 "cantidad de tablas: " + nombresDeTablas.size() +"\n";
 
     }
+
+    public void renameTable(String nombre, String nuevoNombre){
+
+    }
+
+    public void addColumn(String nombreTabla, ArrayList<String> constraints){
+
+    }
+
+    public void addConstraint(){
+
+    }
+
+    public void dropColumn(){
+
+    }
+
+    public void dropConstraint(){
+
+    }
+
+    public String showColumn(String nombre ){
+        File archivo  =new File(this.name + "\\" + nombre + ".ser");
+        return "";
+
+    }
+
+
 }
