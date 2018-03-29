@@ -15,7 +15,6 @@ public class Manejador implements Serializable {
         BaseDeDatos baseDeDatos = new  BaseDeDatos(nombre);
         dbsNames.add(nombre);
         dbs.add(baseDeDatos);
-        FolderManager.createFolder(nombre);
         this.contadorDeDB ++;
     }
 

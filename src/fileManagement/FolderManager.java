@@ -98,42 +98,35 @@ public final class FolderManager {
 
 //para la serializacion del objetio
 
-    // toByteArray and toObject are taken from: http://tinyurl.com/69h8l7x
-    public static byte[] toByteArray(Object obj) throws IOException {
-        byte[] bytes = null;
-
-        ByteArrayOutputStream bos = null;
-        ObjectOutputStream oos = null;
+    // toFile and toObject are taken from: http://tinyurl.com/69h8l7x
+    public static void toFile(Object obj, String locationAndName) throws IOException {
         try {
-            bos = new ByteArrayOutputStream();
-            oos = new ObjectOutputStream(bos);
-            oos.writeObject(obj);
-            oos.flush();
-            bytes = bos.toByteArray();
+            FileOutputStream fileOut = new FileOutputStream(locationAndName);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(obj);
+            out.close();
+            fileOut.close();
+            System.out.println("Serialized data is saved in" + locationAndName +"\n");
         }
-        finally {
-            if (oos != null) {
-                oos.close();
-            }
-            if (bos != null) {
-                bos.close();
-            }
+        catch (IOException i) {
+            i.printStackTrace();
         }
-        return bytes;
+
     }
 
-    public static Object toObject(byte[] bytes) throws IOException, ClassNotFoundException {
+    public static Object toObject(String locationAndName) throws IOException, ClassNotFoundException {
         Object obj = null;
-        ByteArrayInputStream bis = null;
+        //ByteArrayInputStream bis = null;
         ObjectInputStream ois = null;
+        FileInputStream fileIn = null;
         try {
-            bis = new ByteArrayInputStream(bytes);
-            ois = new ObjectInputStream(bis);
+            fileIn = new FileInputStream(locationAndName);
+            ois = new ObjectInputStream(fileIn);
             obj = ois.readObject();
         }
         finally {
-            if (bis != null) {
-                bis.close();
+            if (fileIn != null) {
+                fileIn.close();
             }
             if (ois != null) {
                 ois.close();

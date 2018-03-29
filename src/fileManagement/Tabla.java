@@ -16,11 +16,5 @@ public class Tabla implements Serializable{
 
     public Tabla(String name){
         this.name = name;
-
     }
-
-
-
-
-
 }
