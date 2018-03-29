@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b61c4724-3d3d-465b-a9dc-ce9337b5b7af" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/PROYECTO 1/packDePruebas/TestPrincipal.class" afterPath="$PROJECT_DIR$/out/production/PROYECTO 1/packDePruebas/TestPrincipal.class" />
       <change beforePath="$PROJECT_DIR$/src/fileManagement/BaseDeDatos.java" afterPath="$PROJECT_DIR$/src/fileManagement/BaseDeDatos.java" />
-      <change beforePath="$PROJECT_DIR$/src/fileManagement/Registro.java" afterPath="$PROJECT_DIR$/src/fileManagement/Registro.java" />
+      <change beforePath="$PROJECT_DIR$/src/fileManagement/FolderManager.java" afterPath="$PROJECT_DIR$/src/fileManagement/FolderManager.java" />
+      <change beforePath="$PROJECT_DIR$/src/packDePruebas/TestPrincipal.java" afterPath="$PROJECT_DIR$/src/packDePruebas/TestPrincipal.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,11 +18,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="TestPrincipal.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="TestPrincipal.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/packDePruebas/TestPrincipal.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
+            <state relative-caret-position="406">
+              <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -31,8 +33,8 @@
       <file leaf-file-name="FolderManager.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fileManagement/FolderManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="243">
-              <caret line="140" column="16" lean-forward="false" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
+            <state relative-caret-position="57">
+              <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
               <folding>
                 <element signature="e#4060#4061#0" expanded="true" />
                 <element signature="e#4100#4101#0" expanded="true" />
@@ -41,11 +43,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BaseDeDatos.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BaseDeDatos.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/fileManagement/BaseDeDatos.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="146">
-              <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+            <state relative-caret-position="26">
+              <caret line="36" column="5" lean-forward="false" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1297#1298#0" expanded="true" />
@@ -141,9 +143,9 @@
         <option value="$PROJECT_DIR$/src/antlrGenerateFiles/PostSQL.g4" />
         <option value="$PROJECT_DIR$/src/fileManagement/Tabla.java" />
         <option value="$PROJECT_DIR$/src/fileManagement/Manejador.java" />
-        <option value="$PROJECT_DIR$/src/packDePruebas/TestPrincipal.java" />
-        <option value="$PROJECT_DIR$/src/fileManagement/FolderManager.java" />
         <option value="$PROJECT_DIR$/src/fileManagement/BaseDeDatos.java" />
+        <option value="$PROJECT_DIR$/src/fileManagement/FolderManager.java" />
+        <option value="$PROJECT_DIR$/src/packDePruebas/TestPrincipal.java" />
       </list>
     </option>
   </component>
@@ -362,7 +364,7 @@
       <workItem from="1521680647969" duration="1310000" />
       <workItem from="1522179202865" duration="6654000" />
       <workItem from="1522259117297" duration="5271000" />
-      <workItem from="1522265241418" duration="21384000" />
+      <workItem from="1522265241418" duration="22201000" />
     </task>
     <task id="LOCAL-00001" summary="se agregan las primeras etapas de la gramtica">
       <created>1521523186715</created>
@@ -462,15 +464,28 @@
       <option name="project" value="LOCAL" />
       <updated>1522298677175</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Merge branch 'master' of https://github.com/jua15377/PROYECTO_1_DB&#10;&#10;# Conflicts:&#10;#&#9;src/fileManagement/BaseDeDatos.java">
+      <created>1522298847455</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1522298847455</updated>
+    </task>
+    <task id="LOCAL-00016" summary="un objeto de prueba">
+      <created>1522299636192</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1522299636192</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40367000" />
+    <option name="totallyTimeSpent" value="41184000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="754" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -482,11 +497,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.5029412" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32917318" sideWeight="0.4970588" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.4970588" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16764706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16764706" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32917318" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="ANTLR Preview" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -551,7 +566,9 @@
     <MESSAGE value="generando de nuevo el lexer y parser, se agrego la reglar use_database" />
     <MESSAGE value="Creando Objeto de prueba" />
     <MESSAGE value="se creo objetos, se guardaron exiotosamente" />
-    <option name="LAST_COMMIT_MESSAGE" value="se creo objetos, se guardaron exiotosamente" />
+    <MESSAGE value="Merge branch 'master' of https://github.com/jua15377/PROYECTO_1_DB&#10;&#10;# Conflicts:&#10;#&#9;src/fileManagement/BaseDeDatos.java" />
+    <MESSAGE value="un objeto de prueba" />
+    <option name="LAST_COMMIT_MESSAGE" value="un objeto de prueba" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -851,31 +868,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/packDePruebas/TestPrincipal.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="35" lean-forward="false" selection-start-line="23" selection-start-column="35" selection-end-line="23" selection-end-column="35" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/fileManagement/FolderManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="140" column="16" lean-forward="false" selection-start-line="140" selection-start-column="16" selection-end-line="140" selection-end-column="16" />
-          <folding>
-            <element signature="e#4060#4061#0" expanded="true" />
-            <element signature="e#4100#4101#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/fileManagement/BaseDeDatos.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="41" column="5" lean-forward="false" selection-start-line="41" selection-start-column="5" selection-end-line="41" selection-end-column="5" />
+        <state relative-caret-position="26">
+          <caret line="36" column="5" lean-forward="false" selection-start-line="36" selection-start-column="5" selection-end-line="36" selection-end-column="5" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1297#1298#0" expanded="true" />
@@ -888,6 +884,35 @@
             <element signature="e#1618#1619#0" expanded="true" />
             <element signature="e#1658#1659#0" expanded="true" />
             <element signature="e#1690#1691#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/fileManagement/FolderManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="127" column="0" lean-forward="false" selection-start-line="127" selection-start-column="0" selection-end-line="127" selection-end-column="0" />
+          <folding>
+            <element signature="e#4060#4061#0" expanded="true" />
+            <element signature="e#4100#4101#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/elobjetoTransitivo">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/packDePruebas/TestPrincipal.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="406">
+          <caret line="28" column="10" lean-forward="false" selection-start-line="28" selection-start-column="10" selection-end-line="28" selection-end-column="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

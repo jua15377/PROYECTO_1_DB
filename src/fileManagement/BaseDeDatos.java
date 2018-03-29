@@ -41,13 +41,6 @@ public class BaseDeDatos implements Serializable {
 
     }
 
-    public String showColumn(String nombre ){
-        File archivo  =new File(this.name + "/" + nombre + ".ser");
-        String respuestaTemporal  ="";
-        return respuestaTemporal; 
-
-    }
-
     public void agregarRegsitroDeTabla(String nombre){
         nombresDeTablas.add(nombre);
     }

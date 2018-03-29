@@ -138,7 +138,7 @@ public final class FolderManager {
     }
 
     public static String createPath(String dataBaseName, String tableName){
-        return  dataBaseName + "\\" + tableName + ".ser";
+        return  dataBaseName + "\\" + tableName + ".dsj";
 
     }
 

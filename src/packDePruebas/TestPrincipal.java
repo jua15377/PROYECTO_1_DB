@@ -22,6 +22,12 @@ public class TestPrincipal
         b2.createTable("tablita1");
         b2.createTable("tablita2");
         manejador.generateMetada();
+        //crear
+        FolderManager.toFile(manejador,"elobjetoTransitivo");
+        //desccomentar
+        //Manejador manejador1 = (Manejador) FolderManager.toObject("elobjetoTransitivo.dsj")
+        //manejador.generateMetada();
+
 
     }
 }
