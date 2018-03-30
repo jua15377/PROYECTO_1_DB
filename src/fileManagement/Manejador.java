@@ -1,5 +1,13 @@
 package fileManagement;
 
+/*
+ * Clase para el manejaddor principal de la base de datos.
+ * @author  Jonnathan Juarez, Diego Castaneda, Sebastian Galindo
+ * @version 1.0
+ * @since   2018-03-28
+ */
+
+
 import java.io.*;
 import java.util.ArrayList;
 

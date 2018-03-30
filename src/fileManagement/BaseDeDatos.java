@@ -1,4 +1,10 @@
 package fileManagement;
+/*
+* clase que contiene las tablas y metodos para alterar sus valores.
+* @author  Jonnathan Juarez, Diego Castaneda, Sebastian Galindo
+* @version 1.0
+* @since   2018-03-28
+*/
 
 import java.io.File;
 import java.io.Serializable;

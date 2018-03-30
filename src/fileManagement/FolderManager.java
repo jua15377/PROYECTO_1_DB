@@ -1,5 +1,12 @@
 package fileManagement;
 
+/*
+ * Clase encargada  lo relacionado al mejo de archivos
+ * @author  Jonnathan Juarez
+ * @version 1.0
+ * @since   2018-03-28
+ */
+
 import java.io.*;
 
 public final class FolderManager {
