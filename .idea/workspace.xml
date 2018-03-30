@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b61c4724-3d3d-465b-a9dc-ce9337b5b7af" name="Default" comment="agregando algunos comentarios">
+    <list default="true" id="b61c4724-3d3d-465b-a9dc-ce9337b5b7af" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/PROYECTO 1/packDePruebas/TestPrincipal.class" afterPath="$PROJECT_DIR$/out/production/PROYECTO 1/packDePruebas/TestPrincipal.class" />
-      <change beforePath="$PROJECT_DIR$/src/fileManagement/BaseDeDatos.java" afterPath="$PROJECT_DIR$/src/fileManagement/BaseDeDatos.java" />
-      <change beforePath="$PROJECT_DIR$/src/fileManagement/FolderManager.java" afterPath="$PROJECT_DIR$/src/fileManagement/FolderManager.java" />
-      <change beforePath="$PROJECT_DIR$/src/fileManagement/Manejador.java" afterPath="$PROJECT_DIR$/src/fileManagement/Manejador.java" />
-      <change beforePath="$PROJECT_DIR$/src/fileManagement/Tabla.java" afterPath="$PROJECT_DIR$/src/fileManagement/Tabla.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -383,7 +379,7 @@
       <workItem from="1522259117297" duration="5271000" />
       <workItem from="1522265241418" duration="22880000" />
       <workItem from="1522374712390" duration="600000" />
-      <workItem from="1522448402213" duration="4708000" />
+      <workItem from="1522448402213" duration="4735000" />
     </task>
     <task id="LOCAL-00001" summary="se agregan las primeras etapas de la gramtica">
       <created>1521523186715</created>
@@ -518,11 +514,18 @@
       <option name="project" value="LOCAL" />
       <updated>1522450281074</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="agregando algunos comentarios">
+      <created>1522453125139</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1522453125139</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47171000" />
+    <option name="totallyTimeSpent" value="47198000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="754" extended-state="6" />
