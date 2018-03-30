@@ -23,7 +23,7 @@ public class Manejador implements Serializable {
         dbsNames.remove(indice);
         dbs.remove(indice);
         FolderManager.deleteFolder(nombre);
-        this.contadorDeDB --;
+        this.contadorDeDB = this.contadorDeDB -1;
     }
 
     public void  changeDBSname(String oldName, String newName){

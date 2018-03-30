@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class BaseDeDatos implements Serializable {
     private ArrayList<String> nombresDeTablas = new ArrayList<>();
+    private ArrayList<Tabla> tablas = new ArrayList<>();
     private String name;
 
     public BaseDeDatos(String name){
@@ -18,15 +19,19 @@ public class BaseDeDatos implements Serializable {
     public void createTable(String tableName) {
         String path = FolderManager.createPath(this.name, tableName);
         Tabla tabla = new Tabla(tableName);
+        tablas.add(tabla);
         FolderManager.toFile(tabla, path);
         nombresDeTablas.add(tableName);
     }
 
     public String dropTable(String nombre){
+        int indice = nombresDeTablas.indexOf(nombre);
+        nombresDeTablas.remove(indice);
+        tablas.remove(indice);
         String baseDeDatos = this.name;
         String diagnostico = "";
         try{
-            File archivo = new File(baseDeDatos + "\\" + nombre + ".ser" );
+            File archivo = new File(baseDeDatos + "\\" + nombre + ".dsj" );
             if(archivo.delete()){
                 diagnostico =  "Tabla " + nombre + " eliminada con exito";
             }
@@ -70,7 +75,11 @@ public class BaseDeDatos implements Serializable {
     }
 
     public void renameTable(String nombre, String nuevoNombre){
-
+        int indice = nombresDeTablas.indexOf(nombre);
+        nombresDeTablas.set(indice,nuevoNombre);
+        tablas.get(indice).setName(nuevoNombre);
+        Tabla tabaParaArchivNuevo =  tablas.get(indice);
+        //falta borrar y recrear el archivo
     }
 
     public void addColumn(String nombreTabla, ArrayList<String> constraints){

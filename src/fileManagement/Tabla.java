@@ -22,4 +22,53 @@ public class Tabla implements Serializable{
     public String toString() {
         return "soy una tabla y me llamo " + name;
     }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<String> getNombresDecolumnas() {
+        return nombresDecolumnas;
+    }
+
+    public void setNombresDecolumnas(ArrayList<String> nombresDecolumnas) {
+        this.nombresDecolumnas = nombresDecolumnas;
+    }
+
+    public ArrayList<String> getTiposDecolumnas() {
+        return tiposDecolumnas;
+    }
+
+    public void setTiposDecolumnas(ArrayList<String> tiposDecolumnas) {
+        this.tiposDecolumnas = tiposDecolumnas;
+    }
+
+    public ArrayList<String> getPk() {
+        return pk;
+    }
+
+    public void setPk(ArrayList<String> pk) {
+        this.pk = pk;
+    }
+
+    public ArrayList<String> getFk() {
+        return fk;
+    }
+
+    public void setFk(ArrayList<String> fk) {
+        this.fk = fk;
+    }
+
+    public Hashtable<Integer, Registro> getRegistro() {
+        return registro;
+    }
+
+    public void setRegistro(Hashtable<Integer, Registro> registro) {
+        this.registro = registro;
+    }
 }
