@@ -98,6 +98,7 @@ public class Controller implements Initializable{
         } catch (Exception e) {
             String m = e.toString();
             textArea.setText(m);
+            //
         }
     }
 
