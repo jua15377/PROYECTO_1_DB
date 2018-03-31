@@ -8,6 +8,9 @@ package fileManagement;
  */
 
 
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
+import javafx.scene.control.Tab;
+
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,8 +27,32 @@ public class Manejador implements Serializable {
         // cada vez que se lea un nombre, se creara un folder y se creara cada objeto.
         //Esto, para utilizar un manejador de acuerdo a lo que ya exisitia.
 
-        ArrayList<String> dbs = getDBfromFiles();
+        String current = "";
+        Tabla tt = new Tabla("laTabla");
+        //Obtencion del folder principal que contiene todos los folders de la base de datos
+        try {
+            current = new File(".").getCanonicalPath();
 
+        }
+        catch (java.io.IOException e ){
+
+        }
+        ArrayList<String> dbs = getDBfromFiles();
+        for (String db: dbs){
+            /**
+             * Creacion de objeto base de datos, contenedor de tablas**/
+            BaseDeDatos baseDeDatos = new BaseDeDatos(db);
+            File folder = new File(current +"\\" + db);
+            File[] listOfFiles = folder.listFiles();
+
+            for(File file: listOfFiles){
+                /**
+                 * Cracion de obeto tabla, contenedor de registros*/
+                Tabla tabla  = (Tabla) FolderManager.toObject(current +"\\" + db +"\\" + file);
+                baseDeDatos.addTabla(tabla);
+            }
+            addDB(baseDeDatos);
+        }
 
      }
     public void createDataBase(String nombre){
@@ -146,6 +173,19 @@ public class Manejador implements Serializable {
             }
         }
      }
+
+    /**
+     * addDB Method
+     * Adds a new Database to the Manager
+     * @param: BaseDeDatos db, the database to be added
+     * @return  nothing
+     * **/
+    public void addDB(BaseDeDatos db){
+         dbsNames.add(db.getName());
+         dbs.add(db);
+         this.contadorDeDB ++;
+    }
+
     /**
      * Code creted by TheLittleNaruto
      * Found at: https://stackoverflow.com/questions/1377279/find-a-line-in-a-file-and-remove-it*/
