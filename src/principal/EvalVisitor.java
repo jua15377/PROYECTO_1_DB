@@ -19,6 +19,11 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
+    @Override public String visitCreateTable(PostSQLParser.CreateTableContext ctx) {
+        String constraint = visitChildren(ctx.columDeclaration());
+        return visitChildren(ctx);
+    }
+
     public String getError() {
         return error;
     }

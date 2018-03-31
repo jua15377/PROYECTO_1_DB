@@ -49,14 +49,15 @@ program
 
 unitStatement
 	: 'CREATE' 'DATABASE' ID													#STMcreateDB
-	| 'DROP' 'DATABASE' ID 																	#STMdropDB
-	| show_database																#STMshowDB
-	| create_table																#STMcreateDB
-	| alter_table 																#STMalterTable
-	| show_table 																#STMshowTable
-	| use_database                                                               #STMuseDB
-	| drop_table 																#STMdropTable
-	| fuck_database 															#STMfuckTable
+	| 'DROP' 'DATABASE' ID 														#STMdropDB
+	| 'SHOW' 'DATABASE' 														#STMshowDB
+    | 'SHOW' 'TABLE'															#STMshowTable
+	| 'USE' 'DATABASE' ID                                                       #STMuseDB
+	| 'DROP' 'TABLE' ID     													#STMdropTable
+	| 'FUCK' 'DATABASE' 														#STMfuckTable
+	| 'CREATE' 'TABLE' ID '(' columDeclaration  constraints* ')' 				#STMcreateTable
+	| 'SHOW' 'COLUMNS' FROM ID	                                                #STMshowColumn
+    | alter_table 																#STMalterTable
 	| insert_into 																#STMinsertInto
 	| update 																	#STMupdate
 	| delete 																	#STMdelete
@@ -64,43 +65,16 @@ unitStatement
 	;
 
 
-
-
-
-show_database
-	: 'SHOW' 'DATABASE'     														#showDatabase
-	;
-
-use_database
-    : 'USE' 'DATABASE' ID                                                           #useDatabase
-    ;
-
-create_table
-    : 'CREATE' 'TABLE' ID '(' columDeclaration  constraints* ')' 					#createTable
-    ;
-
 constraints
-	: primaryKeyDeclaration 													#primaryKeyDeclConstr
-	| foreignKeyDeclaration 													#foreignKeyDeclConstr
-	| checkDeclaration															#checkDeclConstr
+	: CONSTRAINT 'PK_'ID PRIMARY KEY ('(' ID | ID(','ID)* ')')					                     #primaryKeyDeclConstr
+	| CONSTRAINT 'FK_'ID FOREIGN KEY ('(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')') #foreignKeyDeclConstr
+	| CONSTRAINT 'CH_'ID CHECK '(' exp ')'										                     #checkDeclConstr
 	;
 
 
 columDeclaration 
 	: ID varType 																#simpleColumn
 	| ID  varType (','ID  varType)*												#multipleColumn		
-	;
-
-primaryKeyDeclaration
-	: CONSTRAINT 'PK_'ID PRIMARY KEY ('(' ID | ID(','ID)* ')')					#primaryKeyDecl
-	;
-
-foreignKeyDeclaration
-	: CONSTRAINT 'FK_'ID FOREIGN KEY ('(' ID | ID(','ID)* ')' REFERENCES ID '(' ID | ID(','ID)* ')') #foreignDecl
-	;
-
-checkDeclaration
-	: CONSTRAINT 'CH_'ID CHECK '(' exp ')'										#checkDecl
 	;
 
 exp
@@ -123,7 +97,7 @@ eq_sgn
 	;
 
 alter_table
-	: ALTER 'TABLE' ID RENAME TO ID 												#renameTable
+	: ALTER 'TABLE' ID RENAME TO ID 											#renameTable
 	| ALTER 'TABLE' ID action_alter_table  										#alterTable
 	;
 
@@ -135,21 +109,7 @@ action_alter_table
 	;
 
 
-drop_table
-	: 'DROP' 'TABLE' ID 															#dropTable
-	;
 
-show_table
-	: 'SHOW' 'TABLE' 																#showTable
-	;
-
-show_column
-	: 'SHOW' 'COLUMNS' FROM ID													#showColumn
-	;
-
-fuck_database
-	: 'FUCK' 'DATABASE' 			 												#fuckDatabase
-	;
 
 insert_into
 	: INSERT_INTO ID '(' ID (',' ID)* ')' VALUES '(' varType (',' varType)* ')'					#insertInto
@@ -171,10 +131,10 @@ select
 	: SELECT ('*'|ID (','ID)) FROM ID WHERE condicion ORDER_BY ID (ASC |DESC) (',' ID (ASC |DESC)) 	#selectDecl
 	;
 
-varType                                         
-	: 	INT				            #var_int
-	|	CHAR				        #var_char
-	|	BOOLEAN				        #var_boolean
+varType
+	: 	INT				            #varint
+	|	CHAR				        #varchar
+	|	BOOLEAN				        #varboolean
 	;
 
 
