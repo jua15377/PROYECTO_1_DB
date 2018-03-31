@@ -19,7 +19,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/javaLib/richtextfx-fat-0.8.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/../richtextfx-fat-0.8.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -6,10 +6,22 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        //Crear el archivo de NBaseDeDatos, si este no esta creado.
+        String current = new File(".").getCanonicalPath();
+        Path path = Paths.get(current + "\\NBaseDeDatos.dsj");
+        if (!Files.exists(path)){
+            File file = new File(current + "\\NBaseDeDatos.dsj");
+            file.createNewFile();
+        }
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("sample.fxml"));

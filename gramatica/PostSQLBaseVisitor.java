@@ -1,4 +1,5 @@
 // Generated from PostSQL.g4 by ANTLR 4.7.1
+package antlrGenerateFiles;
 import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
 
 /**
@@ -9,7 +10,7 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  * @param <T> The return type of the visit operation. Use {@link Void} for
  * operations with no return type.
  */
-public class PostSQLBaseVisitor<T> extends AbstractParseTreeVisitor<T	> implements PostSQLVisitor<T> {
+public class PostSQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements PostSQLVisitor<T> {
 	/**
 	 * {@inheritDoc}
 	 *

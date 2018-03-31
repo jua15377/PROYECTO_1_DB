@@ -1,4 +1,5 @@
 // Generated from PostSQL.g4 by ANTLR 4.7.1
+package antlrGenerateFiles;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -133,14 +134,6 @@ public class PostSQLParser extends Parser {
 		}
 		public SqlScriptContext(Sql_scriptContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSqlScript(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSqlScript(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSqlScript(this);
 			else return visitor.visitChildren(this);
@@ -211,14 +204,6 @@ public class PostSQLParser extends Parser {
 		}
 		public STMalterTableContext(Unit_statementContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMalterTable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMalterTable(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMalterTable(this);
 			else return visitor.visitChildren(this);
@@ -229,14 +214,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(Show_tableContext.class,0);
 		}
 		public STMshowTableContext(Unit_statementContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMshowTable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMshowTable(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMshowTable(this);
@@ -252,14 +229,6 @@ public class PostSQLParser extends Parser {
 		}
 		public STMcreateDBContext(Unit_statementContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMcreateDB(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMcreateDB(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMcreateDB(this);
 			else return visitor.visitChildren(this);
@@ -270,14 +239,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(Insert_intoContext.class,0);
 		}
 		public STMinsertIntoContext(Unit_statementContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMinsertInto(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMinsertInto(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMinsertInto(this);
@@ -290,14 +251,6 @@ public class PostSQLParser extends Parser {
 		}
 		public STMupdateContext(Unit_statementContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMupdate(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMupdate(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMupdate(this);
 			else return visitor.visitChildren(this);
@@ -308,14 +261,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(Drop_databaseContext.class,0);
 		}
 		public STMdropDBContext(Unit_statementContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMdropDB(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMdropDB(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMdropDB(this);
@@ -328,14 +273,6 @@ public class PostSQLParser extends Parser {
 		}
 		public STMdropTableContext(Unit_statementContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMdropTable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMdropTable(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMdropTable(this);
 			else return visitor.visitChildren(this);
@@ -346,14 +283,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(SelectContext.class,0);
 		}
 		public STMselectContext(Unit_statementContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMselect(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMselect(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMselect(this);
@@ -366,14 +295,6 @@ public class PostSQLParser extends Parser {
 		}
 		public STMshowDBContext(Unit_statementContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMshowDB(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMshowDB(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMshowDB(this);
 			else return visitor.visitChildren(this);
@@ -385,14 +306,6 @@ public class PostSQLParser extends Parser {
 		}
 		public STMdeleteContext(Unit_statementContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMdelete(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMdelete(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMdelete(this);
 			else return visitor.visitChildren(this);
@@ -403,14 +316,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(Fuck_databaseContext.class,0);
 		}
 		public STMfuckTableContext(Unit_statementContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSTMfuckTable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSTMfuckTable(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSTMfuckTable(this);
@@ -551,14 +456,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode ID() { return getToken(PostSQLParser.ID, 0); }
 		public CreateDatabaseContext(Create_databaseContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterCreateDatabase(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitCreateDatabase(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitCreateDatabase(this);
 			else return visitor.visitChildren(this);
@@ -608,14 +505,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode ID() { return getToken(PostSQLParser.ID, 0); }
 		public DropDatabaseContext(Drop_databaseContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterDropDatabase(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitDropDatabase(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitDropDatabase(this);
 			else return visitor.visitChildren(this);
@@ -663,14 +552,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode SHOW() { return getToken(PostSQLParser.SHOW, 0); }
 		public TerminalNode DATABASE() { return getToken(PostSQLParser.DATABASE, 0); }
 		public ShowDatabaseContext(Show_databaseContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterShowDatabase(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitShowDatabase(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitShowDatabase(this);
@@ -727,14 +608,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(ConstraintsContext.class,i);
 		}
 		public CreateTableContext(Create_tableContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterCreateTable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitCreateTable(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitCreateTable(this);
@@ -806,14 +679,6 @@ public class PostSQLParser extends Parser {
 		}
 		public PrimaryKeyDeclConstrContext(ConstraintsContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterPrimaryKeyDeclConstr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitPrimaryKeyDeclConstr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitPrimaryKeyDeclConstr(this);
 			else return visitor.visitChildren(this);
@@ -825,14 +690,6 @@ public class PostSQLParser extends Parser {
 		}
 		public ForeignKeyDeclConstrContext(ConstraintsContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterForeignKeyDeclConstr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitForeignKeyDeclConstr(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitForeignKeyDeclConstr(this);
 			else return visitor.visitChildren(this);
@@ -843,14 +700,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(CheckDeclarationContext.class,0);
 		}
 		public CheckDeclConstrContext(ConstraintsContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterCheckDeclConstr(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitCheckDeclConstr(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitCheckDeclConstr(this);
@@ -920,14 +769,6 @@ public class PostSQLParser extends Parser {
 		}
 		public SimpleColumnContext(ColumDeclarationContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSimpleColumn(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSimpleColumn(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSimpleColumn(this);
 			else return visitor.visitChildren(this);
@@ -945,14 +786,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(VarTypeContext.class,i);
 		}
 		public MultipleColumnContext(ColumDeclarationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterMultipleColumn(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitMultipleColumn(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitMultipleColumn(this);
@@ -1039,14 +872,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode PRIMARY() { return getToken(PostSQLParser.PRIMARY, 0); }
 		public TerminalNode KEY() { return getToken(PostSQLParser.KEY, 0); }
 		public PrimaryKeyDeclContext(PrimaryKeyDeclarationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterPrimaryKeyDecl(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitPrimaryKeyDecl(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitPrimaryKeyDecl(this);
@@ -1144,14 +969,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode KEY() { return getToken(PostSQLParser.KEY, 0); }
 		public TerminalNode REFERENCES() { return getToken(PostSQLParser.REFERENCES, 0); }
 		public ForeignDeclContext(ForeignKeyDeclarationContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterForeignDecl(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitForeignDecl(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitForeignDecl(this);
@@ -1278,14 +1095,6 @@ public class PostSQLParser extends Parser {
 		}
 		public CheckDeclContext(CheckDeclarationContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterCheckDecl(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitCheckDecl(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitCheckDecl(this);
 			else return visitor.visitChildren(this);
@@ -1353,14 +1162,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(Eq_sgnContext.class,0);
 		}
 		public ExpDeclContext(ExpContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterExpDecl(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitExpDecl(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitExpDecl(this);
@@ -1449,14 +1250,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode AND() { return getToken(PostSQLParser.AND, 0); }
 		public AndOperationContext(Eq_opContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterAndOperation(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitAndOperation(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitAndOperation(this);
 			else return visitor.visitChildren(this);
@@ -1466,14 +1259,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode NOT() { return getToken(PostSQLParser.NOT, 0); }
 		public NotOperationContext(Eq_opContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterNotOperation(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitNotOperation(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitNotOperation(this);
 			else return visitor.visitChildren(this);
@@ -1482,14 +1267,6 @@ public class PostSQLParser extends Parser {
 	public static class OrOperationContext extends Eq_opContext {
 		public TerminalNode OR() { return getToken(PostSQLParser.OR, 0); }
 		public OrOperationContext(Eq_opContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterOrOperation(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitOrOperation(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitOrOperation(this);
@@ -1557,14 +1334,6 @@ public class PostSQLParser extends Parser {
 	public static class MayorIgualQueOpContext extends Eq_sgnContext {
 		public MayorIgualQueOpContext(Eq_sgnContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterMayorIgualQueOp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitMayorIgualQueOp(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitMayorIgualQueOp(this);
 			else return visitor.visitChildren(this);
@@ -1572,14 +1341,6 @@ public class PostSQLParser extends Parser {
 	}
 	public static class MayorQueOPContext extends Eq_sgnContext {
 		public MayorQueOPContext(Eq_sgnContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterMayorQueOP(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitMayorQueOP(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitMayorQueOP(this);
@@ -1589,14 +1350,6 @@ public class PostSQLParser extends Parser {
 	public static class MenorIgualQueOpContext extends Eq_sgnContext {
 		public MenorIgualQueOpContext(Eq_sgnContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterMenorIgualQueOp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitMenorIgualQueOp(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitMenorIgualQueOp(this);
 			else return visitor.visitChildren(this);
@@ -1604,14 +1357,6 @@ public class PostSQLParser extends Parser {
 	}
 	public static class MenorQueOpContext extends Eq_sgnContext {
 		public MenorQueOpContext(Eq_sgnContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterMenorQueOp(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitMenorQueOp(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitMenorQueOp(this);
@@ -1621,14 +1366,6 @@ public class PostSQLParser extends Parser {
 	public static class IgualOPContext extends Eq_sgnContext {
 		public IgualOPContext(Eq_sgnContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterIgualOP(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitIgualOP(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitIgualOP(this);
 			else return visitor.visitChildren(this);
@@ -1636,14 +1373,6 @@ public class PostSQLParser extends Parser {
 	}
 	public static class DiferenteOPContext extends Eq_sgnContext {
 		public DiferenteOPContext(Eq_sgnContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterDiferenteOP(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitDiferenteOP(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitDiferenteOP(this);
@@ -1743,14 +1472,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode TO() { return getToken(PostSQLParser.TO, 0); }
 		public RenameTableContext(Alter_tableContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterRenameTable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitRenameTable(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitRenameTable(this);
 			else return visitor.visitChildren(this);
@@ -1764,14 +1485,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(Action_alter_tableContext.class,0);
 		}
 		public AlterTableContext(Alter_tableContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterAlterTable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitAlterTable(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitAlterTable(this);
@@ -1857,14 +1570,6 @@ public class PostSQLParser extends Parser {
 		}
 		public AddColumnContext(Action_alter_tableContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterAddColumn(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitAddColumn(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitAddColumn(this);
 			else return visitor.visitChildren(this);
@@ -1875,14 +1580,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode CONSTRAINT() { return getToken(PostSQLParser.CONSTRAINT, 0); }
 		public TerminalNode ID() { return getToken(PostSQLParser.ID, 0); }
 		public DropConstraintsContext(Action_alter_tableContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterDropConstraints(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitDropConstraints(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitDropConstraints(this);
@@ -1899,14 +1596,6 @@ public class PostSQLParser extends Parser {
 		}
 		public AddConstraintsContext(Action_alter_tableContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterAddConstraints(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitAddConstraints(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitAddConstraints(this);
 			else return visitor.visitChildren(this);
@@ -1917,14 +1606,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode COLUMN() { return getToken(PostSQLParser.COLUMN, 0); }
 		public TerminalNode ID() { return getToken(PostSQLParser.ID, 0); }
 		public DropColumnContext(Action_alter_tableContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterDropColumn(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitDropColumn(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitDropColumn(this);
@@ -2044,14 +1725,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode ID() { return getToken(PostSQLParser.ID, 0); }
 		public DropTableContext(Drop_tableContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterDropTable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitDropTable(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitDropTable(this);
 			else return visitor.visitChildren(this);
@@ -2100,14 +1773,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode TABLE() { return getToken(PostSQLParser.TABLE, 0); }
 		public ShowTableContext(Show_tableContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterShowTable(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitShowTable(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitShowTable(this);
 			else return visitor.visitChildren(this);
@@ -2154,14 +1819,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode ID() { return getToken(PostSQLParser.ID, 0); }
 		public ShowColumnContext(Show_columnContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterShowColumn(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitShowColumn(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitShowColumn(this);
 			else return visitor.visitChildren(this);
@@ -2207,14 +1864,6 @@ public class PostSQLParser extends Parser {
 	}
 	public static class FuckDatabaseContext extends Fuck_databaseContext {
 		public FuckDatabaseContext(Fuck_databaseContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterFuckDatabase(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitFuckDatabase(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitFuckDatabase(this);
@@ -2269,14 +1918,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(VarTypeContext.class,i);
 		}
 		public InsertIntoContext(Insert_intoContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterInsertInto(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitInsertInto(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitInsertInto(this);
@@ -2394,14 +2035,6 @@ public class PostSQLParser extends Parser {
 		}
 		public UpdateDeclContext(UpdateContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterUpdateDecl(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitUpdateDecl(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitUpdateDecl(this);
 			else return visitor.visitChildren(this);
@@ -2502,14 +2135,6 @@ public class PostSQLParser extends Parser {
 		}
 		public CondicionDeclContext(CondicionContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterCondicionDecl(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitCondicionDecl(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitCondicionDecl(this);
 			else return visitor.visitChildren(this);
@@ -2571,14 +2196,6 @@ public class PostSQLParser extends Parser {
 			return getRuleContext(Eq_opContext.class,i);
 		}
 		public DeleteDeclContext(DeleteContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterDeleteDecl(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitDeleteDecl(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitDeleteDecl(this);
@@ -2665,14 +2282,6 @@ public class PostSQLParser extends Parser {
 			return getToken(PostSQLParser.DESC, i);
 		}
 		public SelectDeclContext(SelectContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterSelectDecl(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitSelectDecl(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitSelectDecl(this);
@@ -2780,14 +2389,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode BOOLEAN() { return getToken(PostSQLParser.BOOLEAN, 0); }
 		public Var_booleanContext(VarTypeContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterVar_boolean(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitVar_boolean(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitVar_boolean(this);
 			else return visitor.visitChildren(this);
@@ -2797,14 +2398,6 @@ public class PostSQLParser extends Parser {
 		public TerminalNode CHAR() { return getToken(PostSQLParser.CHAR, 0); }
 		public Var_charContext(VarTypeContext ctx) { copyFrom(ctx); }
 		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterVar_char(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitVar_char(this);
-		}
-		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitVar_char(this);
 			else return visitor.visitChildren(this);
@@ -2813,14 +2406,6 @@ public class PostSQLParser extends Parser {
 	public static class Var_intContext extends VarTypeContext {
 		public TerminalNode INT() { return getToken(PostSQLParser.INT, 0); }
 		public Var_intContext(VarTypeContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).enterVar_int(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof PostSQLListener ) ((PostSQLListener)listener).exitVar_int(this);
-		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof PostSQLVisitor ) return ((PostSQLVisitor<? extends T>)visitor).visitVar_int(this);
