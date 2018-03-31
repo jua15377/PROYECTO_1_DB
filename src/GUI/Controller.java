@@ -1,10 +1,16 @@
 package GUI;
 
+import antlrGenerateFiles.*;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextArea;
 import javafx.stage.FileChooser;
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.TokenStream;
+import org.antlr.v4.runtime.tree.ParseTree;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import java.io.*;
@@ -13,6 +19,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.stage.Stage;
+import principal.EvalVisitor;
 
 public class Controller implements Initializable{
 
@@ -57,7 +64,44 @@ public class Controller implements Initializable{
 
     public void run(){
         //hace lo que querras aca jj
+        textArea.setText("");
+        String program = codeArea.getText();
+        compile(program);
     }
+
+    public void compile(String expression) {
+
+        try {
+
+            textArea.setText("");
+            CharStream stream = CharStreams.fromString(expression);
+            PostSQLLexer lexer = new PostSQLLexer(stream);
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(ThrowingErrorListener.INSTANCE);
+
+            TokenStream tokenStream = new CommonTokenStream(lexer);
+            PostSQLParser parser = new PostSQLParser(tokenStream);
+            parser.removeErrorListeners();
+            parser.addErrorListener(ThrowingErrorListener.INSTANCE);
+            ParseTree tree = parser.sql_script();
+
+            EvalVisitor eval = new EvalVisitor();
+            eval.visit(tree);
+
+            if (eval.getError().equals("")) {
+                //Hacer aqui lo que pasa si no tiene errores
+
+            } else {
+                textArea.setText(eval.getError());
+            }
+
+        } catch (Exception e) {
+            String m = e.toString();
+            textArea.setText(m);
+        }
+    }
+
+
 
     public void saveQuerys(){
         FileChooser fileChooser = new FileChooser();
@@ -140,7 +184,7 @@ public class Controller implements Initializable{
         alert.setTitle("Acerca del proyecto");
         alert.setHeaderText("¡Gracias por utilizarnos!");
         alert.setContentText("Este manejador de bases de datos es el Proyecto # 1 del curso Bases de Datos de la Universidad" +
-                "del Valle de Guatemala. " +
+                " del Valle de Guatemala. " +
                 "Fue realizado en el lenguaje de programacion Java, en conjunto con la herramienta de reconocimiento de " +
                 "lenguajes ANTLR y basado en las reglas del lenguaje de BD SQL. \n\nMuchas gracias por utilizar nuestro programa." +
                 "\n\nAtentamente,\nDiego Castaneda\nJonnathan Juarez\nSebastian Galindo\n\nGuatemala, 2018.");
