@@ -16,13 +16,13 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSqlScript(PostSQLParser.SqlScriptContext ctx) { }
+	@Override public void enterProgram(PostSQLParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitSqlScript(PostSQLParser.SqlScriptContext ctx) { }
+	@Override public void exitProgram(PostSQLParser.ProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -167,30 +167,6 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSTMselect(PostSQLParser.STMselectContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCreateDatabase(PostSQLParser.CreateDatabaseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCreateDatabase(PostSQLParser.CreateDatabaseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDropDatabase(PostSQLParser.DropDatabaseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDropDatabase(PostSQLParser.DropDatabaseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
