@@ -9,6 +9,8 @@ package fileManagement;
 
 
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Manejador implements Serializable {
@@ -21,6 +23,10 @@ public class Manejador implements Serializable {
         //Se leera NBaseDeDatos para conocer los nombres de todas las base de datos.
         // cada vez que se lea un nombre, se creara un folder y se creara cada objeto.
         //Esto, para utilizar un manejador de acuerdo a lo que ya exisitia.
+
+        ArrayList<String> dbs = getDBfromFiles();
+
+
      }
     public void createDataBase(String nombre){
         BaseDeDatos baseDeDatos = new  BaseDeDatos(nombre);
@@ -183,5 +189,29 @@ public class Manejador implements Serializable {
         catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public ArrayList<String> getDBfromFiles(){
+        ArrayList<String> names = new ArrayList<>();
+
+        try {
+
+            String current = new File(".").getCanonicalPath();
+
+            File f = new File(current + "\\NBaseDeDatos.dsj");
+
+            BufferedReader b = new BufferedReader(new FileReader(f));
+
+            String readLine = "";
+
+            while ((readLine = b.readLine()) != null) {
+                System.out.println(readLine);
+                names.add(readLine);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return names;
     }
 }
