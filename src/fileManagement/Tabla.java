@@ -1,6 +1,11 @@
 package fileManagement;
 
-import javafx.scene.control.Tab;
+/*
+ * clase que contiene las registros y metodos para alterar sus valores.
+ * @author  Jonnathan Juarez, Diego Castaneda, Sebastian Galindo
+ * @version 1.0
+ * @since   2018-03-28
+ */
 
 import java.io.Serializable;
 import java.util.ArrayList;
