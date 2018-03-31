@@ -54,6 +54,11 @@ public class Controller implements Initializable{
 
     }
 
+
+    public void run(){
+        //hace lo que querras aca jj
+    }
+
     public void saveQuerys(){
         FileChooser fileChooser = new FileChooser();
 
