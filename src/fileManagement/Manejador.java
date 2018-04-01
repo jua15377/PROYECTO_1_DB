@@ -1,19 +1,14 @@
 package fileManagement;
 
 /*
- * Clase para el manejaddor principal de la base de datos.
+ * Clase para el manejador principal de la base de datos.
  * @author  Jonnathan Juarez, Diego Castaneda, Sebastian Galindo
  * @version 1.0
  * @since   2018-03-28
  */
 
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
-import javafx.scene.control.Tab;
-
 import java.io.*;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Manejador implements Serializable {
@@ -28,7 +23,6 @@ public class Manejador implements Serializable {
         //Esto, para utilizar un manejador de acuerdo a lo que ya exisitia.
 
         String current = "";
-        Tabla tt = new Tabla("laTabla");
         //Obtencion del folder principal que contiene todos los folders de la base de datos
         try {
             current = new File(".").getCanonicalPath();

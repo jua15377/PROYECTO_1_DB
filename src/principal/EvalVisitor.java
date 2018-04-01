@@ -1,8 +1,7 @@
 package principal;
 
-import antlrGenerateFiles.*;
-import com.sun.xml.internal.bind.v2.model.core.ID;
-import fileManagement.*;
+import antlrGenerateFiles.PostSQLBaseVisitor;
+import antlrGenerateFiles.PostSQLParser;
 
 public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
@@ -10,7 +9,6 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     @Override public String visitSTMcreateDB(PostSQLParser.STMcreateDBContext ctx) {
         System.out.println(ctx.ID().getText());
-
         return visitChildren(ctx);
     }
 
