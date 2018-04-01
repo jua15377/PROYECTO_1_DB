@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+
 <?import org.fxmisc.richtext.CodeArea?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <bottom>
@@ -48,28 +50,28 @@
               <menus>
                 <Menu mnemonicParsing="false" text="File">
                   <items>
-                        <MenuItem mnemonicParsing="false" onAction="#run" text="Run" />
-                        <MenuItem mnemonicParsing="false" onAction="#conectar" text="Connect" />
-                        <MenuItem mnemonicParsing="false" onAction="#desconectar" text="Disconnect" />
-                    <MenuItem mnemonicParsing="false" onAction="#loadQuerys" text="Import Querys" />
-                        <MenuItem mnemonicParsing="false" onAction="#saveQuerys" text="Export Querys" />
+                        <MenuItem fx:id="runMI" mnemonicParsing="false" onAction="#run" text="Run" />
+                        <MenuItem fx:id="connectMI" mnemonicParsing="false" onAction="#conectar" text="Connect" />
+                        <MenuItem fx:id="disconnectMI" mnemonicParsing="false" onAction="#desconectar" text="Disconnect" />
+                    <MenuItem fx:id="importMI" mnemonicParsing="false" onAction="#loadQuerys" text="Import Querys" />
+                        <MenuItem fx:id="exportMI" mnemonicParsing="false" onAction="#saveQuerys" text="Export Querys" />
                   </items>
                 </Menu>
                   <Menu mnemonicParsing="false" text="Object">
                     <items>
-                      <MenuItem mnemonicParsing="false" text="Create" />
-                        <MenuItem mnemonicParsing="false" text="Delete" />
-                        <MenuItem mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                      <MenuItem fx:id="createMI" mnemonicParsing="false" text="Create" />
+                        <MenuItem fx:id="deleteMI" mnemonicParsing="false" text="Delete" />
+                        <MenuItem fx:id="refreshMI" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
                     </items>
                   </Menu>
                 <Menu mnemonicParsing="false" text="Tools">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#fontSize" text="Font Size" />
+                    <MenuItem fx:id="fontMI" mnemonicParsing="false" onAction="#fontSize" text="Font Size" />
                   </items>
                 </Menu>
                 <Menu mnemonicParsing="false" text="Help">
                   <items>
-                    <MenuItem mnemonicParsing="false" onAction="#about" text="About" />
+                    <MenuItem fx:id="aboutMI" mnemonicParsing="false" onAction="#about" text="About" />
                   </items>
                 </Menu>
               </menus>
