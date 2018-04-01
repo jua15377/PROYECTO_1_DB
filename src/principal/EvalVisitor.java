@@ -9,6 +9,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     public String error = "";
     public String verbose = "";
     public boolean verboseEnable =  false;
+
     /**
      * Grammar: CREATE DATABASE ID
      * Metodo para la creacion de una base de datos.**/

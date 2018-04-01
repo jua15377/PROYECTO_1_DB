@@ -6,6 +6,8 @@ import antlrGenerateFiles.ThrowingErrorListener;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.antlr.v4.runtime.CharStream;
@@ -16,7 +18,6 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import principal.EvalVisitor;
-
 import java.io.*;
 import java.net.URL;
 import java.util.Optional;
@@ -37,26 +38,22 @@ public class Controller implements Initializable{
     @FXML public TreeView<String> treeView;
     public int fontSize = 14;
 
+    Image folderIcon = new Image(getClass().getResourceAsStream("/Icons/folder.png"));
+    Image textIcon = new Image(getClass().getResourceAsStream("/Icons/text.png"));
+    Image imageIcon = new Image(getClass().getResourceAsStream("/Icons/img.png"));
+    Image sqlIcon = new Image(getClass().getResourceAsStream("/Icons/sql2.png"));
+    Image unkIcon = new Image(getClass().getResourceAsStream("/Icons/unk.png"));
+    Image dbIcon = new Image(getClass().getResourceAsStream("/Icons/db.png"));
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
         codeArea.setStyle("-fx-font-size: 14");
         textArea.setStyle("-fx-font-size: 14");
-
-
-        /*
-        DirectoryChooser dc = new DirectoryChooser();
-        dc.setInitialDirectory(new File(System.getProperty("user.home")));
-        File choice = dc.showDialog(primaryStage);
-        if(choice == null || ! choice.isDirectory()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText("Could not open directory");
-            alert.setContentText("The file is invalid.");
-            alert.showAndWait();
-        } else {
-            treeView.setRoot(getNodesForDirectory(choice));
-        }*/
+        //Refreshing the tree view
+        refresh();
     }
+
 
     public void conectar(){
 
@@ -64,6 +61,16 @@ public class Controller implements Initializable{
 
     public void desconectar(){
 
+    }
+
+    public void refresh(){
+        String current ="";
+        try {
+            current = new File(".").getCanonicalPath();
+        } catch (java.io.IOException e ){
+
+        }
+        treeView.setRoot(getNodesForDirectory(new File(current)));
     }
 
     public void loadQuerys(){
@@ -99,13 +106,10 @@ public class Controller implements Initializable{
             String r = result.get();
             try{
                 int resp = Integer.parseInt(r);
-                if(resp<10 || resp>100){
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Error");
-                    alert.setHeaderText("Wrong size value");
-                    alert.setContentText("Please, enter a value in between 10 and 100!");
-                    alert.showAndWait();
-                }else{
+                if(resp<10 || resp>100) {
+                    errorDialog("Error", "Wrong size value", "Please, enter a value in between 10 and 100!");
+                    fontSize();
+                } else{
                     fontSize = resp;
                     String newFontSize = "-fx-font-size: "+fontSize;
                     codeArea.setStyle(newFontSize);
@@ -113,47 +117,23 @@ public class Controller implements Initializable{
 
                 }
             }catch(Exception e){
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("Wrong size value");
-                alert.setContentText("Please, enter a value in between 10 and 100!");
-                alert.showAndWait();
+                errorDialog("Error", "Wrong size value", "Please, enter a value in between 10 and 100!");
+                fontSize();
             }
-
-
-
         }
-        /*
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("fontsize.fxml"));
-            /*
-             * if "fx:controller" is not set in fxml
-             * fxmlLoader.setController(NewWindowController);
-             *
-            Scene scene = new Scene(fxmlLoader.load(), 400, 265);
-            Stage stage = new Stage();
-            stage.setTitle("Font Size");
-            stage.setScene(scene);
+    }
 
-            stage.show();
-
-        }catch (Exception e){
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText("Sorry :(");
-            alert.setContentText("Ooops, there was an error loading the Font Size window!");
-
-            alert.showAndWait();
-        }
-        String newFontSize = "-fx-font-size: "+fontSize;
-        codeArea.setStyle(newFontSize);
-        textArea.setStyle(newFontSize);*/
-
+    public void errorDialog(String title, String header, String text) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(text);
+        alert.showAndWait();
     }
 
     public void run(){
         //hace lo que querras aca jj
+        //treeView = new TreeView<String>(new SimpleFileTreeItem(new File("C:\\")));
         textArea.setText("");
         String program = codeArea.getText();
         compile(program);
@@ -271,15 +251,33 @@ public class Controller implements Initializable{
 
 
     public TreeItem<String> getNodesForDirectory(File directory) { //Returns a TreeItem representation of the specified directory
-        TreeItem<String> root = new TreeItem<String>(directory.getName());
+        TreeItem<String> root = new TreeItem<String>(directory.getName(), new ImageView(folderIcon));
         for(File f : directory.listFiles()) {
             if(f.isDirectory()) { //Then we call the function recursively
                 root.getChildren().add(getNodesForDirectory(f));
             } else {
-                root.getChildren().add(new TreeItem<String>(f.getName()));
+                if(getFileExtension(f).equals("txt")){
+                    root.getChildren().add(new TreeItem<String>(f.getName(), new ImageView(textIcon)));
+                }else if(getFileExtension(f).equals("png") || getFileExtension(f).equals("jpg") || getFileExtension(f).equals("jpeg")){
+                    root.getChildren().add(new TreeItem<String>(f.getName(), new ImageView(imageIcon)));
+                }else if(getFileExtension(f).equals("sql")){
+                    root.getChildren().add(new TreeItem<String>(f.getName(), new ImageView(sqlIcon)));
+                }else if(getFileExtension(f).equals("dsj")){
+                    root.getChildren().add(new TreeItem<String>(f.getName(), new ImageView(dbIcon)));
+                }else {
+                    root.getChildren().add(new TreeItem<String>(f.getName(), new ImageView(unkIcon)));
+                }
+
             }
         }
         return root;
+    }
+
+    private static String getFileExtension(File file) {
+        String fileName = file.getName();
+        if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
+            return fileName.substring(fileName.lastIndexOf(".")+1);
+        else return "";
     }
 
 
