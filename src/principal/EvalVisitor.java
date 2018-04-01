@@ -2,7 +2,7 @@ package principal;
 
 import antlrGenerateFiles.*;
 import fileManagement.*;
-;
+import java.util.ArrayList;
 
 public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
@@ -29,7 +29,14 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         if(verboseEnable){
             verbose += "Base de Datos: " + id + ", creado con exito\n";
         }
-        error+="Error en la linea:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". La base de datos \""+ctx.ID().getText()+"\" ya existe.\n";
+        ArrayList<String> nombres = manejador.getDbsNames();
+        if(!nombres.contains(id)){
+            manejador.createDataBase(id);
+            log += "La base de datos \""+ctx.ID().getText()+"\" se creo exitosamente!.\n";
+        }
+        else {
+            return error+="Error en la linea:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". La base de datos \""+ctx.ID().getText()+"\" ya existe.\n";
+        }
         return visitChildren(ctx);
 
     }
