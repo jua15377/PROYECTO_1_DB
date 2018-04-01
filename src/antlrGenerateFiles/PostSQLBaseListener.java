@@ -64,18 +64,6 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSTMalterTable(PostSQLParser.STMalterTableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSTMalterTable(PostSQLParser.STMalterTableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterSTMshowTable(PostSQLParser.STMshowTableContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -124,6 +112,42 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSTMcreateTable(PostSQLParser.STMcreateTableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSTMshowColumn(PostSQLParser.STMshowColumnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSTMshowColumn(PostSQLParser.STMshowColumnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSTMalterTable(PostSQLParser.STMalterTableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSTMalterTable(PostSQLParser.STMalterTableContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSTMinsertInto(PostSQLParser.STMinsertIntoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -167,42 +191,6 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSTMselect(PostSQLParser.STMselectContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterShowDatabase(PostSQLParser.ShowDatabaseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitShowDatabase(PostSQLParser.ShowDatabaseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUseDatabase(PostSQLParser.UseDatabaseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUseDatabase(PostSQLParser.UseDatabaseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCreateTable(PostSQLParser.CreateTableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCreateTable(PostSQLParser.CreateTableContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -263,42 +251,6 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMultipleColumn(PostSQLParser.MultipleColumnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterPrimaryKeyDecl(PostSQLParser.PrimaryKeyDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitPrimaryKeyDecl(PostSQLParser.PrimaryKeyDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterForeignDecl(PostSQLParser.ForeignDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitForeignDecl(PostSQLParser.ForeignDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCheckDecl(PostSQLParser.CheckDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCheckDecl(PostSQLParser.CheckDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -496,54 +448,6 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDropTable(PostSQLParser.DropTableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDropTable(PostSQLParser.DropTableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterShowTable(PostSQLParser.ShowTableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitShowTable(PostSQLParser.ShowTableContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterShowColumn(PostSQLParser.ShowColumnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitShowColumn(PostSQLParser.ShowColumnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterFuckDatabase(PostSQLParser.FuckDatabaseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitFuckDatabase(PostSQLParser.FuckDatabaseContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterInsertInto(PostSQLParser.InsertIntoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -604,37 +508,37 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVar_int(PostSQLParser.Var_intContext ctx) { }
+	@Override public void enterVarint(PostSQLParser.VarintContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVar_int(PostSQLParser.Var_intContext ctx) { }
+	@Override public void exitVarint(PostSQLParser.VarintContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVar_char(PostSQLParser.Var_charContext ctx) { }
+	@Override public void enterVarchar(PostSQLParser.VarcharContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVar_char(PostSQLParser.Var_charContext ctx) { }
+	@Override public void exitVarchar(PostSQLParser.VarcharContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVar_boolean(PostSQLParser.Var_booleanContext ctx) { }
+	@Override public void enterVarboolean(PostSQLParser.VarbooleanContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVar_boolean(PostSQLParser.Var_booleanContext ctx) { }
+	@Override public void exitVarboolean(PostSQLParser.VarbooleanContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

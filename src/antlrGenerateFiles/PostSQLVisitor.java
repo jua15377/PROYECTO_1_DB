@@ -38,13 +38,6 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSTMshowDB(PostSQLParser.STMshowDBContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code STMalterTable}
-	 * labeled alternative in {@link PostSQLParser#unitStatement}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSTMalterTable(PostSQLParser.STMalterTableContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code STMshowTable}
 	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
@@ -73,6 +66,27 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSTMfuckTable(PostSQLParser.STMfuckTableContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code STMcreateTable}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STMshowColumn}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTMshowColumn(PostSQLParser.STMshowColumnContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STMalterTable}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTMalterTable(PostSQLParser.STMalterTableContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code STMinsertInto}
 	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
@@ -100,27 +114,6 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSTMselect(PostSQLParser.STMselectContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code showDatabase}
-	 * labeled alternative in {@link PostSQLParser#show_database}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitShowDatabase(PostSQLParser.ShowDatabaseContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code useDatabase}
-	 * labeled alternative in {@link PostSQLParser#use_database}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUseDatabase(PostSQLParser.UseDatabaseContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code createTable}
-	 * labeled alternative in {@link PostSQLParser#create_table}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCreateTable(PostSQLParser.CreateTableContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code primaryKeyDeclConstr}
 	 * labeled alternative in {@link PostSQLParser#constraints}.
@@ -156,27 +149,6 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMultipleColumn(PostSQLParser.MultipleColumnContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code primaryKeyDecl}
-	 * labeled alternative in {@link PostSQLParser#primaryKeyDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitPrimaryKeyDecl(PostSQLParser.PrimaryKeyDeclContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code foreignDecl}
-	 * labeled alternative in {@link PostSQLParser#foreignKeyDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitForeignDecl(PostSQLParser.ForeignDeclContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code checkDecl}
-	 * labeled alternative in {@link PostSQLParser#checkDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCheckDecl(PostSQLParser.CheckDeclContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code expDecl}
 	 * labeled alternative in {@link PostSQLParser#exp}.
@@ -290,34 +262,6 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDropConstraints(PostSQLParser.DropConstraintsContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code dropTable}
-	 * labeled alternative in {@link PostSQLParser#drop_table}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDropTable(PostSQLParser.DropTableContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code showTable}
-	 * labeled alternative in {@link PostSQLParser#show_table}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitShowTable(PostSQLParser.ShowTableContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code showColumn}
-	 * labeled alternative in {@link PostSQLParser#show_column}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitShowColumn(PostSQLParser.ShowColumnContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code fuckDatabase}
-	 * labeled alternative in {@link PostSQLParser#fuck_database}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitFuckDatabase(PostSQLParser.FuckDatabaseContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code insertInto}
 	 * labeled alternative in {@link PostSQLParser#insert_into}.
 	 * @param ctx the parse tree
@@ -353,24 +297,24 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSelectDecl(PostSQLParser.SelectDeclContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code var_int}
+	 * Visit a parse tree produced by the {@code varint}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVar_int(PostSQLParser.Var_intContext ctx);
+	T visitVarint(PostSQLParser.VarintContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code var_char}
+	 * Visit a parse tree produced by the {@code varchar}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVar_char(PostSQLParser.Var_charContext ctx);
+	T visitVarchar(PostSQLParser.VarcharContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code var_boolean}
+	 * Visit a parse tree produced by the {@code varboolean}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVar_boolean(PostSQLParser.Var_booleanContext ctx);
+	T visitVarboolean(PostSQLParser.VarbooleanContext ctx);
 }

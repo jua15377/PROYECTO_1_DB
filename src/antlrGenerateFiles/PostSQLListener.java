@@ -54,18 +54,6 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitSTMshowDB(PostSQLParser.STMshowDBContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code STMalterTable}
-	 * labeled alternative in {@link PostSQLParser#unitStatement}.
-	 * @param ctx the parse tree
-	 */
-	void enterSTMalterTable(PostSQLParser.STMalterTableContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code STMalterTable}
-	 * labeled alternative in {@link PostSQLParser#unitStatement}.
-	 * @param ctx the parse tree
-	 */
-	void exitSTMalterTable(PostSQLParser.STMalterTableContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code STMshowTable}
 	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
@@ -114,6 +102,42 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitSTMfuckTable(PostSQLParser.STMfuckTableContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code STMcreateTable}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTMcreateTable(PostSQLParser.STMcreateTableContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STMcreateTable}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code STMshowColumn}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTMshowColumn(PostSQLParser.STMshowColumnContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STMshowColumn}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTMshowColumn(PostSQLParser.STMshowColumnContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code STMalterTable}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTMalterTable(PostSQLParser.STMalterTableContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STMalterTable}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTMalterTable(PostSQLParser.STMalterTableContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code STMinsertInto}
 	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
@@ -161,42 +185,6 @@ public interface PostSQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSTMselect(PostSQLParser.STMselectContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code showDatabase}
-	 * labeled alternative in {@link PostSQLParser#show_database}.
-	 * @param ctx the parse tree
-	 */
-	void enterShowDatabase(PostSQLParser.ShowDatabaseContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code showDatabase}
-	 * labeled alternative in {@link PostSQLParser#show_database}.
-	 * @param ctx the parse tree
-	 */
-	void exitShowDatabase(PostSQLParser.ShowDatabaseContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code useDatabase}
-	 * labeled alternative in {@link PostSQLParser#use_database}.
-	 * @param ctx the parse tree
-	 */
-	void enterUseDatabase(PostSQLParser.UseDatabaseContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code useDatabase}
-	 * labeled alternative in {@link PostSQLParser#use_database}.
-	 * @param ctx the parse tree
-	 */
-	void exitUseDatabase(PostSQLParser.UseDatabaseContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code createTable}
-	 * labeled alternative in {@link PostSQLParser#create_table}.
-	 * @param ctx the parse tree
-	 */
-	void enterCreateTable(PostSQLParser.CreateTableContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code createTable}
-	 * labeled alternative in {@link PostSQLParser#create_table}.
-	 * @param ctx the parse tree
-	 */
-	void exitCreateTable(PostSQLParser.CreateTableContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code primaryKeyDeclConstr}
 	 * labeled alternative in {@link PostSQLParser#constraints}.
@@ -257,42 +245,6 @@ public interface PostSQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMultipleColumn(PostSQLParser.MultipleColumnContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code primaryKeyDecl}
-	 * labeled alternative in {@link PostSQLParser#primaryKeyDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterPrimaryKeyDecl(PostSQLParser.PrimaryKeyDeclContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code primaryKeyDecl}
-	 * labeled alternative in {@link PostSQLParser#primaryKeyDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitPrimaryKeyDecl(PostSQLParser.PrimaryKeyDeclContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code foreignDecl}
-	 * labeled alternative in {@link PostSQLParser#foreignKeyDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterForeignDecl(PostSQLParser.ForeignDeclContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code foreignDecl}
-	 * labeled alternative in {@link PostSQLParser#foreignKeyDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitForeignDecl(PostSQLParser.ForeignDeclContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code checkDecl}
-	 * labeled alternative in {@link PostSQLParser#checkDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterCheckDecl(PostSQLParser.CheckDeclContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code checkDecl}
-	 * labeled alternative in {@link PostSQLParser#checkDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitCheckDecl(PostSQLParser.CheckDeclContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code expDecl}
 	 * labeled alternative in {@link PostSQLParser#exp}.
@@ -486,54 +438,6 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitDropConstraints(PostSQLParser.DropConstraintsContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code dropTable}
-	 * labeled alternative in {@link PostSQLParser#drop_table}.
-	 * @param ctx the parse tree
-	 */
-	void enterDropTable(PostSQLParser.DropTableContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code dropTable}
-	 * labeled alternative in {@link PostSQLParser#drop_table}.
-	 * @param ctx the parse tree
-	 */
-	void exitDropTable(PostSQLParser.DropTableContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code showTable}
-	 * labeled alternative in {@link PostSQLParser#show_table}.
-	 * @param ctx the parse tree
-	 */
-	void enterShowTable(PostSQLParser.ShowTableContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code showTable}
-	 * labeled alternative in {@link PostSQLParser#show_table}.
-	 * @param ctx the parse tree
-	 */
-	void exitShowTable(PostSQLParser.ShowTableContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code showColumn}
-	 * labeled alternative in {@link PostSQLParser#show_column}.
-	 * @param ctx the parse tree
-	 */
-	void enterShowColumn(PostSQLParser.ShowColumnContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code showColumn}
-	 * labeled alternative in {@link PostSQLParser#show_column}.
-	 * @param ctx the parse tree
-	 */
-	void exitShowColumn(PostSQLParser.ShowColumnContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code fuckDatabase}
-	 * labeled alternative in {@link PostSQLParser#fuck_database}.
-	 * @param ctx the parse tree
-	 */
-	void enterFuckDatabase(PostSQLParser.FuckDatabaseContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code fuckDatabase}
-	 * labeled alternative in {@link PostSQLParser#fuck_database}.
-	 * @param ctx the parse tree
-	 */
-	void exitFuckDatabase(PostSQLParser.FuckDatabaseContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code insertInto}
 	 * labeled alternative in {@link PostSQLParser#insert_into}.
 	 * @param ctx the parse tree
@@ -594,39 +498,39 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitSelectDecl(PostSQLParser.SelectDeclContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code var_int}
+	 * Enter a parse tree produced by the {@code varint}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 */
-	void enterVar_int(PostSQLParser.Var_intContext ctx);
+	void enterVarint(PostSQLParser.VarintContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code var_int}
+	 * Exit a parse tree produced by the {@code varint}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 */
-	void exitVar_int(PostSQLParser.Var_intContext ctx);
+	void exitVarint(PostSQLParser.VarintContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code var_char}
+	 * Enter a parse tree produced by the {@code varchar}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 */
-	void enterVar_char(PostSQLParser.Var_charContext ctx);
+	void enterVarchar(PostSQLParser.VarcharContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code var_char}
+	 * Exit a parse tree produced by the {@code varchar}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 */
-	void exitVar_char(PostSQLParser.Var_charContext ctx);
+	void exitVarchar(PostSQLParser.VarcharContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code var_boolean}
+	 * Enter a parse tree produced by the {@code varboolean}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 */
-	void enterVar_boolean(PostSQLParser.Var_booleanContext ctx);
+	void enterVarboolean(PostSQLParser.VarbooleanContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code var_boolean}
+	 * Exit a parse tree produced by the {@code varboolean}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 */
-	void exitVar_boolean(PostSQLParser.Var_booleanContext ctx);
+	void exitVarboolean(PostSQLParser.VarbooleanContext ctx);
 }
