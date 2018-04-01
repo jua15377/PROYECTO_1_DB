@@ -102,6 +102,34 @@ public final class FolderManager {
         return "no debe de pasar";
     }
 
+    public static String deleteFile(String dataBaseName, String tabla){
+        File theTable = new File("DATABASES\\"+dataBaseName + "\\" +tabla + ".dsj");
+
+        //si el folder existe crea el folder
+        if (theTable.exists()) {
+            //System.out.println("BORRANDO base de Datos: " + theDir.getName()+ "\n");
+            boolean result = false;
+
+            try{
+                theTable.delete();
+                result = true;
+            }
+            catch(SecurityException se){
+                //handle it
+            }
+            if(result) {
+                return "Se borro la tabla: \t" + tabla;
+            }
+            else{
+                System.out.println("Error");
+            }
+        }
+        else {
+            return  "La tabla: " + tabla + ", NO existe!";
+        }
+        return "no debe de pasar";
+    }
+
 
 //para la serializacion del objetio
 

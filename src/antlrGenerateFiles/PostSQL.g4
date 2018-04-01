@@ -71,7 +71,7 @@ action_alter_table
 	| 'ADD' constraints* 															#addConstraints
 	| 'DROP' 'COLUMN' ID 															#dropColumn
 	| 'DROP' 'CONSTRAINT' ID 														#dropConstraints
-	|'RENAME' 'TO' ID 										                    	#renameTable
+	| 'RENAME' 'TO' ID 										                    	#renameTable
 	;
 
 
@@ -98,7 +98,7 @@ select
 	;
 
 varType
-	: 	'INT'				           #varint
+	: 	'INT'				        #varint
 	|	'CHAR'				        #varchar
 	|	'FLOAT'				        #varfloat
 	|	'DATE'						#vardate
