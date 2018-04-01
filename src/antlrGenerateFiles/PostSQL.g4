@@ -51,7 +51,7 @@ program
 unitStatement
 	: 'CREATE' 'DATABASE' ID													#STMcreateDB
 	| 'DROP' 'DATABASE' ID 														#STMdropDB
-	| 'SHOW' 'DATABASE' 														#STMshowDB
+	| 'SHOW' 'DATABASES' 														#STMshowDB
     | 'SHOW' 'TABLE'															#STMshowTable
 	| 'USE' 'DATABASE' ID                                                       #STMuseDB
 	| 'ALTER' 'DATABASE' ID 'RENAME' 'TO' ID                                    #STMalterDB
