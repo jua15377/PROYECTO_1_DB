@@ -124,7 +124,9 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     }
 
-
+    /**
+     * Grammar: USE DATABASE ID
+     * Method to change DataBase currently in use to a different one**/
     @Override public String visitSTMuseDB(PostSQLParser.STMuseDBContext ctx) {
         String id = ctx.ID().getText();
         ArrayList<String> nombres = manejador.getDbsNames();
@@ -144,7 +146,9 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
-
+    /**
+     * Gramar: CREATE TABLE ID ( columnDeclaration constraints*)
+     * Method to create a fully flexed table to use, inside a specficic DataBase**/
     @Override public String visitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx) {
         String id = ctx.ID().getText();
         ArrayList<String> encabezados = new ArrayList<>();
@@ -247,6 +251,9 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return "int";
     }
 
+    /**
+     * Grammar: DROP TABLE ID
+     * Method to eliminate a table in a certain DataBase**/
     @Override public String visitSTMdropTable(PostSQLParser.STMdropTableContext ctx) {
         String id = ctx.ID().getText();
         if(manejador.getCurrentDB()!=null){
@@ -282,6 +289,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
 
     }
+
+
 
 
     public String getError() {
