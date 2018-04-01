@@ -287,7 +287,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
-<<<<<<< HEAD
+
     @Override public String visitRenameTable(PostSQLParser.RenameTableContext ctx) {
         String idTabla = ctx.ID().getText();
 
@@ -308,9 +308,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
-    
 
-=======
     @Override
     public String visitSTMshowTable(PostSQLParser.STMshowTableContext ctx) {
         //que este seteada la base de datos
@@ -328,7 +326,6 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         }
         return super.visitSTMshowTable(ctx);
     }
->>>>>>> origin/master
 
     public String getError() {
         return error;
