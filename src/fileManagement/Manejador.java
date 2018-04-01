@@ -14,6 +14,15 @@ import java.util.ArrayList;
 public class Manejador implements Serializable {
     public String nombreDelManjeado;
     private int contadorDeDB = 0;
+
+    public ArrayList<String> getDbsNames() {
+        return dbsNames;
+    }
+
+    public ArrayList<BaseDeDatos> getDbs() {
+        return dbs;
+    }
+
     private ArrayList<String> dbsNames = new ArrayList<>();
     private ArrayList<BaseDeDatos> dbs = new ArrayList<>();
     private String currentDB = null;
@@ -36,24 +45,34 @@ public class Manejador implements Serializable {
         catch (java.io.IOException e ){
 
         }
-        //CAMBIAR ARRAYLIST, SERIALIZAR DBNAMES EN UN ARCHIVO ;D
-        ArrayList<String> dbs = (ArrayList<String>) FolderManager.toObject("./DATABASES/MASTER.dsj");
-        System.out.println("C convierte en arrayList");
-        for (String db: dbs){
-            /**
-             * Creacion de objeto base de datos, contenedor de tablas**/
-            BaseDeDatos baseDeDatos = new BaseDeDatos(db);
-            File folder = new File(current +"\\" + db);
-            File[] listOfFiles = folder.listFiles();
 
-            for(File file: listOfFiles){
+        //CAMBIAR ARRAYLIST, SERIALIZAR DBNAMES EN UN ARCHIVO ;D
+
+        try{
+            ArrayList<String> dbs = (ArrayList<String>) FolderManager.toObject("./DATABASES/MASTER.dsj");
+            System.out.println(dbs);
+            for (String db: dbs){
                 /**
-                 * Cracion de obeto tabla, contenedor de registros*/
-                Tabla tabla  = (Tabla) FolderManager.toObject(current +"\\" + db +"\\" + file);
-                baseDeDatos.addTabla(tabla);
+                 * Creacion de objeto base de datos, contenedor de tablas**/
+                BaseDeDatos baseDeDatos = new BaseDeDatos(db);
+                File folder = new File(current +"\\" + db);
+                File[] listOfFiles = folder.listFiles();
+
+                for(File file: listOfFiles){
+                    /**
+                     * Cracion de obeto tab`la, contenedor de registros
+                     * */
+                    Tabla tabla  = (Tabla) FolderManager.toObject(current +"\\" + db +"\\" + file);
+                    baseDeDatos.addTabla(tabla);
+                }
+                addDB(baseDeDatos);
             }
-            addDB(baseDeDatos);
+
         }
+        catch (Exception e){
+            System.out.println("NO SE PUDO LEER EL MASTER.dsj se prosigue como base de datos nueva");
+        }
+
 
      }
     public void createDataBase(String nombre){
@@ -258,7 +277,13 @@ public class Manejador implements Serializable {
 
     /***
      * Metodo para guardar el ultimo estado del manejador */
-    public void saveState(){
-        FolderManager.toFile(dbsNames, ".\\DATABASES\\MASTER.dsj" );
+    public void saveState() {
+        try {
+            FolderManager.toFile(dbsNames, ".\\DATABASES\\MASTER.dsj");
+        }
+        catch (Exception e){
+            System.out.println("NO SE PUDO GUARDAR EL MASTER");
+        }
+
     }
 }
