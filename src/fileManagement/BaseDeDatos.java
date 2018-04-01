@@ -156,5 +156,18 @@ public class BaseDeDatos implements Serializable {
 
     }
 
+    /**
+     * addTabla Method
+     * Adds a new Table to the Database
+     * @param: Tabla tabla, the table to be added
+     * @return  nothing
+     * **/
+    public void addTabla(Tabla tabla){
+        tablas.add(tabla);
+        nombresDeTablas.add(tabla.getName());
+
+    }
+
+
 
 }

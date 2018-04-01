@@ -11,110 +11,95 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by the {@code sqlScript}
-	 * labeled alternative in {@link PostSQLParser#sql_script}.
+	 * Visit a parse tree produced by {@link PostSQLParser#program}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitSqlScript(PostSQLParser.SqlScriptContext ctx);
+	T visitProgram(PostSQLParser.ProgramContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMcreateDB}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMcreateDB(PostSQLParser.STMcreateDBContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMdropDB}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMdropDB(PostSQLParser.STMdropDBContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMshowDB}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMshowDB(PostSQLParser.STMshowDBContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMalterTable}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMalterTable(PostSQLParser.STMalterTableContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMshowTable}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMshowTable(PostSQLParser.STMshowTableContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMuseDB}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMuseDB(PostSQLParser.STMuseDBContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMdropTable}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMdropTable(PostSQLParser.STMdropTableContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMfuckTable}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMfuckTable(PostSQLParser.STMfuckTableContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMinsertInto}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMinsertInto(PostSQLParser.STMinsertIntoContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMupdate}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMupdate(PostSQLParser.STMupdateContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMdelete}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMdelete(PostSQLParser.STMdeleteContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMselect}
-	 * labeled alternative in {@link PostSQLParser#unit_statement}.
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitSTMselect(PostSQLParser.STMselectContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code createDatabase}
-	 * labeled alternative in {@link PostSQLParser#create_database}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCreateDatabase(PostSQLParser.CreateDatabaseContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code dropDatabase}
-	 * labeled alternative in {@link PostSQLParser#drop_database}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDropDatabase(PostSQLParser.DropDatabaseContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code showDatabase}
 	 * labeled alternative in {@link PostSQLParser#show_database}.

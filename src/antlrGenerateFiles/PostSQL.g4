@@ -1,12 +1,6 @@
 grammar PostSQL;
 
 COLON: ':';
-SEMICOLON: ';';
-CREATE: 'CREATE';
-TABLE: 'TABLE';
-DATABASE: 'DATABASE';
-DROP: 'DROP';
-SHOW: 'SHOW';
 PRIMARY: 'PRIMARY';
 KEY: 'KEY';
 FOREIGN: 'FOREIGN';
@@ -35,7 +29,7 @@ AND: 'AND';
 OR: 'OR';
 NOT: 'NOT';
 SELECT: 'SELECT';
-USE: 'USE';
+
 
 fragment LETTER : ('a'..'z'|'A'..'Z') ;
 fragment DIGIT :'0'..'9' ;
@@ -45,14 +39,17 @@ ID : LETTER ( LETTER | DIGIT )* ;
 NUM : DIGIT ( DIGIT )* ;
 Char : LETTER;
 
-
-sql_script
-    : ((unit_statement) SEMICOLON?)* 											#sqlScript
+WS :
+    [ \t\r\n]+ -> skip
     ;
 
-unit_statement
-	: create_database															#STMcreateDB
-	| drop_database																#STMdropDB
+program
+    : ((unitStatement) ';')* 											
+    ;
+
+unitStatement
+	: 'CREATE' 'DATABASE' ID													#STMcreateDB
+	| 'DROP' 'DATABASE' ID 																	#STMdropDB
 	| show_database																#STMshowDB
 	| create_table																#STMcreateDB
 	| alter_table 																#STMalterTable
@@ -66,24 +63,20 @@ unit_statement
 	| select 																	#STMselect
 	;
 
-create_database
-	: CREATE DATABASE ID														#createDatabase
-	;
 
-drop_database
-	: DROP DATABASE ID 															#dropDatabase
-	;
+
+
 
 show_database
-	: SHOW DATABASE     														#showDatabase
+	: 'SHOW' 'DATABASE'     														#showDatabase
 	;
 
 use_database
-    : USE DATABASE ID                                                           #useDatabase
+    : 'USE' 'DATABASE' ID                                                           #useDatabase
     ;
 
 create_table
-    : CREATE TABLE ID '(' columDeclaration  constraints* ')' 					#createTable
+    : 'CREATE' 'TABLE' ID '(' columDeclaration  constraints* ')' 					#createTable
     ;
 
 constraints
@@ -130,32 +123,32 @@ eq_sgn
 	;
 
 alter_table
-	: ALTER TABLE ID RENAME TO ID 												#renameTable
-	| ALTER TABLE ID action_alter_table  										#alterTable
+	: ALTER 'TABLE' ID RENAME TO ID 												#renameTable
+	| ALTER 'TABLE' ID action_alter_table  										#alterTable
 	;
 
 action_alter_table
 	: ADD COLUMN ID varType constraints* 										#addColumn
 	| ADD constraints* 															#addConstraints
-	| DROP COLUMN ID 															#dropColumn
-	| DROP CONSTRAINT ID 														#dropConstraints
+	| 'DROP' COLUMN ID 															#dropColumn
+	| 'DROP' CONSTRAINT ID 														#dropConstraints
 	;
 
 
 drop_table
-	: DROP TABLE ID 															#dropTable
+	: 'DROP' 'TABLE' ID 															#dropTable
 	;
 
 show_table
-	: SHOW TABLE 																#showTable
+	: 'SHOW' 'TABLE' 																#showTable
 	;
 
 show_column
-	: 'SHOW COLUMNS' FROM ID													#showColumn
+	: 'SHOW' 'COLUMNS' FROM ID													#showColumn
 	;
 
 fuck_database
-	: 'FUCK DATABASE' 			 												#fuckDatabase
+	: 'FUCK' 'DATABASE' 			 												#fuckDatabase
 	;
 
 insert_into
@@ -184,6 +177,4 @@ varType
 	|	BOOLEAN				        #var_boolean
 	;
 
-WS : 
-    [\t\r\n\f ]+ -> skip
-    ;
+

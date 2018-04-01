@@ -166,9 +166,9 @@ public class Controller implements Initializable{
 
             TokenStream tokenStream = new CommonTokenStream(lexer);
             PostSQLParser parser = new PostSQLParser(tokenStream);
-            parser.removeErrorListeners();
-            parser.addErrorListener(ThrowingErrorListener.INSTANCE);
-            ParseTree tree = parser.sql_script();
+            //parser.removeErrorListeners();
+            //parser.addErrorListener(ThrowingErrorListener.INSTANCE);
+            ParseTree tree = parser.program();
 
             EvalVisitor eval = new EvalVisitor();
             eval.visit(tree);

@@ -17,15 +17,22 @@ public class Tabla implements Serializable{
     private ArrayList<String> tiposDecolumnas = new ArrayList<>();
     private ArrayList<String> pk = new ArrayList<>();
     private ArrayList<String> fk = new ArrayList<>();
-    private Hashtable<Integer, Registro> registro = new Hashtable<>();
+    private Hashtable<Integer, Registro> registros = new Hashtable<>();
+    private int contadorDeregistors = 0;
 
     public Tabla(String name){
         this.name = name;
     }
 
+    public void addRegistro(Registro r){
+        registros.put(contadorDeregistors, r);
+        contadorDeregistors ++;
+
+    }
+
     @Override
     public String toString() {
-        return "soy una tabla y me llamo " + name;
+        return "soy una tabla y me llamo " + name +"\n" + registros;
     }
 
 
@@ -44,6 +51,7 @@ public class Tabla implements Serializable{
     public void setNombresDecolumnas(ArrayList<String> nombresDecolumnas) {
         this.nombresDecolumnas = nombresDecolumnas;
     }
+
 
     public ArrayList<String> getTiposDecolumnas() {
         return tiposDecolumnas;
@@ -69,11 +77,19 @@ public class Tabla implements Serializable{
         this.fk = fk;
     }
 
-    public Hashtable<Integer, Registro> getRegistro() {
-        return registro;
+    public Hashtable<Integer, Registro> getRegistros() {
+        return registros;
     }
 
-    public void setRegistro(Hashtable<Integer, Registro> registro) {
-        this.registro = registro;
+    public void setRegistros(Hashtable<Integer, Registro> registros) {
+        this.registros = registros;
+    }
+
+    public int getContadorDeregistors() {
+        return contadorDeregistors;
+    }
+
+    public void setContadorDeregistors(int contadorDeregistors) {
+        this.contadorDeregistors = contadorDeregistors;
     }
 }
