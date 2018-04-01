@@ -48,6 +48,7 @@ public class Controller implements Initializable{
     @FXML public MenuItem refreshMI = new MenuItem();
     @FXML public MenuItem fontMI = new MenuItem();
     @FXML public MenuItem aboutMI = new MenuItem();
+    @FXML public Button runButton = new Button();
 
     public int fontSize = 14;
 
@@ -72,6 +73,7 @@ public class Controller implements Initializable{
         refreshMI.setDisable(true);
         fontMI.setDisable(true);
         codeArea.setEditable(false);
+        runButton.setDisable(true);
         //Refreshing the tree view
         refresh();
     }
@@ -86,6 +88,7 @@ public class Controller implements Initializable{
         deleteMI.setDisable(false);
         refreshMI.setDisable(false);
         fontMI.setDisable(false);
+        runButton.setDisable(false);
         codeArea.setEditable(true);
         connectMI.setDisable(true);
         eval.manejador.reconstruir();
@@ -101,6 +104,7 @@ public class Controller implements Initializable{
         exportMI.setDisable(true);
         createMI.setDisable(true);
         deleteMI.setDisable(true);
+        runButton.setDisable(true);
         refreshMI.setDisable(true);
         fontMI.setDisable(true);
         codeArea.setEditable(false);
