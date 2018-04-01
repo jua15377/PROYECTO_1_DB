@@ -95,7 +95,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
 
     /**
-     * Grammar: SHOW DATABASE
+     * Grammar: SHOW DATABASEs
      * Method to show every database in the manager**/
     @Override public String visitSTMshowDB(PostSQLParser.STMshowDBContext ctx) {
         log += "Active Databases: \n";
@@ -135,10 +135,6 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
-    public void inicarDB(){
-
-
-    }
 
     public String getError() {
         return error;
