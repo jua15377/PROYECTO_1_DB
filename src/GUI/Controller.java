@@ -2,9 +2,14 @@ package GUI;
 
 import antlrGenerateFiles.*;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
@@ -14,7 +19,12 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import java.io.*;
+import java.net.InetAddress;
 import java.net.URL;
+import java.net.UnknownHostException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,14 +41,24 @@ public class Controller implements Initializable{
 
     @FXML public CodeArea codeArea = new CodeArea();
     @FXML public TextArea textArea = new TextArea();
+    @FXML public TreeView<String> treeView;
     public int fontSize = 14;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
-        codeArea.setStyle("-fx-font-size: 14");
-        textArea.setStyle("-fx-font-size: 14");
-
+        /*
+        DirectoryChooser dc = new DirectoryChooser();
+        dc.setInitialDirectory(new File(System.getProperty("user.home")));
+        File choice = dc.showDialog(primaryStage);
+        if(choice == null || ! choice.isDirectory()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setHeaderText("Could not open directory");
+            alert.setContentText("The file is invalid.");
+            alert.showAndWait();
+        } else {
+            treeView.setRoot(getNodesForDirectory(choice));
+        }*/
     }
 
     public void loadQuerys(){
@@ -61,6 +81,71 @@ public class Controller implements Initializable{
 
     }
 
+    public void fontSize(){
+        TextInputDialog dialog = new TextInputDialog(""+fontSize);
+        dialog.setTitle("Font Size");
+        dialog.setHeaderText("Please enter the desired font size");
+        dialog.setContentText("Font size:");
+
+        // Traditional way to get the response value.
+        dialog.getContentText();
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            String r = result.get();
+            try{
+                int resp = Integer.parseInt(r);
+                if(resp<10 || resp>100){
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error");
+                    alert.setHeaderText("Wrong size value");
+                    alert.setContentText("Please, enter a value in between 10 and 100!");
+                    alert.showAndWait();
+                }else{
+                    fontSize = resp;
+                    String newFontSize = "-fx-font-size: "+fontSize;
+                    codeArea.setStyle(newFontSize);
+                    textArea.setStyle(newFontSize);
+
+                }
+            }catch(Exception e){
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("Wrong size value");
+                alert.setContentText("Please, enter a value in between 10 and 100!");
+                alert.showAndWait();
+            }
+
+
+
+        }
+        /*
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("fontsize.fxml"));
+            /*
+             * if "fx:controller" is not set in fxml
+             * fxmlLoader.setController(NewWindowController);
+             *
+            Scene scene = new Scene(fxmlLoader.load(), 400, 265);
+            Stage stage = new Stage();
+            stage.setTitle("Font Size");
+            stage.setScene(scene);
+
+            stage.show();
+
+        }catch (Exception e){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Sorry :(");
+            alert.setContentText("Ooops, there was an error loading the Font Size window!");
+
+            alert.showAndWait();
+        }
+        String newFontSize = "-fx-font-size: "+fontSize;
+        codeArea.setStyle(newFontSize);
+        textArea.setStyle(newFontSize);*/
+
+    }
 
     public void run(){
         //hace lo que querras aca jj
@@ -165,20 +250,6 @@ public class Controller implements Initializable{
         return cadena;
     }
 
-    public void increaseFontSize(){
-        fontSize+=10;
-        String cadena = "-fx-font-size: "+fontSize;
-        codeArea.setStyle(cadena);
-        textArea.setStyle(cadena);
-
-    }
-
-    public void decreaseFontSize(){
-        fontSize-=10;
-        String cadena = "-fx-font-size: "+fontSize;
-        codeArea.setStyle(cadena);
-        textArea.setStyle(cadena);
-    }
 
     public void about(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -189,10 +260,23 @@ public class Controller implements Initializable{
                 "Fue realizado en el lenguaje de programacion Java, en conjunto con la herramienta de reconocimiento de " +
                 "lenguajes ANTLR y basado en las reglas del lenguaje de BD SQL. \n\nMuchas gracias por utilizar nuestro programa." +
                 "\n\nAtentamente,\nDiego Castaneda\nJonnathan Juarez\nSebastian Galindo\n\nGuatemala, 2018.");
-
-
         alert.showAndWait();
     }
+
+
+    public TreeItem<String> getNodesForDirectory(File directory) { //Returns a TreeItem representation of the specified directory
+        TreeItem<String> root = new TreeItem<String>(directory.getName());
+        for(File f : directory.listFiles()) {
+            if(f.isDirectory()) { //Then we call the function recursively
+                root.getChildren().add(getNodesForDirectory(f));
+            } else {
+                root.getChildren().add(new TreeItem<String>(f.getName()));
+            }
+        }
+        return root;
+    }
+
+
 
 
 
