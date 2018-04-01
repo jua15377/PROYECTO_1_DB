@@ -6,6 +6,7 @@ import fileManagement.*;
 
 public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
+    public Manejador elManejador = new Manejador();
     public String error = "";
     public String verbose = "";
     public boolean verboseEnable =  false;
@@ -38,6 +39,10 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         System.out.println(id);
         System.out.println("Base de Datos: " + id + ", eliminada con exito");
         if(verboseEnable){ verbose += "Base de Datos: " + id + ", eliminada con exito\n";}
+        return visitChildren(ctx);
+    }
+    @Override public String visitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx) {
+
         return visitChildren(ctx);
     }
 
