@@ -95,6 +95,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
         else{
             manejador.changeDBSname(idViejo, idNuevo);
+            manejador.setCurrentDB(idNuevo);
             log += "Rename done succesfully";
             if(verboseEnable){
                  verbose += "Base de Datos: " + ctx.ID(0).getText() + " renombrada a " + ctx.ID(1).getText() +
@@ -251,10 +252,21 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
             if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(id)) {
-                manejador.getASpecificDb(idDb).dropTable(id);
-                log += "Table \"" + ctx.ID().getText() + "\" deleted succesfully!.\n";
-                if (verboseEnable) {
-                    verbose += "la tabla: " + id + ", fue creada con exito\n";
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("User Confirmation");
+                alert.setHeaderText("Drop \""+ctx.ID().getText()+"\" table from " + idDb + "?");
+                alert.setContentText("Choose your option.");
+                ButtonType buttonTypeOne = new ButtonType("Yes");
+                ButtonType buttonTypeCancel = new ButtonType("No");
+                alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+                Optional<ButtonType> result = alert.showAndWait();
+                if (result.get() == buttonTypeOne) {
+                    //borra la tabla
+                    manejador.getASpecificDb(idDb).dropTable(id);
+                    log += "Table \"" + ctx.ID().getText() + "\" deleted succesfully!.\n";
+                    if (verboseEnable) {
+                        verbose += "la tabla: " + id + ", fue creada con exito\n";
+                    }
                 }
             }
             else {
