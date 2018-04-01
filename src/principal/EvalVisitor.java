@@ -6,7 +6,7 @@ import fileManagement.*;
 
 public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
-    public Manejador elManejador = new Manejador();
+
     public String error = "";
     public String verbose = "";
     public boolean verboseEnable =  false;
