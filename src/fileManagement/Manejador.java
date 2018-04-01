@@ -61,7 +61,7 @@ public class Manejador implements Serializable {
                     /**
                      * Cracion de obeto tab`la, contenedor de registros
                      * */
-                    Tabla tabla = (Tabla) FolderManager.toObject(current + "\\" + db + "\\" + file);
+                    Tabla tabla = (Tabla) FolderManager.toObject(file.toString());
                     baseDeDatos.addTabla(tabla);
                 }
                 addDB(baseDeDatos);

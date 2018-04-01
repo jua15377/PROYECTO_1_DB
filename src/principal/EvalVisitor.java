@@ -258,7 +258,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
                 }
             }
             else {
-                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Table \""+ctx.ID().getText()+"\". no exist!-\n";
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Table \""+ctx.ID().getText()+"\". doesn't exist!-\n";
 
             }
         }
