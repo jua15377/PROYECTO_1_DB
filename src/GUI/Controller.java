@@ -4,16 +4,19 @@ import antlrGenerateFiles.PostSQLLexer;
 import antlrGenerateFiles.PostSQLParser;
 import antlrGenerateFiles.ThrowingErrorListener;
 import fileManagement.FolderManager;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.stage.FileChooser;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.*;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -149,7 +152,7 @@ public class Controller implements Initializable{
     public void refresh(){
         String current ="";
         try {
-            current = new File(".").getCanonicalPath();
+            current = new File(".").getCanonicalPath() + "/DATABASES";
         } catch (java.io.IOException e ){
 
         }
@@ -220,12 +223,12 @@ public class Controller implements Initializable{
         textArea.setText("");
         String program = codeArea.getText();
         compile(program);
+        refresh();
     }
 
     public void compile(String expression) {
 
         try {
-
             textArea.setText("");
             CharStream stream = CharStreams.fromString(expression);
             PostSQLLexer lexer = new PostSQLLexer(stream);
@@ -234,8 +237,8 @@ public class Controller implements Initializable{
 
             TokenStream tokenStream = new CommonTokenStream(lexer);
             PostSQLParser parser = new PostSQLParser(tokenStream);
-            //parser.removeErrorListeners();
-            //parser.addErrorListener(ThrowingErrorListener.INSTANCE);
+            parser.removeErrorListeners();
+            parser.addErrorListener(ThrowingErrorListener.INSTANCE);
             ParseTree tree = parser.program();
 
 
@@ -252,6 +255,7 @@ public class Controller implements Initializable{
 
         } catch (Exception e) {
             String m = e.toString();
+            m = m.replace("org.antlr.v4.runtime.misc.ParseCancellation","");
             textArea.setText(m);
             //
         }
@@ -322,20 +326,23 @@ public class Controller implements Initializable{
 
 
     public void about(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Acerca del proyecto");
-        alert.setHeaderText("¡Gracias por utilizarnos!");
-        alert.setContentText("Este manejador de bases de datos es el Proyecto # 1 del curso Bases de Datos de la Universidad" +
-                " del Valle de Guatemala. " +
-                "Fue realizado en el lenguaje de programacion Java, en conjunto con la herramienta de reconocimiento de " +
-                "lenguajes ANTLR y basado en las reglas del lenguaje de BD SQL. \n\nMuchas gracias por utilizar nuestro programa." +
-                "\n\nAtentamente,\nDiego Castaneda\nJonnathan Juarez\nSebastian Galindo\n\nGuatemala, 2018.");
-        alert.showAndWait();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("aboutController.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setTitle("About");
+            stage.setResizable(false);
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
     public TreeItem<String> getNodesForDirectory(File directory) { //Returns a TreeItem representation of the specified directory
         TreeItem<String> root = new TreeItem<String>(directory.getName(), new ImageView(folderIcon));
+        root.setExpanded(true);
         for(File f : directory.listFiles()) {
             if(f.isDirectory()) { //Then we call the function recursively
                 root.getChildren().add(getNodesForDirectory(f));

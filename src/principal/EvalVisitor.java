@@ -1,10 +1,12 @@
 package principal;
 
-import antlrGenerateFiles.*;
-import fileManagement.*;
-
-import java.beans.Visibility;
+import antlrGenerateFiles.PostSQLBaseVisitor;
+import antlrGenerateFiles.PostSQLParser;
+import fileManagement.Manejador;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
@@ -31,13 +33,13 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         ArrayList<String> nombres = manejador.getDbsNames();
         if(!nombres.contains(id)){
             manejador.createDataBase(id);
-            log += "La base de datos \""+ctx.ID().getText()+"\" se creo exitosamente!.\n";
+            log += "Database \""+ctx.ID().getText()+"\" has been created succesfully!.\n";
             if(verboseEnable){
                 verbose += "Base de Datos: " + id + ", creado con exito\n";
             }
         }
         else {
-            return error+="Error en la linea:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". La base de datos \""+ctx.ID().getText()+"\" ya existe.\n";
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\" database already exists.\n";
         }
         return visitChildren(ctx);
 
@@ -50,12 +52,24 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         String id = ctx.ID().getText();
         ArrayList<String> nombres = manejador.getDbsNames();
         if(nombres.contains(id)){
-            manejador.dropDatabase(id);
-            log += "La base de datos \""+ctx.ID().getText()+"\" se elimino exitosamente!.\n";
-            if(verboseEnable){ verbose += "Base de Datos: " + id + ", eliminada con exito\n";}
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("User Confirmation");
+            alert.setHeaderText("Drop \""+ctx.ID().getText()+"\" database?");
+            alert.setContentText("Choose your option.");
+            ButtonType buttonTypeOne = new ButtonType("Yes");
+            ButtonType buttonTypeCancel = new ButtonType("No");
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == buttonTypeOne){
+                // ... user chose "Drop"
+                manejador.dropDatabase(id);
+                log += "Database \""+ctx.ID().getText()+"\" has been dropped succesfully!.\n";
+                if(verboseEnable){ verbose += "Base de Datos: " + id + ", eliminada con exito\n";}
+            }
+
         }
         else {
-            return error+="Error en la linea:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". No se encontro \""+ctx.ID().getText()+"\".\n";
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\" database not found.\n";
         }
         return visitChildren(ctx);
     }
