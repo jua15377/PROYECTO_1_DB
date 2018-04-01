@@ -146,7 +146,7 @@ public class Manejador implements Serializable {
         PrintWriter pw;
         try
         {
-            fichero = new FileWriter("METADATA.txt");
+            fichero = new FileWriter("DATABASES\\METADATA.txt");
             pw = new PrintWriter(fichero);
             pw.println(texto);
         }
