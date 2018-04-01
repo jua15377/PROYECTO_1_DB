@@ -188,7 +188,12 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     @Override
     public String visitMultipleColumn(PostSQLParser.MultipleColumnContext ctx) {
+        int indice = ctx.getChildCount();
+        for (int i = 0; )
+
         visitChildren(ctx);
+
+
         return ctx.getText();
     }
 
@@ -214,7 +219,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     //boolean es float
     @Override
-    public String visitVarboolean(PostSQLParser.VarbooleanContext ctx) {
+    public String visitVarfloat(PostSQLParser.VarfloatContext ctx) {
         return "float";
     }
 
@@ -227,6 +232,9 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     public String visitVarint(PostSQLParser.VarintContext ctx) {
         return "int";
     }
+
+
+
 
     public String getError() {
         return error;

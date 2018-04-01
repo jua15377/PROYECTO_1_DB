@@ -332,5 +332,12 @@ public class PostSQLBaseVisitor<T> extends AbstractParseTreeVisitor<T> implement
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitVarboolean(PostSQLParser.VarbooleanContext ctx) { return visitChildren(ctx); }
+	@Override public T visitVarfloat(PostSQLParser.VarfloatContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitVardate(PostSQLParser.VardateContext ctx) { return visitChildren(ctx); }
 }

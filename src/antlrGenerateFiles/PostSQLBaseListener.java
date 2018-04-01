@@ -556,13 +556,25 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterVarboolean(PostSQLParser.VarbooleanContext ctx) { }
+	@Override public void enterVarfloat(PostSQLParser.VarfloatContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitVarboolean(PostSQLParser.VarbooleanContext ctx) { }
+	@Override public void exitVarfloat(PostSQLParser.VarfloatContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVardate(PostSQLParser.VardateContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVardate(PostSQLParser.VardateContext ctx) { }
 
 	/**
 	 * {@inheritDoc}

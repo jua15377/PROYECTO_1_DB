@@ -326,10 +326,17 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVarchar(PostSQLParser.VarcharContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code varboolean}
+	 * Visit a parse tree produced by the {@code varfloat}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitVarboolean(PostSQLParser.VarbooleanContext ctx);
+	T visitVarfloat(PostSQLParser.VarfloatContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code vardate}
+	 * labeled alternative in {@link PostSQLParser#varType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVardate(PostSQLParser.VardateContext ctx);
 }

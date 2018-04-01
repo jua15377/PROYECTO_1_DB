@@ -548,15 +548,27 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitVarchar(PostSQLParser.VarcharContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code varboolean}
+	 * Enter a parse tree produced by the {@code varfloat}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 */
-	void enterVarboolean(PostSQLParser.VarbooleanContext ctx);
+	void enterVarfloat(PostSQLParser.VarfloatContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code varboolean}
+	 * Exit a parse tree produced by the {@code varfloat}
 	 * labeled alternative in {@link PostSQLParser#varType}.
 	 * @param ctx the parse tree
 	 */
-	void exitVarboolean(PostSQLParser.VarbooleanContext ctx);
+	void exitVarfloat(PostSQLParser.VarfloatContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code vardate}
+	 * labeled alternative in {@link PostSQLParser#varType}.
+	 * @param ctx the parse tree
+	 */
+	void enterVardate(PostSQLParser.VardateContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code vardate}
+	 * labeled alternative in {@link PostSQLParser#varType}.
+	 * @param ctx the parse tree
+	 */
+	void exitVardate(PostSQLParser.VardateContext ctx);
 }
