@@ -223,6 +223,7 @@ public class Controller implements Initializable{
         textArea.setText("");
         String program = codeArea.getText();
         compile(program);
+        refresh();
     }
 
     public void compile(String expression) {
