@@ -35,34 +35,33 @@ public class Manejador implements Serializable {
         //Se leera NBaseDeDatos para conocer los nombres de todas las base de datos.
         // cada vez que se lea un nombre, se creara un folder y se creara cada objeto.
         //Esto, para utilizar un manejador de acuerdo a lo que ya exisitia.
-
-        String current = "";
-        //Obtencion del folder principal que contiene todos los folders de la base de datos
         try {
-            current = new File("./DATABASES").getCanonicalPath();
+            String current = "";
+            //Obtencion del folder principal que contiene todos los folders de la base de datos
+            try {
+                current = new File("./DATABASES").getCanonicalPath();
 
-        }
-        catch (java.io.IOException e ){
+            } catch (java.io.IOException e) {
 
-        }
+            }
 
-        //CAMBIAR ARRAYLIST, SERIALIZAR DBNAMES EN UN ARCHIVO ;D
+            //CAMBIAR ARRAYLIST, SERIALIZAR DBNAMES EN UN ARCHIVO ;D
 
-        try{
+
             ArrayList<String> dbs = (ArrayList<String>) FolderManager.toObject("./DATABASES/MASTER.dsj");
             System.out.println(dbs);
-            for (String db: dbs){
+            for (String db : dbs) {
                 /**
                  * Creacion de objeto base de datos, contenedor de tablas**/
                 BaseDeDatos baseDeDatos = new BaseDeDatos(db);
-                File folder = new File(current +"\\" + db);
+                File folder = new File(current + "\\" + db);
                 File[] listOfFiles = folder.listFiles();
 
-                for(File file: listOfFiles){
+                for (File file : listOfFiles) {
                     /**
                      * Cracion de obeto tab`la, contenedor de registros
                      * */
-                    Tabla tabla  = (Tabla) FolderManager.toObject(current +"\\" + db +"\\" + file);
+                    Tabla tabla = (Tabla) FolderManager.toObject(current + "\\" + db + "\\" + file);
                     baseDeDatos.addTabla(tabla);
                 }
                 addDB(baseDeDatos);
@@ -73,7 +72,6 @@ public class Manejador implements Serializable {
             System.out.println("NO SE PUDO LEER EL MASTER.dsj se prosigue como base de datos nueva");
         }
 
-
      }
     public void createDataBase(String nombre){
         BaseDeDatos baseDeDatos = new  BaseDeDatos(nombre);
@@ -81,31 +79,6 @@ public class Manejador implements Serializable {
         dbs.add(baseDeDatos);
         this.contadorDeDB ++;
         FolderManager.createFolder(nombre);
-
-        //Agregar a NBaseDeDatos una base de datos
-
-
-        BufferedWriter bw = null;
-        FileWriter fw = null;
-
-        try {
-            File file = new File("NBaseDeDatos.dsj");
-            fw = new FileWriter(file.getAbsoluteFile(), true);
-            bw = new BufferedWriter(fw);
-            bw.write(nombre + "\n");
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (bw != null)
-                    bw.close();
-                if (fw != null)
-                    fw.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
     }
 
     public void dropDatabase(String nombre){
@@ -114,9 +87,6 @@ public class Manejador implements Serializable {
         dbs.remove(indice);
         FolderManager.deleteFolder(nombre);
         this.contadorDeDB = this.contadorDeDB -1;
-        //Borrar de NBaseDeDatos una base de datos
-        removeLineFromFile(nombre, "NBaseDeDatos.dsj");
-
     }
 
     public void  changeDBSname(String oldName, String newName){

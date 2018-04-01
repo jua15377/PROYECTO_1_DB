@@ -91,8 +91,13 @@ public class Controller implements Initializable{
         runButton.setDisable(false);
         codeArea.setEditable(true);
         connectMI.setDisable(true);
-        eval.manejador.reconstruir();
-        System.out.println("Si esta llegando");
+        try {
+            eval.manejador.reconstruir();
+        }
+
+        catch (Exception e){
+            System.out.println("Si esta llegando");
+        }
 
     }
 

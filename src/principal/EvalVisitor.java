@@ -26,13 +26,13 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Metodo para la creacion de una base de datos.**/
     @Override public String visitSTMcreateDB(PostSQLParser.STMcreateDBContext ctx) {
         String id = ctx.ID().getText();
-        if(verboseEnable){
-            verbose += "Base de Datos: " + id + ", creado con exito\n";
-        }
         ArrayList<String> nombres = manejador.getDbsNames();
         if(!nombres.contains(id)){
             manejador.createDataBase(id);
             log += "La base de datos \""+ctx.ID().getText()+"\" se creo exitosamente!.\n";
+            if(verboseEnable){
+                verbose += "Base de Datos: " + id + ", creado con exito\n";
+            }
         }
         else {
             return error+="Error en la linea:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". La base de datos \""+ctx.ID().getText()+"\" ya existe.\n";
@@ -46,9 +46,15 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Metodo para la eliminacion de una base de datos.**/
     @Override public String visitSTMdropDB(PostSQLParser.STMdropDBContext ctx) {
         String id = ctx.ID().getText();
-        System.out.println(id);
-        System.out.println("Base de Datos: " + id + ", eliminada con exito");
-        if(verboseEnable){ verbose += "Base de Datos: " + id + ", eliminada con exito\n";}
+        ArrayList<String> nombres = manejador.getDbsNames();
+        if(nombres.contains(id)){
+            manejador.dropDatabase(id);
+            log += "La base de datos \""+ctx.ID().getText()+"\" se elimino exitosamente!.\n";
+            if(verboseEnable){ verbose += "Base de Datos: " + id + ", eliminada con exito\n";}
+        }
+        else {
+            return error+="Error en la linea:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". No se encontro \""+ctx.ID().getText()+"\".\n";
+        }
         return visitChildren(ctx);
     }
     @Override public String visitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx) {
