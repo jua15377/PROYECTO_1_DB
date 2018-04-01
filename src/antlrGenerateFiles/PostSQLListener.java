@@ -92,6 +92,18 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitSTMuseDB(PostSQLParser.STMuseDBContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code STMalterDB}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTMalterDB(PostSQLParser.STMalterDBContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STMalterDB}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTMalterDB(PostSQLParser.STMalterDBContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code STMdropTable}
 	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree

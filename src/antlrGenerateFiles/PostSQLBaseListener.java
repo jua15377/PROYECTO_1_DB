@@ -100,6 +100,18 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSTMalterDB(PostSQLParser.STMalterDBContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSTMalterDB(PostSQLParser.STMalterDBContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterSTMdropTable(PostSQLParser.STMdropTableContext ctx) { }
 	/**
 	 * {@inheritDoc}

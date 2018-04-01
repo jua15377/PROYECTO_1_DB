@@ -13,7 +13,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Javalib/antlr-4.7.1-complete.jar!/" />
+          <root url="jar://C:/javaLib/antlr-4.7.1-complete.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -22,7 +22,16 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Javalib/richtextfx-fat-0.8.2.jar!/" />
+          <root url="jar://C:/javaLib/richtextfx-fat-0.8.2.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../richtextfx-fat-0.8.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

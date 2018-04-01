@@ -60,6 +60,13 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSTMuseDB(PostSQLParser.STMuseDBContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code STMalterDB}
+	 * labeled alternative in {@link PostSQLParser#unitStatement}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTMalterDB(PostSQLParser.STMalterDBContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code STMdropTable}
 	 * labeled alternative in {@link PostSQLParser#unitStatement}.
 	 * @param ctx the parse tree

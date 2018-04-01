@@ -54,11 +54,12 @@ unitStatement
 	| 'SHOW' 'DATABASE' 														#STMshowDB
     | 'SHOW' 'TABLE'															#STMshowTable
 	| 'USE' 'DATABASE' ID                                                       #STMuseDB
+	| 'ALTER' 'DATABASE' ID 'RENAME' 'TO' ID                                    #STMalterDB
 	| 'DROP' 'TABLE' ID     													#STMdropTable
 	| 'FUCK' 'DATABASE' 														#STMfuckTable
 	| 'CREATE' 'TABLE' ID '(' columDeclaration  constraints* ')' 				#STMcreateTable
 	| 'SHOW' 'COLUMNS' FROM ID	                                                #STMshowColumn
-    | alter_table 																#STMalterTable
+    | alter_table   															#STMalterTable
 	| insert_into 																#STMinsertInto
 	| update 																	#STMupdate
 	| delete 																	#STMdelete
