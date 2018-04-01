@@ -278,7 +278,27 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     }
 
+    @Override public String visitRenameTable(PostSQLParser.RenameTableContext ctx) {
+        String idTabla = ctx.ID().getText();
 
+        if(manejador.getCurrentDB()!=null){
+            String idDb = manejador.getCurrentDB();
+            if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(idTabla)){
+
+
+            }
+            else{
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Table \""+ctx.ID().getText()+"\". doesn't exist!-\n";
+            }
+        }
+        else{
+            return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". No Database selected yet!-\n";
+        }
+
+        return visitChildren(ctx);
+    }
+
+    
 
 
     public String getError() {
