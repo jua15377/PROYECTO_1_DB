@@ -8,6 +8,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     public Manejador manejador  = new Manejador("master");
     public String error = "";
+    public String log = "";
     public String verbose = "";
     public boolean verboseEnable =  false;
 
@@ -28,6 +29,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         if(verboseEnable){
             verbose += "Base de Datos: " + id + ", creado con exito\n";
         }
+        error+="Error en la linea:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". La base de datos \""+ctx.ID().getText()+"\" ya existe.\n";
         return visitChildren(ctx);
 
     }

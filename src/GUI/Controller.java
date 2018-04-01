@@ -161,6 +161,7 @@ public class Controller implements Initializable{
             eval.visit(tree);
 
             if (eval.getError().equals("")) {
+                textArea.setText(eval.log);
                 //Hacer aqui lo que pasa si no tiene errores
                 System.out.println(eval.verbose);
 
