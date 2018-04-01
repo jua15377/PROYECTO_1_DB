@@ -11,11 +11,19 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	/**
-	 * Visit a parse tree produced by {@link PostSQLParser#program}.
+	 * Visit a parse tree produced by the {@code initProgram}
+	 * labeled alternative in {@link PostSQLParser#program}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitProgram(PostSQLParser.ProgramContext ctx);
+	T visitInitProgram(PostSQLParser.InitProgramContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code initProgramVerbose}
+	 * labeled alternative in {@link PostSQLParser#program}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitInitProgramVerbose(PostSQLParser.InitProgramVerboseContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code STMcreateDB}
 	 * labeled alternative in {@link PostSQLParser#unitStatement}.

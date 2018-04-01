@@ -44,7 +44,8 @@ WS :
     ;
 
 program
-    : ((unitStatement) ';')* 											
+    : ((unitStatement) ';'?)*                                                   #initProgram
+    | ((unitStatement) ';'?)* '-v' 											    #initProgramVerbose
     ;
 
 unitStatement

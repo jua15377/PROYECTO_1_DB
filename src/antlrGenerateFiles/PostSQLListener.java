@@ -8,15 +8,29 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface PostSQLListener extends ParseTreeListener {
 	/**
-	 * Enter a parse tree produced by {@link PostSQLParser#program}.
+	 * Enter a parse tree produced by the {@code initProgram}
+	 * labeled alternative in {@link PostSQLParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void enterProgram(PostSQLParser.ProgramContext ctx);
+	void enterInitProgram(PostSQLParser.InitProgramContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link PostSQLParser#program}.
+	 * Exit a parse tree produced by the {@code initProgram}
+	 * labeled alternative in {@link PostSQLParser#program}.
 	 * @param ctx the parse tree
 	 */
-	void exitProgram(PostSQLParser.ProgramContext ctx);
+	void exitInitProgram(PostSQLParser.InitProgramContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code initProgramVerbose}
+	 * labeled alternative in {@link PostSQLParser#program}.
+	 * @param ctx the parse tree
+	 */
+	void enterInitProgramVerbose(PostSQLParser.InitProgramVerboseContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code initProgramVerbose}
+	 * labeled alternative in {@link PostSQLParser#program}.
+	 * @param ctx the parse tree
+	 */
+	void exitInitProgramVerbose(PostSQLParser.InitProgramVerboseContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code STMcreateDB}
 	 * labeled alternative in {@link PostSQLParser#unitStatement}.

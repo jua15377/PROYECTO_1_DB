@@ -16,13 +16,25 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterProgram(PostSQLParser.ProgramContext ctx) { }
+	@Override public void enterInitProgram(PostSQLParser.InitProgramContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitProgram(PostSQLParser.ProgramContext ctx) { }
+	@Override public void exitInitProgram(PostSQLParser.InitProgramContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterInitProgramVerbose(PostSQLParser.InitProgramVerboseContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitInitProgramVerbose(PostSQLParser.InitProgramVerboseContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
