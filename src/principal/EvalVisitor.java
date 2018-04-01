@@ -93,7 +93,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     }
 
-<<<<<<< HEAD
+
     /**
      * Grammar: SHOW DATABASE
      * Method to show every database in the manager**/
@@ -109,7 +109,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     }
 
-=======
+
     @Override public String visitSTMuseDB(PostSQLParser.STMuseDBContext ctx) {
         String id = ctx.ID().getText();
         ArrayList<String> nombres = manejador.getDbsNames();
@@ -128,7 +128,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         }
         return visitChildren(ctx);
     }
->>>>>>> origin/master
+
 
     @Override public String visitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx) {
 
