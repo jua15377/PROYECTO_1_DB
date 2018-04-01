@@ -75,25 +75,27 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     }
 
     /***
-     * Grammar: ALTER DATABASE ID RENAME TO ID*/
+     * Grammar: ALTER DATABASE ID RENAME TO ID
+     * Method to change the name  of one database*/
     @Override public String visitSTMalterDB(PostSQLParser.STMalterDBContext ctx) {
         String idViejo = ctx.ID(0).getText();
         String idNuevo = ctx.ID(1).getText();
 
         if (!manejador.getDbsNames().contains(idViejo)){
             //ERROR: No existe la base de datos inicial
-            return error = "Error en la linea:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+
-                    ". La base de datos " + ctx.ID(0).getText()+" no existe.\n";
+            return error = "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+
+                    ". Database " + ctx.ID(0).getText()+" does not exists.\n";
         }
 
         else if(manejador.getDbsNames().contains(idNuevo)){
             //Error
-            return error = "Error en la linea:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+
-                    ". El nombre  " + ctx.ID(1).getText()+" ya existe .\n";
+            return error = "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+
+                    ". Name  " + ctx.ID(1).getText()+" already in use .\n";
         }
 
         else{
             manejador.changeDBSname(idViejo, idNuevo);
+            log += "Rename done succesfully";
             if(verboseEnable){
                 return verbose += "Base de Datos: " + ctx.ID(0).getText() + " renombrada a " + ctx.ID(1).getText() +
                         "con exito\n";
@@ -103,6 +105,42 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
 
 
+    }
+
+
+    /**
+     * Grammar: SHOW DATABASE
+     * Method to show every database in the manager**/
+    @Override public String visitSTMshowDB(PostSQLParser.STMshowDBContext ctx) {
+        log += "Active Databases: \n";
+        for (String s: manejador.getDbsNames()){
+            log += s + "\n";
+        }
+        if (verboseEnable){
+            return verbose += "Show Databases displayed succesfully";
+        }
+        return log += "Show done succesfully";
+
+    }
+
+
+    @Override public String visitSTMuseDB(PostSQLParser.STMuseDBContext ctx) {
+        String id = ctx.ID().getText();
+        ArrayList<String> nombres = manejador.getDbsNames();
+        if(nombres.contains(id)){
+            if (manejador.getCurrentDB()!= null) {
+                if (manejador.getCurrentDB().equals(id)) {
+                    log += "Database \"" + ctx.ID().getText() + "\" already in use!.\n";
+                }
+            }
+            manejador.setCurrentDB(id);
+            log += "Database \""+ctx.ID().getText()+"\" in use!.\n";
+            if(verboseEnable){ verbose += "Base de Datos: " + id + ", eliminada con exito\n";}
+        }
+        else {
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". Not found!-\n";
+        }
+        return visitChildren(ctx);
     }
 
 

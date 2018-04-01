@@ -19,12 +19,12 @@ public class PostSQLParser extends Parser {
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
 		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, T__16=17, 
-		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, COLON=24, 
-		PRIMARY=25, KEY=26, FOREIGN=27, CONSTRAINT=28, REFERENCES=29, FROM=30, 
-		CHECK=31, ALTER=32, RENAME=33, TO=34, ADD=35, COLUMN=36, INSERT_INTO=37, 
-		VALUES=38, UPDATE=39, SET=40, DELETE=41, WHERE=42, ORDER_BY=43, ASC=44, 
-		DESC=45, INT=46, CHAR=47, BOOLEAN=48, AND=49, OR=50, NOT=51, SELECT=52, 
-		ID=53, NUM=54, Char=55, WS=56;
+		T__17=18, T__18=19, T__19=20, T__20=21, T__21=22, T__22=23, T__23=24, 
+		COLON=25, PRIMARY=26, KEY=27, FOREIGN=28, CONSTRAINT=29, REFERENCES=30, 
+		FROM=31, CHECK=32, ALTER=33, RENAME=34, TO=35, ADD=36, COLUMN=37, INSERT_INTO=38, 
+		VALUES=39, UPDATE=40, SET=41, DELETE=42, WHERE=43, ORDER_BY=44, ASC=45, 
+		DESC=46, INT=47, CHAR=48, BOOLEAN=49, AND=50, OR=51, NOT=52, SELECT=53, 
+		ID=54, NUM=55, Char=56, WS=57;
 	public static final int
 		RULE_program = 0, RULE_unitStatement = 1, RULE_constraints = 2, RULE_columDeclaration = 3, 
 		RULE_exp = 4, RULE_eq_op = 5, RULE_eq_sgn = 6, RULE_alter_table = 7, RULE_action_alter_table = 8, 
@@ -37,21 +37,22 @@ public class PostSQLParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "';'", "'-v'", "'CREATE'", "'DATABASE'", "'DROP'", "'SHOW'", "'TABLE'", 
-		"'USE'", "'FUCK'", "'('", "')'", "'COLUMNS'", "'PK_'", "','", "'FK_'", 
-		"'CH_'", "'<'", "'>'", "'<='", "'>='", "'<>'", "'='", "'*'", "':'", "'PRIMARY'", 
-		"'KEY'", "'FOREIGN'", "'CONSTRAINT'", "'REFERENCES'", "'FROM'", "'CHECK'", 
-		"'ALTER'", "'RENAME'", "'TO'", "'ADD'", "'COLUMN'", "'INSERT INTO'", "'VALUES'", 
-		"'UPDATE'", "'SET'", "'DELETE'", "'WHERE'", "'ORDER BY'", "'ASC'", "'DESC'", 
-		"'INT'", "'CHAR'", "'BOOLEAN'", "'AND'", "'OR'", "'NOT'", "'SELECT'"
+		null, "';'", "'-v'", "'CREATE'", "'DATABASE'", "'DROP'", "'SHOW'", "'DATABASES'", 
+		"'TABLE'", "'USE'", "'FUCK'", "'('", "')'", "'COLUMNS'", "'PK_'", "','", 
+		"'FK_'", "'CH_'", "'<'", "'>'", "'<='", "'>='", "'<>'", "'='", "'*'", 
+		"':'", "'PRIMARY'", "'KEY'", "'FOREIGN'", "'CONSTRAINT'", "'REFERENCES'", 
+		"'FROM'", "'CHECK'", "'ALTER'", "'RENAME'", "'TO'", "'ADD'", "'COLUMN'", 
+		"'INSERT INTO'", "'VALUES'", "'UPDATE'", "'SET'", "'DELETE'", "'WHERE'", 
+		"'ORDER BY'", "'ASC'", "'DESC'", "'INT'", "'CHAR'", "'BOOLEAN'", "'AND'", 
+		"'OR'", "'NOT'", "'SELECT'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
 		null, null, null, null, null, null, null, null, null, null, null, null, 
 		null, null, null, null, null, null, null, null, null, null, null, null, 
-		"COLON", "PRIMARY", "KEY", "FOREIGN", "CONSTRAINT", "REFERENCES", "FROM", 
-		"CHECK", "ALTER", "RENAME", "TO", "ADD", "COLUMN", "INSERT_INTO", "VALUES", 
-		"UPDATE", "SET", "DELETE", "WHERE", "ORDER_BY", "ASC", "DESC", "INT", 
-		"CHAR", "BOOLEAN", "AND", "OR", "NOT", "SELECT", "ID", "NUM", "Char", 
+		null, "COLON", "PRIMARY", "KEY", "FOREIGN", "CONSTRAINT", "REFERENCES", 
+		"FROM", "CHECK", "ALTER", "RENAME", "TO", "ADD", "COLUMN", "INSERT_INTO", 
+		"VALUES", "UPDATE", "SET", "DELETE", "WHERE", "ORDER_BY", "ASC", "DESC", 
+		"INT", "CHAR", "BOOLEAN", "AND", "OR", "NOT", "SELECT", "ID", "NUM", "Char", 
 		"WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
@@ -420,7 +421,7 @@ public class PostSQLParser extends Parser {
 				setState(56);
 				match(T__5);
 				setState(57);
-				match(T__3);
+				match(T__6);
 				}
 				break;
 			case 4:
@@ -430,7 +431,7 @@ public class PostSQLParser extends Parser {
 				setState(58);
 				match(T__5);
 				setState(59);
-				match(T__6);
+				match(T__7);
 				}
 				break;
 			case 5:
@@ -438,7 +439,7 @@ public class PostSQLParser extends Parser {
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(60);
-				match(T__7);
+				match(T__8);
 				setState(61);
 				match(T__3);
 				setState(62);
@@ -470,7 +471,7 @@ public class PostSQLParser extends Parser {
 				setState(69);
 				match(T__4);
 				setState(70);
-				match(T__6);
+				match(T__7);
 				setState(71);
 				match(ID);
 				}
@@ -480,7 +481,7 @@ public class PostSQLParser extends Parser {
 				enterOuterAlt(_localctx, 8);
 				{
 				setState(72);
-				match(T__8);
+				match(T__9);
 				setState(73);
 				match(T__3);
 				}
@@ -492,11 +493,11 @@ public class PostSQLParser extends Parser {
 				setState(74);
 				match(T__2);
 				setState(75);
-				match(T__6);
+				match(T__7);
 				setState(76);
 				match(ID);
 				setState(77);
-				match(T__9);
+				match(T__10);
 				setState(78);
 				columDeclaration();
 				setState(82);
@@ -514,7 +515,7 @@ public class PostSQLParser extends Parser {
 					_la = _input.LA(1);
 				}
 				setState(85);
-				match(T__10);
+				match(T__11);
 				}
 				break;
 			case 10:
@@ -524,7 +525,7 @@ public class PostSQLParser extends Parser {
 				setState(87);
 				match(T__5);
 				setState(88);
-				match(T__11);
+				match(T__12);
 				setState(89);
 				match(FROM);
 				setState(90);
@@ -656,7 +657,7 @@ public class PostSQLParser extends Parser {
 				setState(98);
 				match(CONSTRAINT);
 				setState(99);
-				match(T__12);
+				match(T__13);
 				setState(100);
 				match(ID);
 				setState(101);
@@ -666,10 +667,10 @@ public class PostSQLParser extends Parser {
 				setState(114);
 				_errHandler.sync(this);
 				switch (_input.LA(1)) {
-				case T__9:
+				case T__10:
 					{
 					setState(103);
-					match(T__9);
+					match(T__10);
 					setState(104);
 					match(ID);
 					}
@@ -681,11 +682,11 @@ public class PostSQLParser extends Parser {
 					setState(110);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-					while (_la==T__13) {
+					while (_la==T__14) {
 						{
 						{
 						setState(106);
-						match(T__13);
+						match(T__14);
 						setState(107);
 						match(ID);
 						}
@@ -695,7 +696,7 @@ public class PostSQLParser extends Parser {
 						_la = _input.LA(1);
 					}
 					setState(113);
-					match(T__10);
+					match(T__11);
 					}
 					break;
 				default:
@@ -710,7 +711,7 @@ public class PostSQLParser extends Parser {
 				setState(116);
 				match(CONSTRAINT);
 				setState(117);
-				match(T__14);
+				match(T__15);
 				setState(118);
 				match(ID);
 				setState(119);
@@ -723,7 +724,7 @@ public class PostSQLParser extends Parser {
 				case 1:
 					{
 					setState(121);
-					match(T__9);
+					match(T__10);
 					setState(122);
 					match(ID);
 					}
@@ -735,11 +736,11 @@ public class PostSQLParser extends Parser {
 					setState(128);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-					while (_la==T__13) {
+					while (_la==T__14) {
 						{
 						{
 						setState(124);
-						match(T__13);
+						match(T__14);
 						setState(125);
 						match(ID);
 						}
@@ -749,13 +750,13 @@ public class PostSQLParser extends Parser {
 						_la = _input.LA(1);
 					}
 					setState(131);
-					match(T__10);
+					match(T__11);
 					setState(132);
 					match(REFERENCES);
 					setState(133);
 					match(ID);
 					setState(134);
-					match(T__9);
+					match(T__10);
 					setState(135);
 					match(ID);
 					}
@@ -767,11 +768,11 @@ public class PostSQLParser extends Parser {
 					setState(141);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-					while (_la==T__13) {
+					while (_la==T__14) {
 						{
 						{
 						setState(137);
-						match(T__13);
+						match(T__14);
 						setState(138);
 						match(ID);
 						}
@@ -781,7 +782,7 @@ public class PostSQLParser extends Parser {
 						_la = _input.LA(1);
 					}
 					setState(144);
-					match(T__10);
+					match(T__11);
 					}
 					break;
 				}
@@ -794,17 +795,17 @@ public class PostSQLParser extends Parser {
 				setState(147);
 				match(CONSTRAINT);
 				setState(148);
-				match(T__15);
+				match(T__16);
 				setState(149);
 				match(ID);
 				setState(150);
 				match(CHECK);
 				setState(151);
-				match(T__9);
+				match(T__10);
 				setState(152);
 				exp();
 				setState(153);
-				match(T__10);
+				match(T__11);
 				}
 				break;
 			}
@@ -891,11 +892,11 @@ public class PostSQLParser extends Parser {
 				setState(166);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-				while (_la==T__13) {
+				while (_la==T__14) {
 					{
 					{
 					setState(161);
-					match(T__13);
+					match(T__14);
 					setState(162);
 					match(ID);
 					setState(163);
@@ -984,12 +985,12 @@ public class PostSQLParser extends Parser {
 				eq_op();
 				}
 				break;
-			case T__16:
 			case T__17:
 			case T__18:
 			case T__19:
 			case T__20:
 			case T__21:
+			case T__22:
 				{
 				setState(173);
 				eq_sgn();
@@ -1173,52 +1174,52 @@ public class PostSQLParser extends Parser {
 			setState(189);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__16:
+			case T__17:
 				_localctx = new MenorQueOpContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(183);
-				match(T__16);
-				}
-				break;
-			case T__17:
-				_localctx = new MayorQueOPContext(_localctx);
-				enterOuterAlt(_localctx, 2);
-				{
-				setState(184);
 				match(T__17);
 				}
 				break;
 			case T__18:
-				_localctx = new MenorIgualQueOpContext(_localctx);
-				enterOuterAlt(_localctx, 3);
+				_localctx = new MayorQueOPContext(_localctx);
+				enterOuterAlt(_localctx, 2);
 				{
-				setState(185);
+				setState(184);
 				match(T__18);
 				}
 				break;
 			case T__19:
-				_localctx = new MayorIgualQueOpContext(_localctx);
-				enterOuterAlt(_localctx, 4);
+				_localctx = new MenorIgualQueOpContext(_localctx);
+				enterOuterAlt(_localctx, 3);
 				{
-				setState(186);
+				setState(185);
 				match(T__19);
 				}
 				break;
 			case T__20:
-				_localctx = new DiferenteOPContext(_localctx);
-				enterOuterAlt(_localctx, 5);
+				_localctx = new MayorIgualQueOpContext(_localctx);
+				enterOuterAlt(_localctx, 4);
 				{
-				setState(187);
+				setState(186);
 				match(T__20);
 				}
 				break;
 			case T__21:
+				_localctx = new DiferenteOPContext(_localctx);
+				enterOuterAlt(_localctx, 5);
+				{
+				setState(187);
+				match(T__21);
+				}
+				break;
+			case T__22:
 				_localctx = new IgualOPContext(_localctx);
 				enterOuterAlt(_localctx, 6);
 				{
 				setState(188);
-				match(T__21);
+				match(T__22);
 				}
 				break;
 			default:
@@ -1290,7 +1291,7 @@ public class PostSQLParser extends Parser {
 				setState(191);
 				match(ALTER);
 				setState(192);
-				match(T__6);
+				match(T__7);
 				setState(193);
 				match(ID);
 				setState(194);
@@ -1308,7 +1309,7 @@ public class PostSQLParser extends Parser {
 				setState(197);
 				match(ALTER);
 				setState(198);
-				match(T__6);
+				match(T__7);
 				setState(199);
 				match(ID);
 				setState(200);
@@ -1535,17 +1536,17 @@ public class PostSQLParser extends Parser {
 			setState(229);
 			match(ID);
 			setState(230);
-			match(T__9);
+			match(T__10);
 			setState(231);
 			match(ID);
 			setState(236);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__13) {
+			while (_la==T__14) {
 				{
 				{
 				setState(232);
-				match(T__13);
+				match(T__14);
 				setState(233);
 				match(ID);
 				}
@@ -1555,21 +1556,21 @@ public class PostSQLParser extends Parser {
 				_la = _input.LA(1);
 			}
 			setState(239);
-			match(T__10);
+			match(T__11);
 			setState(240);
 			match(VALUES);
 			setState(241);
-			match(T__9);
+			match(T__10);
 			setState(242);
 			varType();
 			setState(247);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__13) {
+			while (_la==T__14) {
 				{
 				{
 				setState(243);
-				match(T__13);
+				match(T__14);
 				setState(244);
 				varType();
 				}
@@ -1579,7 +1580,7 @@ public class PostSQLParser extends Parser {
 				_la = _input.LA(1);
 			}
 			setState(250);
-			match(T__10);
+			match(T__11);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1655,19 +1656,19 @@ public class PostSQLParser extends Parser {
 			setState(255);
 			match(ID);
 			setState(256);
-			match(T__21);
+			match(T__22);
 			setState(257);
-			match(T__9);
+			match(T__10);
 			setState(258);
 			varType();
 			setState(263);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			while (_la==T__13) {
+			while (_la==T__14) {
 				{
 				{
 				setState(259);
-				match(T__13);
+				match(T__14);
 				setState(260);
 				varType();
 				}
@@ -1677,7 +1678,7 @@ public class PostSQLParser extends Parser {
 				_la = _input.LA(1);
 			}
 			setState(266);
-			match(T__10);
+			match(T__11);
 			setState(267);
 			match(WHERE);
 			setState(268);
@@ -1899,10 +1900,10 @@ public class PostSQLParser extends Parser {
 			setState(299);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
-			case T__22:
+			case T__23:
 				{
 				setState(295);
-				match(T__22);
+				match(T__23);
 				}
 				break;
 			case ID:
@@ -1911,7 +1912,7 @@ public class PostSQLParser extends Parser {
 				match(ID);
 				{
 				setState(297);
-				match(T__13);
+				match(T__14);
 				setState(298);
 				match(ID);
 				}
@@ -1944,7 +1945,7 @@ public class PostSQLParser extends Parser {
 			}
 			{
 			setState(308);
-			match(T__13);
+			match(T__14);
 			setState(309);
 			match(ID);
 			setState(310);
@@ -2057,7 +2058,7 @@ public class PostSQLParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3:\u0140\4\2\t\2\4"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3;\u0140\4\2\t\2\4"+
 		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
 		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\3\2\3\2\3\2\7\2$\n\2"+
 		"\f\2\16\2\'\13\2\3\2\3\2\3\2\7\2,\n\2\f\2\16\2/\13\2\3\2\3\2\5\2\63\n"+
@@ -2081,90 +2082,89 @@ public class PostSQLParser extends Parser {
 		"\n\16\f\16\16\16\u0127\13\16\3\17\3\17\3\17\3\17\3\17\5\17\u012e\n\17"+
 		"\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\17\3\20\3\20\3\20"+
 		"\5\20\u013e\n\20\3\20\2\2\21\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36\2"+
-		"\4\3\2\678\3\2./\2\u0162\2\62\3\2\2\2\4b\3\2\2\2\6\u009d\3\2\2\2\b\u00ab"+
+		"\4\3\289\3\2/\60\2\u0162\2\62\3\2\2\2\4b\3\2\2\2\6\u009d\3\2\2\2\b\u00ab"+
 		"\3\2\2\2\n\u00ad\3\2\2\2\f\u00b7\3\2\2\2\16\u00bf\3\2\2\2\20\u00cb\3\2"+
 		"\2\2\22\u00e4\3\2\2\2\24\u00e6\3\2\2\2\26\u00fe\3\2\2\2\30\u0117\3\2\2"+
 		"\2\32\u011b\3\2\2\2\34\u0128\3\2\2\2\36\u013d\3\2\2\2 %\5\4\3\2!\"\7\3"+
 		"\2\2\"$\5\4\3\2#!\3\2\2\2$\'\3\2\2\2%#\3\2\2\2%&\3\2\2\2&\63\3\2\2\2\'"+
 		"%\3\2\2\2(-\5\4\3\2)*\7\3\2\2*,\5\4\3\2+)\3\2\2\2,/\3\2\2\2-+\3\2\2\2"+
 		"-.\3\2\2\2.\60\3\2\2\2/-\3\2\2\2\60\61\7\4\2\2\61\63\3\2\2\2\62 \3\2\2"+
-		"\2\62(\3\2\2\2\63\3\3\2\2\2\64\65\7\5\2\2\65\66\7\6\2\2\66c\7\67\2\2\67"+
-		"8\7\7\2\289\7\6\2\29c\7\67\2\2:;\7\b\2\2;c\7\6\2\2<=\7\b\2\2=c\7\t\2\2"+
-		">?\7\n\2\2?@\7\6\2\2@c\7\67\2\2AB\7\"\2\2BC\7\6\2\2CD\7\67\2\2DE\7#\2"+
-		"\2EF\7$\2\2Fc\7\67\2\2GH\7\7\2\2HI\7\t\2\2Ic\7\67\2\2JK\7\13\2\2Kc\7\6"+
-		"\2\2LM\7\5\2\2MN\7\t\2\2NO\7\67\2\2OP\7\f\2\2PT\5\b\5\2QS\5\6\4\2RQ\3"+
-		"\2\2\2SV\3\2\2\2TR\3\2\2\2TU\3\2\2\2UW\3\2\2\2VT\3\2\2\2WX\7\r\2\2Xc\3"+
-		"\2\2\2YZ\7\b\2\2Z[\7\16\2\2[\\\7 \2\2\\c\7\67\2\2]c\5\20\t\2^c\5\24\13"+
-		"\2_c\5\26\f\2`c\5\32\16\2ac\5\34\17\2b\64\3\2\2\2b\67\3\2\2\2b:\3\2\2"+
-		"\2b<\3\2\2\2b>\3\2\2\2bA\3\2\2\2bG\3\2\2\2bJ\3\2\2\2bL\3\2\2\2bY\3\2\2"+
-		"\2b]\3\2\2\2b^\3\2\2\2b_\3\2\2\2b`\3\2\2\2ba\3\2\2\2c\5\3\2\2\2de\7\36"+
-		"\2\2ef\7\17\2\2fg\7\67\2\2gh\7\33\2\2ht\7\34\2\2ij\7\f\2\2ju\7\67\2\2"+
-		"kp\7\67\2\2lm\7\20\2\2mo\7\67\2\2nl\3\2\2\2or\3\2\2\2pn\3\2\2\2pq\3\2"+
-		"\2\2qs\3\2\2\2rp\3\2\2\2su\7\r\2\2ti\3\2\2\2tk\3\2\2\2u\u009e\3\2\2\2"+
-		"vw\7\36\2\2wx\7\21\2\2xy\7\67\2\2yz\7\35\2\2z\u0093\7\34\2\2{|\7\f\2\2"+
-		"|\u0094\7\67\2\2}\u0082\7\67\2\2~\177\7\20\2\2\177\u0081\7\67\2\2\u0080"+
-		"~\3\2\2\2\u0081\u0084\3\2\2\2\u0082\u0080\3\2\2\2\u0082\u0083\3\2\2\2"+
-		"\u0083\u0085\3\2\2\2\u0084\u0082\3\2\2\2\u0085\u0086\7\r\2\2\u0086\u0087"+
-		"\7\37\2\2\u0087\u0088\7\67\2\2\u0088\u0089\7\f\2\2\u0089\u0094\7\67\2"+
-		"\2\u008a\u008f\7\67\2\2\u008b\u008c\7\20\2\2\u008c\u008e\7\67\2\2\u008d"+
-		"\u008b\3\2\2\2\u008e\u0091\3\2\2\2\u008f\u008d\3\2\2\2\u008f\u0090\3\2"+
-		"\2\2\u0090\u0092\3\2\2\2\u0091\u008f\3\2\2\2\u0092\u0094\7\r\2\2\u0093"+
-		"{\3\2\2\2\u0093}\3\2\2\2\u0093\u008a\3\2\2\2\u0094\u009e\3\2\2\2\u0095"+
-		"\u0096\7\36\2\2\u0096\u0097\7\22\2\2\u0097\u0098\7\67\2\2\u0098\u0099"+
-		"\7!\2\2\u0099\u009a\7\f\2\2\u009a\u009b\5\n\6\2\u009b\u009c\7\r\2\2\u009c"+
-		"\u009e\3\2\2\2\u009dd\3\2\2\2\u009dv\3\2\2\2\u009d\u0095\3\2\2\2\u009e"+
-		"\7\3\2\2\2\u009f\u00a0\7\67\2\2\u00a0\u00ac\5\36\20\2\u00a1\u00a2\7\67"+
-		"\2\2\u00a2\u00a8\5\36\20\2\u00a3\u00a4\7\20\2\2\u00a4\u00a5\7\67\2\2\u00a5"+
-		"\u00a7\5\36\20\2\u00a6\u00a3\3\2\2\2\u00a7\u00aa\3\2\2\2\u00a8\u00a6\3"+
-		"\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\u00ac\3\2\2\2\u00aa\u00a8\3\2\2\2\u00ab"+
-		"\u009f\3\2\2\2\u00ab\u00a1\3\2\2\2\u00ac\t\3\2\2\2\u00ad\u00b0\t\2\2\2"+
-		"\u00ae\u00b1\5\f\7\2\u00af\u00b1\5\16\b\2\u00b0\u00ae\3\2\2\2\u00b0\u00af"+
-		"\3\2\2\2\u00b1\u00b2\3\2\2\2\u00b2\u00b3\t\2\2\2\u00b3\13\3\2\2\2\u00b4"+
-		"\u00b8\7\63\2\2\u00b5\u00b8\7\64\2\2\u00b6\u00b8\7\65\2\2\u00b7\u00b4"+
-		"\3\2\2\2\u00b7\u00b5\3\2\2\2\u00b7\u00b6\3\2\2\2\u00b8\r\3\2\2\2\u00b9"+
-		"\u00c0\7\23\2\2\u00ba\u00c0\7\24\2\2\u00bb\u00c0\7\25\2\2\u00bc\u00c0"+
-		"\7\26\2\2\u00bd\u00c0\7\27\2\2\u00be\u00c0\7\30\2\2\u00bf\u00b9\3\2\2"+
-		"\2\u00bf\u00ba\3\2\2\2\u00bf\u00bb\3\2\2\2\u00bf\u00bc\3\2\2\2\u00bf\u00bd"+
-		"\3\2\2\2\u00bf\u00be\3\2\2\2\u00c0\17\3\2\2\2\u00c1\u00c2\7\"\2\2\u00c2"+
-		"\u00c3\7\t\2\2\u00c3\u00c4\7\67\2\2\u00c4\u00c5\7#\2\2\u00c5\u00c6\7$"+
-		"\2\2\u00c6\u00cc\7\67\2\2\u00c7\u00c8\7\"\2\2\u00c8\u00c9\7\t\2\2\u00c9"+
-		"\u00ca\7\67\2\2\u00ca\u00cc\5\22\n\2\u00cb\u00c1\3\2\2\2\u00cb\u00c7\3"+
-		"\2\2\2\u00cc\21\3\2\2\2\u00cd\u00ce\7%\2\2\u00ce\u00cf\7&\2\2\u00cf\u00d0"+
-		"\7\67\2\2\u00d0\u00d4\5\36\20\2\u00d1\u00d3\5\6\4\2\u00d2\u00d1\3\2\2"+
-		"\2\u00d3\u00d6\3\2\2\2\u00d4\u00d2\3\2\2\2\u00d4\u00d5\3\2\2\2\u00d5\u00e5"+
-		"\3\2\2\2\u00d6\u00d4\3\2\2\2\u00d7\u00db\7%\2\2\u00d8\u00da\5\6\4\2\u00d9"+
-		"\u00d8\3\2\2\2\u00da\u00dd\3\2\2\2\u00db\u00d9\3\2\2\2\u00db\u00dc\3\2"+
-		"\2\2\u00dc\u00e5\3\2\2\2\u00dd\u00db\3\2\2\2\u00de\u00df\7\7\2\2\u00df"+
-		"\u00e0\7&\2\2\u00e0\u00e5\7\67\2\2\u00e1\u00e2\7\7\2\2\u00e2\u00e3\7\36"+
-		"\2\2\u00e3\u00e5\7\67\2\2\u00e4\u00cd\3\2\2\2\u00e4\u00d7\3\2\2\2\u00e4"+
-		"\u00de\3\2\2\2\u00e4\u00e1\3\2\2\2\u00e5\23\3\2\2\2\u00e6\u00e7\7\'\2"+
-		"\2\u00e7\u00e8\7\67\2\2\u00e8\u00e9\7\f\2\2\u00e9\u00ee\7\67\2\2\u00ea"+
-		"\u00eb\7\20\2\2\u00eb\u00ed\7\67\2\2\u00ec\u00ea\3\2\2\2\u00ed\u00f0\3"+
-		"\2\2\2\u00ee\u00ec\3\2\2\2\u00ee\u00ef\3\2\2\2\u00ef\u00f1\3\2\2\2\u00f0"+
-		"\u00ee\3\2\2\2\u00f1\u00f2\7\r\2\2\u00f2\u00f3\7(\2\2\u00f3\u00f4\7\f"+
-		"\2\2\u00f4\u00f9\5\36\20\2\u00f5\u00f6\7\20\2\2\u00f6\u00f8\5\36\20\2"+
-		"\u00f7\u00f5\3\2\2\2\u00f8\u00fb\3\2\2\2\u00f9\u00f7\3\2\2\2\u00f9\u00fa"+
-		"\3\2\2\2\u00fa\u00fc\3\2\2\2\u00fb\u00f9\3\2\2\2\u00fc\u00fd\7\r\2\2\u00fd"+
-		"\25\3\2\2\2\u00fe\u00ff\7)\2\2\u00ff\u0100\7\67\2\2\u0100\u0101\7*\2\2"+
-		"\u0101\u0102\7\67\2\2\u0102\u0103\7\30\2\2\u0103\u0104\7\f\2\2\u0104\u0109"+
-		"\5\36\20\2\u0105\u0106\7\20\2\2\u0106\u0108\5\36\20\2\u0107\u0105\3\2"+
-		"\2\2\u0108\u010b\3\2\2\2\u0109\u0107\3\2\2\2\u0109\u010a\3\2\2\2\u010a"+
-		"\u010c\3\2\2\2\u010b\u0109\3\2\2\2\u010c\u010d\7\r\2\2\u010d\u010e\7,"+
-		"\2\2\u010e\u0114\5\30\r\2\u010f\u0110\5\f\7\2\u0110\u0111\5\30\r\2\u0111"+
-		"\u0113\3\2\2\2\u0112\u010f\3\2\2\2\u0113\u0116\3\2\2\2\u0114\u0112\3\2"+
-		"\2\2\u0114\u0115\3\2\2\2\u0115\27\3\2\2\2\u0116\u0114\3\2\2\2\u0117\u0118"+
-		"\7\67\2\2\u0118\u0119\5\16\b\2\u0119\u011a\7\67\2\2\u011a\31\3\2\2\2\u011b"+
-		"\u011c\7+\2\2\u011c\u011d\7 \2\2\u011d\u011e\7\67\2\2\u011e\u011f\7,\2"+
-		"\2\u011f\u0125\5\30\r\2\u0120\u0121\5\f\7\2\u0121\u0122\5\30\r\2\u0122"+
-		"\u0124\3\2\2\2\u0123\u0120\3\2\2\2\u0124\u0127\3\2\2\2\u0125\u0123\3\2"+
-		"\2\2\u0125\u0126\3\2\2\2\u0126\33\3\2\2\2\u0127\u0125\3\2\2\2\u0128\u012d"+
-		"\7\66\2\2\u0129\u012e\7\31\2\2\u012a\u012b\7\67\2\2\u012b\u012c\7\20\2"+
-		"\2\u012c\u012e\7\67\2\2\u012d\u0129\3\2\2\2\u012d\u012a\3\2\2\2\u012e"+
-		"\u012f\3\2\2\2\u012f\u0130\7 \2\2\u0130\u0131\7\67\2\2\u0131\u0132\7,"+
-		"\2\2\u0132\u0133\5\30\r\2\u0133\u0134\7-\2\2\u0134\u0135\7\67\2\2\u0135"+
-		"\u0136\t\3\2\2\u0136\u0137\7\20\2\2\u0137\u0138\7\67\2\2\u0138\u0139\t"+
-		"\3\2\2\u0139\35\3\2\2\2\u013a\u013e\7\60\2\2\u013b\u013e\7\61\2\2\u013c"+
-		"\u013e\7\62\2\2\u013d\u013a\3\2\2\2\u013d\u013b\3\2\2\2\u013d\u013c\3"+
+		"\2\62(\3\2\2\2\63\3\3\2\2\2\64\65\7\5\2\2\65\66\7\6\2\2\66c\78\2\2\67"+
+		"8\7\7\2\289\7\6\2\29c\78\2\2:;\7\b\2\2;c\7\t\2\2<=\7\b\2\2=c\7\n\2\2>"+
+		"?\7\13\2\2?@\7\6\2\2@c\78\2\2AB\7#\2\2BC\7\6\2\2CD\78\2\2DE\7$\2\2EF\7"+
+		"%\2\2Fc\78\2\2GH\7\7\2\2HI\7\n\2\2Ic\78\2\2JK\7\f\2\2Kc\7\6\2\2LM\7\5"+
+		"\2\2MN\7\n\2\2NO\78\2\2OP\7\r\2\2PT\5\b\5\2QS\5\6\4\2RQ\3\2\2\2SV\3\2"+
+		"\2\2TR\3\2\2\2TU\3\2\2\2UW\3\2\2\2VT\3\2\2\2WX\7\16\2\2Xc\3\2\2\2YZ\7"+
+		"\b\2\2Z[\7\17\2\2[\\\7!\2\2\\c\78\2\2]c\5\20\t\2^c\5\24\13\2_c\5\26\f"+
+		"\2`c\5\32\16\2ac\5\34\17\2b\64\3\2\2\2b\67\3\2\2\2b:\3\2\2\2b<\3\2\2\2"+
+		"b>\3\2\2\2bA\3\2\2\2bG\3\2\2\2bJ\3\2\2\2bL\3\2\2\2bY\3\2\2\2b]\3\2\2\2"+
+		"b^\3\2\2\2b_\3\2\2\2b`\3\2\2\2ba\3\2\2\2c\5\3\2\2\2de\7\37\2\2ef\7\20"+
+		"\2\2fg\78\2\2gh\7\34\2\2ht\7\35\2\2ij\7\r\2\2ju\78\2\2kp\78\2\2lm\7\21"+
+		"\2\2mo\78\2\2nl\3\2\2\2or\3\2\2\2pn\3\2\2\2pq\3\2\2\2qs\3\2\2\2rp\3\2"+
+		"\2\2su\7\16\2\2ti\3\2\2\2tk\3\2\2\2u\u009e\3\2\2\2vw\7\37\2\2wx\7\22\2"+
+		"\2xy\78\2\2yz\7\36\2\2z\u0093\7\35\2\2{|\7\r\2\2|\u0094\78\2\2}\u0082"+
+		"\78\2\2~\177\7\21\2\2\177\u0081\78\2\2\u0080~\3\2\2\2\u0081\u0084\3\2"+
+		"\2\2\u0082\u0080\3\2\2\2\u0082\u0083\3\2\2\2\u0083\u0085\3\2\2\2\u0084"+
+		"\u0082\3\2\2\2\u0085\u0086\7\16\2\2\u0086\u0087\7 \2\2\u0087\u0088\78"+
+		"\2\2\u0088\u0089\7\r\2\2\u0089\u0094\78\2\2\u008a\u008f\78\2\2\u008b\u008c"+
+		"\7\21\2\2\u008c\u008e\78\2\2\u008d\u008b\3\2\2\2\u008e\u0091\3\2\2\2\u008f"+
+		"\u008d\3\2\2\2\u008f\u0090\3\2\2\2\u0090\u0092\3\2\2\2\u0091\u008f\3\2"+
+		"\2\2\u0092\u0094\7\16\2\2\u0093{\3\2\2\2\u0093}\3\2\2\2\u0093\u008a\3"+
+		"\2\2\2\u0094\u009e\3\2\2\2\u0095\u0096\7\37\2\2\u0096\u0097\7\23\2\2\u0097"+
+		"\u0098\78\2\2\u0098\u0099\7\"\2\2\u0099\u009a\7\r\2\2\u009a\u009b\5\n"+
+		"\6\2\u009b\u009c\7\16\2\2\u009c\u009e\3\2\2\2\u009dd\3\2\2\2\u009dv\3"+
+		"\2\2\2\u009d\u0095\3\2\2\2\u009e\7\3\2\2\2\u009f\u00a0\78\2\2\u00a0\u00ac"+
+		"\5\36\20\2\u00a1\u00a2\78\2\2\u00a2\u00a8\5\36\20\2\u00a3\u00a4\7\21\2"+
+		"\2\u00a4\u00a5\78\2\2\u00a5\u00a7\5\36\20\2\u00a6\u00a3\3\2\2\2\u00a7"+
+		"\u00aa\3\2\2\2\u00a8\u00a6\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\u00ac\3\2"+
+		"\2\2\u00aa\u00a8\3\2\2\2\u00ab\u009f\3\2\2\2\u00ab\u00a1\3\2\2\2\u00ac"+
+		"\t\3\2\2\2\u00ad\u00b0\t\2\2\2\u00ae\u00b1\5\f\7\2\u00af\u00b1\5\16\b"+
+		"\2\u00b0\u00ae\3\2\2\2\u00b0\u00af\3\2\2\2\u00b1\u00b2\3\2\2\2\u00b2\u00b3"+
+		"\t\2\2\2\u00b3\13\3\2\2\2\u00b4\u00b8\7\64\2\2\u00b5\u00b8\7\65\2\2\u00b6"+
+		"\u00b8\7\66\2\2\u00b7\u00b4\3\2\2\2\u00b7\u00b5\3\2\2\2\u00b7\u00b6\3"+
+		"\2\2\2\u00b8\r\3\2\2\2\u00b9\u00c0\7\24\2\2\u00ba\u00c0\7\25\2\2\u00bb"+
+		"\u00c0\7\26\2\2\u00bc\u00c0\7\27\2\2\u00bd\u00c0\7\30\2\2\u00be\u00c0"+
+		"\7\31\2\2\u00bf\u00b9\3\2\2\2\u00bf\u00ba\3\2\2\2\u00bf\u00bb\3\2\2\2"+
+		"\u00bf\u00bc\3\2\2\2\u00bf\u00bd\3\2\2\2\u00bf\u00be\3\2\2\2\u00c0\17"+
+		"\3\2\2\2\u00c1\u00c2\7#\2\2\u00c2\u00c3\7\n\2\2\u00c3\u00c4\78\2\2\u00c4"+
+		"\u00c5\7$\2\2\u00c5\u00c6\7%\2\2\u00c6\u00cc\78\2\2\u00c7\u00c8\7#\2\2"+
+		"\u00c8\u00c9\7\n\2\2\u00c9\u00ca\78\2\2\u00ca\u00cc\5\22\n\2\u00cb\u00c1"+
+		"\3\2\2\2\u00cb\u00c7\3\2\2\2\u00cc\21\3\2\2\2\u00cd\u00ce\7&\2\2\u00ce"+
+		"\u00cf\7\'\2\2\u00cf\u00d0\78\2\2\u00d0\u00d4\5\36\20\2\u00d1\u00d3\5"+
+		"\6\4\2\u00d2\u00d1\3\2\2\2\u00d3\u00d6\3\2\2\2\u00d4\u00d2\3\2\2\2\u00d4"+
+		"\u00d5\3\2\2\2\u00d5\u00e5\3\2\2\2\u00d6\u00d4\3\2\2\2\u00d7\u00db\7&"+
+		"\2\2\u00d8\u00da\5\6\4\2\u00d9\u00d8\3\2\2\2\u00da\u00dd\3\2\2\2\u00db"+
+		"\u00d9\3\2\2\2\u00db\u00dc\3\2\2\2\u00dc\u00e5\3\2\2\2\u00dd\u00db\3\2"+
+		"\2\2\u00de\u00df\7\7\2\2\u00df\u00e0\7\'\2\2\u00e0\u00e5\78\2\2\u00e1"+
+		"\u00e2\7\7\2\2\u00e2\u00e3\7\37\2\2\u00e3\u00e5\78\2\2\u00e4\u00cd\3\2"+
+		"\2\2\u00e4\u00d7\3\2\2\2\u00e4\u00de\3\2\2\2\u00e4\u00e1\3\2\2\2\u00e5"+
+		"\23\3\2\2\2\u00e6\u00e7\7(\2\2\u00e7\u00e8\78\2\2\u00e8\u00e9\7\r\2\2"+
+		"\u00e9\u00ee\78\2\2\u00ea\u00eb\7\21\2\2\u00eb\u00ed\78\2\2\u00ec\u00ea"+
+		"\3\2\2\2\u00ed\u00f0\3\2\2\2\u00ee\u00ec\3\2\2\2\u00ee\u00ef\3\2\2\2\u00ef"+
+		"\u00f1\3\2\2\2\u00f0\u00ee\3\2\2\2\u00f1\u00f2\7\16\2\2\u00f2\u00f3\7"+
+		")\2\2\u00f3\u00f4\7\r\2\2\u00f4\u00f9\5\36\20\2\u00f5\u00f6\7\21\2\2\u00f6"+
+		"\u00f8\5\36\20\2\u00f7\u00f5\3\2\2\2\u00f8\u00fb\3\2\2\2\u00f9\u00f7\3"+
+		"\2\2\2\u00f9\u00fa\3\2\2\2\u00fa\u00fc\3\2\2\2\u00fb\u00f9\3\2\2\2\u00fc"+
+		"\u00fd\7\16\2\2\u00fd\25\3\2\2\2\u00fe\u00ff\7*\2\2\u00ff\u0100\78\2\2"+
+		"\u0100\u0101\7+\2\2\u0101\u0102\78\2\2\u0102\u0103\7\31\2\2\u0103\u0104"+
+		"\7\r\2\2\u0104\u0109\5\36\20\2\u0105\u0106\7\21\2\2\u0106\u0108\5\36\20"+
+		"\2\u0107\u0105\3\2\2\2\u0108\u010b\3\2\2\2\u0109\u0107\3\2\2\2\u0109\u010a"+
+		"\3\2\2\2\u010a\u010c\3\2\2\2\u010b\u0109\3\2\2\2\u010c\u010d\7\16\2\2"+
+		"\u010d\u010e\7-\2\2\u010e\u0114\5\30\r\2\u010f\u0110\5\f\7\2\u0110\u0111"+
+		"\5\30\r\2\u0111\u0113\3\2\2\2\u0112\u010f\3\2\2\2\u0113\u0116\3\2\2\2"+
+		"\u0114\u0112\3\2\2\2\u0114\u0115\3\2\2\2\u0115\27\3\2\2\2\u0116\u0114"+
+		"\3\2\2\2\u0117\u0118\78\2\2\u0118\u0119\5\16\b\2\u0119\u011a\78\2\2\u011a"+
+		"\31\3\2\2\2\u011b\u011c\7,\2\2\u011c\u011d\7!\2\2\u011d\u011e\78\2\2\u011e"+
+		"\u011f\7-\2\2\u011f\u0125\5\30\r\2\u0120\u0121\5\f\7\2\u0121\u0122\5\30"+
+		"\r\2\u0122\u0124\3\2\2\2\u0123\u0120\3\2\2\2\u0124\u0127\3\2\2\2\u0125"+
+		"\u0123\3\2\2\2\u0125\u0126\3\2\2\2\u0126\33\3\2\2\2\u0127\u0125\3\2\2"+
+		"\2\u0128\u012d\7\67\2\2\u0129\u012e\7\32\2\2\u012a\u012b\78\2\2\u012b"+
+		"\u012c\7\21\2\2\u012c\u012e\78\2\2\u012d\u0129\3\2\2\2\u012d\u012a\3\2"+
+		"\2\2\u012e\u012f\3\2\2\2\u012f\u0130\7!\2\2\u0130\u0131\78\2\2\u0131\u0132"+
+		"\7-\2\2\u0132\u0133\5\30\r\2\u0133\u0134\7.\2\2\u0134\u0135\78\2\2\u0135"+
+		"\u0136\t\3\2\2\u0136\u0137\7\21\2\2\u0137\u0138\78\2\2\u0138\u0139\t\3"+
+		"\2\2\u0139\35\3\2\2\2\u013a\u013e\7\61\2\2\u013b\u013e\7\62\2\2\u013c"+
+		"\u013e\7\63\2\2\u013d\u013a\3\2\2\2\u013d\u013b\3\2\2\2\u013d\u013c\3"+
 		"\2\2\2\u013e\37\3\2\2\2\35%-\62Tbpt\u0082\u008f\u0093\u009d\u00a8\u00ab"+
 		"\u00b0\u00b7\u00bf\u00cb\u00d4\u00db\u00e4\u00ee\u00f9\u0109\u0114\u0125"+
 		"\u012d\u013d";
