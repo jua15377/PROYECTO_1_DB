@@ -4,13 +4,16 @@ import antlrGenerateFiles.PostSQLLexer;
 import antlrGenerateFiles.PostSQLParser;
 import antlrGenerateFiles.ThrowingErrorListener;
 import fileManagement.FolderManager;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -19,6 +22,8 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import principal.EvalVisitor;
+
+import javax.swing.*;
 import java.io.*;
 import java.net.URL;
 import java.util.Optional;
@@ -76,7 +81,32 @@ public class Controller implements Initializable{
         runButton.setDisable(true);
         //Refreshing the tree view
         refresh();
+        primaryStage.setOnCloseRequest(confirmCloseEventHandler);
     }
+
+    private EventHandler<WindowEvent> confirmCloseEventHandler = event -> {
+        Alert closeConfirmation = new Alert(
+                Alert.AlertType.CONFIRMATION,
+                "Are you sure you want to exit?"
+        );
+        Button exitButton = (Button) closeConfirmation.getDialogPane().lookupButton(
+                ButtonType.OK
+        );
+        exitButton.setText("Exit");
+        closeConfirmation.setHeaderText("Confirm Exit");
+        closeConfirmation.initModality(Modality.APPLICATION_MODAL);
+        closeConfirmation.initOwner(primaryStage);
+
+
+        Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();
+        if (!ButtonType.OK.equals(closeResponse.get())) {
+
+            event.consume();
+        }else{
+            //Hace aca lo que queres cuando salga
+            desconectar();
+        }
+    };
 
 
     public void conectar(){
@@ -180,8 +210,7 @@ public class Controller implements Initializable{
     }
 
     public void run(){
-        //hace lo que querras aca jj
-        //treeView = new TreeView<String>(new SimpleFileTreeItem(new File("C:\\")));
+        eval.setError("");
         textArea.setText("");
         String program = codeArea.getText();
         compile(program);
