@@ -180,6 +180,7 @@ public class Controller implements Initializable{
 
             if (eval.getError().equals("")) {
                 //Hacer aqui lo que pasa si no tiene errores
+                System.out.println(eval.verbose);
 
             } else {
                 textArea.setText(eval.getError());
