@@ -216,6 +216,7 @@ public class Controller implements Initializable{
 
     public void run(){
         eval.setError("");
+        eval.log = "";
         textArea.setText("");
         String program = codeArea.getText();
         compile(program);
