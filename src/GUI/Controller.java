@@ -6,7 +6,10 @@ import antlrGenerateFiles.ThrowingErrorListener;
 import fileManagement.FolderManager;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -100,11 +103,11 @@ public class Controller implements Initializable{
 
         Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();
         if (!ButtonType.OK.equals(closeResponse.get())) {
+
             event.consume();
         }else{
             //Hace aca lo que queres cuando salga
             desconectar();
-            eval.manejador.generateMetada();
         }
     };
 
@@ -149,7 +152,7 @@ public class Controller implements Initializable{
     public void refresh(){
         String current ="";
         try {
-            current = new File(".").getCanonicalPath();
+            current = new File(".").getCanonicalPath() +"/DATABASES";
         } catch (java.io.IOException e ){
 
         }
@@ -220,7 +223,6 @@ public class Controller implements Initializable{
         textArea.setText("");
         String program = codeArea.getText();
         compile(program);
-        eval.manejador.generateMetada();
     }
 
     public void compile(String expression) {
@@ -235,8 +237,8 @@ public class Controller implements Initializable{
 
             TokenStream tokenStream = new CommonTokenStream(lexer);
             PostSQLParser parser = new PostSQLParser(tokenStream);
-            //parser.removeErrorListeners();
-            //parser.addErrorListener(ThrowingErrorListener.INSTANCE);
+            parser.removeErrorListeners();
+            parser.addErrorListener(ThrowingErrorListener.INSTANCE);
             ParseTree tree = parser.program();
 
 
@@ -253,8 +255,8 @@ public class Controller implements Initializable{
 
         } catch (Exception e) {
             String m = e.toString();
+            m = m.replace("org.antlr.v4.runtime.misc.ParseCancellation","");
             textArea.setText(m);
-            //
         }
     }
 
@@ -323,20 +325,21 @@ public class Controller implements Initializable{
 
 
     public void about(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Acerca del proyecto");
-        alert.setHeaderText("¡Gracias por utilizarnos!");
-        alert.setContentText("Este manejador de bases de datos es el Proyecto # 1 del curso Bases de Datos de la Universidad" +
-                " del Valle de Guatemala. " +
-                "Fue realizado en el lenguaje de programacion Java, en conjunto con la herramienta de reconocimiento de " +
-                "lenguajes ANTLR y basado en las reglas del lenguaje de BD SQL. \n\nMuchas gracias por utilizar nuestro programa." +
-                "\n\nAtentamente,\nDiego Castaneda\nJonnathan Juarez\nSebastian Galindo\n\nGuatemala, 2018.");
-        alert.showAndWait();
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("aboutController.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
     public TreeItem<String> getNodesForDirectory(File directory) { //Returns a TreeItem representation of the specified directory
         TreeItem<String> root = new TreeItem<String>(directory.getName(), new ImageView(folderIcon));
+        root.setExpanded(true);
         for(File f : directory.listFiles()) {
             if(f.isDirectory()) { //Then we call the function recursively
                 root.getChildren().add(getNodesForDirectory(f));

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="456.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.AboutController">
+   <children>
+      <Text layoutX="163.0" layoutY="58.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Thanks for your support!" />
+      <Text layoutX="62.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Este manejador de bases de datos es el Proyecto # 1 del curso Bases de Datos de la Universidad del Valle de Guatemala. Fue realizado en el lenguaje de programacion Java, en conjunto con la herramienta de reconocimiento de lenguajes ANTLR y basado en las reglas del lenguaje de BD SQL. Muchas gracias por utilizar nuestro programa." wrappingWidth="332.958984375" />
+      <Text layoutX="62.0" layoutY="214.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Atentamente," wrappingWidth="196.8359375" />
+      <Text layoutX="62.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Diego Castaneda" />
+      <Text layoutX="62.0" layoutY="261.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Jonnathan Juarez" />
+      <Text layoutX="62.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sebastian Galindo" />
+      <Text layoutX="62.0" layoutY="356.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Guatemala, 2018" />
+      <Hyperlink fx:id="link" layoutX="60.0" layoutY="302.0" onAction="#hiperLink" prefHeight="23.0" prefWidth="305.0" text="https://github.com/jua15377/PROYECTO_1_DB.git" />
+   </children>
+</AnchorPane>
