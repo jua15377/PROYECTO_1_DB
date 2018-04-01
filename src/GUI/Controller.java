@@ -59,10 +59,11 @@ public class Controller implements Initializable{
 
     public void conectar(){
         eval.manejador.reconstruir();
+        System.out.println("Si esta llegando");
     }
 
     public void desconectar(){
-        FolderManager.toFile(eval.manejador, "DATABASES\\"+eval.manejador.nombreDelManjeado);
+        eval.manejador.saveState();
     }
 
     public void refresh(){

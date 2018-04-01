@@ -36,7 +36,9 @@ public class Manejador implements Serializable {
         catch (java.io.IOException e ){
 
         }
-        ArrayList<String> dbs = getDBfromFiles();
+        //CAMBIAR ARRAYLIST, SERIALIZAR DBNAMES EN UN ARCHIVO ;D
+        ArrayList<String> dbs = (ArrayList<String>) FolderManager.toObject("./DATABASES/MASTER.dsj");
+        System.out.println("C convierte en arrayList");
         for (String db: dbs){
             /**
              * Creacion de objeto base de datos, contenedor de tablas**/
@@ -252,5 +254,11 @@ public class Manejador implements Serializable {
             e.printStackTrace();
         }
         return names;
+    }
+
+    /***
+     * Metodo para guardar el ultimo estado del manejador */
+    public void saveState(){
+        FolderManager.toFile(dbsNames, ".\\DATABASES\\MASTER.dsj" );
     }
 }
