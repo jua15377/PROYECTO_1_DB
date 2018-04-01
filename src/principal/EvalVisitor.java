@@ -93,6 +93,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     }
 
+<<<<<<< HEAD
     /**
      * Grammar: SHOW DATABASE
      * Method to show every database in the manager**/
@@ -108,6 +109,26 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     }
 
+=======
+    @Override public String visitSTMuseDB(PostSQLParser.STMuseDBContext ctx) {
+        String id = ctx.ID().getText();
+        ArrayList<String> nombres = manejador.getDbsNames();
+        if(nombres.contains(id)){
+            if (manejador.getCurrentDB()!= null) {
+                if (manejador.getCurrentDB().equals(id)) {
+                    log += "Database \"" + ctx.ID().getText() + "\" already in use!.\n";
+                }
+            }
+            manejador.setCurrentDB(id);
+            log += "Database \""+ctx.ID().getText()+"\" in use!.\n";
+            if(verboseEnable){ verbose += "Base de Datos: " + id + ", eliminada con exito\n";}
+        }
+        else {
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". Not found!-\n";
+        }
+        return visitChildren(ctx);
+    }
+>>>>>>> origin/master
 
     @Override public String visitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx) {
 
