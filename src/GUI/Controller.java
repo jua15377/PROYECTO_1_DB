@@ -65,7 +65,7 @@ public class Controller implements Initializable{
     }
 
     public void desconectar(){
-        FolderManager.toFile(eval.manejador, eval.manejador.nombreDelManjeado);
+        FolderManager.toFile(eval.manejador, "DATABASES\\"+eval.manejador.nombreDelManjeado);
     }
 
     public void loadQuerys(){
