@@ -237,8 +237,8 @@ public class Controller implements Initializable{
 
             TokenStream tokenStream = new CommonTokenStream(lexer);
             PostSQLParser parser = new PostSQLParser(tokenStream);
-            //parser.removeErrorListeners();
-            //parser.addErrorListener(ThrowingErrorListener.INSTANCE);
+            parser.removeErrorListeners();
+            parser.addErrorListener(ThrowingErrorListener.INSTANCE);
             ParseTree tree = parser.program();
 
 
@@ -255,8 +255,8 @@ public class Controller implements Initializable{
 
         } catch (Exception e) {
             String m = e.toString();
+            m = m.replace("org.antlr.v4.runtime.misc.ParseCancellation","");
             textArea.setText(m);
-            //
         }
     }
 
