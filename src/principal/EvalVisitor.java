@@ -97,7 +97,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             manejador.changeDBSname(idViejo, idNuevo);
             log += "Rename done succesfully";
             if(verboseEnable){
-                return verbose += "Base de Datos: " + ctx.ID(0).getText() + " renombrada a " + ctx.ID(1).getText() +
+                 verbose += "Base de Datos: " + ctx.ID(0).getText() + " renombrada a " + ctx.ID(1).getText() +
                         "con exito\n";
             }
         }
@@ -117,7 +117,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             log += s + "\n";
         }
         if (verboseEnable){
-            return verbose += "Show Databases displayed succesfully";
+            verbose += "Show Databases displayed succesfully";
         }
         return log += "Show done succesfully";
 
@@ -149,10 +149,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
-    public void inicarDB(){
 
-
-    }
 
     public String getError() {
         return error;
