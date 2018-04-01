@@ -38,6 +38,17 @@ public class Controller implements Initializable{
     @FXML public CodeArea codeArea = new CodeArea();
     @FXML public TextArea textArea = new TextArea();
     @FXML public TreeView<String> treeView;
+    @FXML public MenuItem runMI = new MenuItem();
+    @FXML public MenuItem connectMI = new MenuItem();
+    @FXML public MenuItem disconnectMI = new MenuItem();
+    @FXML public MenuItem importMI = new MenuItem();
+    @FXML public MenuItem exportMI = new MenuItem();
+    @FXML public MenuItem createMI = new MenuItem();
+    @FXML public MenuItem deleteMI = new MenuItem();
+    @FXML public MenuItem refreshMI = new MenuItem();
+    @FXML public MenuItem fontMI = new MenuItem();
+    @FXML public MenuItem aboutMI = new MenuItem();
+
     public int fontSize = 14;
 
     Image folderIcon = new Image(getClass().getResourceAsStream("/Icons/folder.png"));
@@ -52,17 +63,47 @@ public class Controller implements Initializable{
         codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
         codeArea.setStyle("-fx-font-size: 14");
         textArea.setStyle("-fx-font-size: 14");
+        runMI.setDisable(true);
+        disconnectMI.setDisable(true);
+        importMI.setDisable(true);
+        exportMI.setDisable(true);
+        createMI.setDisable(true);
+        deleteMI.setDisable(true);
+        refreshMI.setDisable(true);
+        fontMI.setDisable(true);
+        codeArea.setEditable(false);
         //Refreshing the tree view
         refresh();
     }
 
 
     public void conectar(){
+        runMI.setDisable(false);
+        disconnectMI.setDisable(false);
+        importMI.setDisable(false);
+        exportMI.setDisable(false);
+        createMI.setDisable(false);
+        deleteMI.setDisable(false);
+        refreshMI.setDisable(false);
+        fontMI.setDisable(false);
+        codeArea.setEditable(true);
+        connectMI.setDisable(true);
         eval.manejador.reconstruir();
         System.out.println("Si esta llegando");
+
     }
 
     public void desconectar(){
+        runMI.setDisable(true);
+        connectMI.setDisable(false);
+        disconnectMI.setDisable(true);
+        importMI.setDisable(true);
+        exportMI.setDisable(true);
+        createMI.setDisable(true);
+        deleteMI.setDisable(true);
+        refreshMI.setDisable(true);
+        fontMI.setDisable(true);
+        codeArea.setEditable(false);
         eval.manejador.saveState();
     }
 
