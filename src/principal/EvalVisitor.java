@@ -284,14 +284,26 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         else {
             return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". No Database selected yet!-\n";
         }
-
         return visitChildren(ctx);
-
-
     }
 
+    @Override
+    public String visitSTMshowTable(PostSQLParser.STMshowTableContext ctx) {
+        //que este seteada la base de datos
+        if(manejador.getCurrentDB()!=null){
+            String idDb= manejador.getCurrentDB();
+            log += "Tables from "+idDb + ":\n";
+            for (String s: manejador.getASpecificDb(idDb).getNombresDeTablas()){
+                log += s + "\n";
+            }
 
-
+            if (verboseEnable) { verbose += "Mostrando las tablas de la base de datos" + manejador.getCurrentDB(); }
+        }
+        else {
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". No Database selected yet!-\n";
+        }
+        return super.visitSTMshowTable(ctx);
+    }
 
     public String getError() {
         return error;
