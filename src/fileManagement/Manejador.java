@@ -12,12 +12,17 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class Manejador implements Serializable {
+    public String nombreDelManjeado;
     private int contadorDeDB = 0;
     private ArrayList<String> dbsNames = new ArrayList<>();
     private ArrayList<BaseDeDatos> dbs = new ArrayList<>();
     private String currentDB = null;
 
-    public Manejador(){
+    public Manejador(String nombre){
+        this.nombreDelManjeado = nombre;
+    }
+
+    public void reconstruir (){
         //Se leera NBaseDeDatos para conocer los nombres de todas las base de datos.
         // cada vez que se lea un nombre, se creara un folder y se creara cada objeto.
         //Esto, para utilizar un manejador de acuerdo a lo que ya exisitia.
@@ -25,7 +30,7 @@ public class Manejador implements Serializable {
         String current = "";
         //Obtencion del folder principal que contiene todos los folders de la base de datos
         try {
-            current = new File(".").getCanonicalPath();
+            current = new File("./DATABASES").getCanonicalPath();
 
         }
         catch (java.io.IOException e ){

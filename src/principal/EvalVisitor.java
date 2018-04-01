@@ -6,7 +6,7 @@ import fileManagement.*;
 
 public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
-
+    public Manejador manejador  = new Manejador("master");
     public String error = "";
     public String verbose = "";
     public boolean verboseEnable =  false;
@@ -46,6 +46,10 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
+    public void inicarDB(){
+
+
+    }
 
     public String getError() {
         return error;

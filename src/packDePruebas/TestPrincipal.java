@@ -61,6 +61,8 @@ public class TestPrincipal
 
         }
 
+        FolderManager.deleteFolder ( "Nuevonombre");
+
 
     }
 }

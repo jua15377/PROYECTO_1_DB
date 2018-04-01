@@ -64,8 +64,9 @@ public class BaseDeDatos implements Serializable {
         tablas.remove(indice);
         String baseDeDatos = this.name;
         String diagnostico = "";
+        String path = FolderManager.createPath(baseDeDatos, nombre);
         try{
-            File archivo = new File(baseDeDatos + "\\" + nombre + ".dsj" );
+            File archivo = new File(path);
             if(archivo.delete()){
                 diagnostico =  "Tabla " + nombre + " eliminada con exito";
             }
@@ -151,7 +152,8 @@ public class BaseDeDatos implements Serializable {
     }
 
     public String showColumn(String nombre ){
-        File archivo  =new File(this.name + "\\" + nombre + ".ser");
+        String path = FolderManager.createPath (this.name, nombre);
+        File archivo  =new File(path);
         return "";
 
     }

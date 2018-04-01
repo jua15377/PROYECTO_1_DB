@@ -15,7 +15,7 @@ public final class FolderManager {
 
 
     public static String createFolder(String dataBaseName){
-        File theDir = new File(dataBaseName);
+        File theDir = new File("DATABASES\\"+dataBaseName);
 
         //si el folder no existe crea el folder
         if (!theDir.exists()) {
@@ -44,8 +44,8 @@ public final class FolderManager {
 
 
     public static String renameFolder(String viejoNombre, String nuevoNombre){
-        File dir = new File(viejoNombre);
-        File newName = new File(nuevoNombre);
+        File dir = new File("DATABASES\\"+ viejoNombre);
+        File newName = new File("DATABASES\\"+nuevoNombre);
 
         //si el folder existe crea el folder
         if (dir.exists() && dir.isDirectory()) {
@@ -75,7 +75,7 @@ public final class FolderManager {
 
 
     public static String deleteFolder(String dataBaseName){
-        File theDir = new File(dataBaseName);
+        File theDir = new File("DATABASES\\"+dataBaseName);
 
         //si el folder existe crea el folder
         if (theDir.exists()) {
@@ -145,7 +145,7 @@ public final class FolderManager {
     }
 
     public static String createPath(String dataBaseName, String tableName){
-        return  dataBaseName + "\\" + tableName + ".dsj";
+        return  "DATABASES\\" + dataBaseName + "\\" + tableName + ".dsj";
 
     }
 
