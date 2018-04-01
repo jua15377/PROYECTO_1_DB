@@ -28,7 +28,7 @@ unitStatement
 	| 'FUCK' 'DATABASE' 														#STMfuckTable
 	| 'CREATE' 'TABLE' ID '(' columDeclaration  constraints* ')' 				#STMcreateTable
 	| 'SHOW' 'COLUMNS' 'FROM' ID	                                            #STMshowColumn
-    | alter_table   															#STMalterTable
+    | 'ALTER' 'TABLE' ID action_alter_table  									#STMalterTable
 	| insert_into 																#STMinsertInto
 	| update 																	#STMupdate
 	| delete 																	#STMdelete
@@ -66,16 +66,12 @@ eq_sgn
 	|'='																		#igualOP
 	;
 
-alter_table
-	: 'ALTER' 'TABLE' ID 'RENAME' 'TO' ID 											#renameTable
-	| 'ALTER' 'TABLE' ID action_alter_table  										#alterTable
-	;
-
 action_alter_table
 	: 'ADD' 'COLUMN' ID varType constraints* 										#addColumn
 	| 'ADD' constraints* 															#addConstraints
 	| 'DROP' 'COLUMN' ID 															#dropColumn
 	| 'DROP' 'CONSTRAINT' ID 														#dropConstraints
+	|'RENAME' 'TO' ID 										                    	#renameTable
 	;
 
 

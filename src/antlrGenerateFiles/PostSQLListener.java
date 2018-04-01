@@ -380,30 +380,6 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitIgualOP(PostSQLParser.IgualOPContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code renameTable}
-	 * labeled alternative in {@link PostSQLParser#alter_table}.
-	 * @param ctx the parse tree
-	 */
-	void enterRenameTable(PostSQLParser.RenameTableContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code renameTable}
-	 * labeled alternative in {@link PostSQLParser#alter_table}.
-	 * @param ctx the parse tree
-	 */
-	void exitRenameTable(PostSQLParser.RenameTableContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code alterTable}
-	 * labeled alternative in {@link PostSQLParser#alter_table}.
-	 * @param ctx the parse tree
-	 */
-	void enterAlterTable(PostSQLParser.AlterTableContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code alterTable}
-	 * labeled alternative in {@link PostSQLParser#alter_table}.
-	 * @param ctx the parse tree
-	 */
-	void exitAlterTable(PostSQLParser.AlterTableContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code addColumn}
 	 * labeled alternative in {@link PostSQLParser#action_alter_table}.
 	 * @param ctx the parse tree
@@ -451,6 +427,18 @@ public interface PostSQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDropConstraints(PostSQLParser.DropConstraintsContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code renameTable}
+	 * labeled alternative in {@link PostSQLParser#action_alter_table}.
+	 * @param ctx the parse tree
+	 */
+	void enterRenameTable(PostSQLParser.RenameTableContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code renameTable}
+	 * labeled alternative in {@link PostSQLParser#action_alter_table}.
+	 * @param ctx the parse tree
+	 */
+	void exitRenameTable(PostSQLParser.RenameTableContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code insertInto}
 	 * labeled alternative in {@link PostSQLParser#insert_into}.

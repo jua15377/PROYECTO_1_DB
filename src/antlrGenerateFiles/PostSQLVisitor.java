@@ -228,20 +228,6 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitIgualOP(PostSQLParser.IgualOPContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code renameTable}
-	 * labeled alternative in {@link PostSQLParser#alter_table}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitRenameTable(PostSQLParser.RenameTableContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code alterTable}
-	 * labeled alternative in {@link PostSQLParser#alter_table}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitAlterTable(PostSQLParser.AlterTableContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code addColumn}
 	 * labeled alternative in {@link PostSQLParser#action_alter_table}.
 	 * @param ctx the parse tree
@@ -269,6 +255,13 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitDropConstraints(PostSQLParser.DropConstraintsContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code renameTable}
+	 * labeled alternative in {@link PostSQLParser#action_alter_table}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRenameTable(PostSQLParser.RenameTableContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code insertInto}
 	 * labeled alternative in {@link PostSQLParser#insert_into}.
