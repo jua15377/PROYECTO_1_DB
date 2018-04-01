@@ -1,16 +1,13 @@
 package GUI;
 
-import antlrGenerateFiles.*;
+import antlrGenerateFiles.PostSQLLexer;
+import antlrGenerateFiles.PostSQLParser;
+import antlrGenerateFiles.ThrowingErrorListener;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -18,18 +15,14 @@ import org.antlr.v4.runtime.TokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
+import principal.EvalVisitor;
+
 import java.io.*;
-import java.net.InetAddress;
 import java.net.URL;
-import java.net.UnknownHostException;
-import java.nio.file.FileSystems;
-import java.nio.file.Path;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.stage.Stage;
-import principal.EvalVisitor;
 
 public class Controller implements Initializable{
 
@@ -47,6 +40,10 @@ public class Controller implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
+        codeArea.setStyle("-fx-font-size: 14");
+        textArea.setStyle("-fx-font-size: 14");
+
+
         /*
         DirectoryChooser dc = new DirectoryChooser();
         dc.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -59,6 +56,14 @@ public class Controller implements Initializable{
         } else {
             treeView.setRoot(getNodesForDirectory(choice));
         }*/
+    }
+
+    public void conectar(){
+
+    }
+
+    public void desconectar(){
+
     }
 
     public void loadQuerys(){
