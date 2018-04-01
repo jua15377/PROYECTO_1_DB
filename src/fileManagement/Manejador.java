@@ -136,9 +136,9 @@ public class Manejador implements Serializable {
         texto += "----- Meta Data -----\n";
         texto += "Bases de Datos:" +
                 "cantidad de DBs: " + contadorDeDB + "\n\n";
-        texto += "\tnombre de DB\t cant. de tablas";
+        texto += "\tnombre de DB\t cant. de tablas\n";
         for(int indice = 0; indice < dbsNames.size(); indice++ ){
-            texto +=  dbsNames.get(indice) +": "+ dbs.get(indice).getNombresDeTablas().size() + "\n";
+            texto +=  dbsNames.get(indice) +": \t\t"+ dbs.get(indice).getNombresDeTablas().size() + "\n";
         }
         texto += "\n----- Final de archivo -----\n";
 

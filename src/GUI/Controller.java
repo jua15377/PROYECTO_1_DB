@@ -100,11 +100,11 @@ public class Controller implements Initializable{
 
         Optional<ButtonType> closeResponse = closeConfirmation.showAndWait();
         if (!ButtonType.OK.equals(closeResponse.get())) {
-
             event.consume();
         }else{
             //Hace aca lo que queres cuando salga
             desconectar();
+            eval.manejador.generateMetada();
         }
     };
 
@@ -220,6 +220,7 @@ public class Controller implements Initializable{
         textArea.setText("");
         String program = codeArea.getText();
         compile(program);
+        eval.manejador.generateMetada();
     }
 
     public void compile(String expression) {
