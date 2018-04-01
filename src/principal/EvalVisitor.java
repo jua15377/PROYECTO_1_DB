@@ -185,9 +185,17 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         }
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
-            manejador.getASpecificDb(idDb).createTable(id,encabezados,tipos,pk,fk);
-            log += "Table \""+ctx.ID().getText()+"\" created succesfully!.\n";
-            if(verboseEnable){ verbose += "la tabla: " + id + ", fue creada con exito\n";}
+            if(!manejador.getASpecificDb(idDb).getNombresDeTablas().contains(id)) {
+                manejador.getASpecificDb(idDb).createTable(id, encabezados, tipos, pk, fk);
+                log += "Table \"" + ctx.ID().getText() + "\" created succesfully!.\n";
+                if (verboseEnable) {
+                    verbose += "la tabla: " + id + ", fue creada con exito\n";
+                }
+            }
+            else {
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Table+ \""+ctx.ID().getText()+"\". already exist!-\n";
+
+            }
         }
         else {
             return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". No Database selected yet!-\n";
@@ -238,7 +246,30 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return "int";
     }
 
+    @Override public String visitSTMdropTable(PostSQLParser.STMdropTableContext ctx) {
+        String id = ctx.ID().getText();
+        if(manejador.getCurrentDB()!=null){
+            String idDb= manejador.getCurrentDB();
+            if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(id)) {
+                manejador.getASpecificDb(idDb).dropTable(id);
+                log += "Table \"" + ctx.ID().getText() + "\" deleted succesfully!.\n";
+                if (verboseEnable) {
+                    verbose += "la tabla: " + id + ", fue creada con exito\n";
+                }
+            }
+            else {
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Table \""+ctx.ID().getText()+"\". no exist!-\n";
 
+            }
+        }
+        else {
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". No Database selected yet!-\n";
+        }
+
+        return visitChildren(ctx);
+
+
+    }
 
 
     public String getError() {
