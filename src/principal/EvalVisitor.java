@@ -289,13 +289,11 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     }
 
 
-<<<<<<< HEAD
     /***
      * Grammar: ALTER TABLE ID alter_action_table
      * alter_action_table: RENAME TO ID
      * Method to rename a table of a specific DataBase*/
-=======
->>>>>>> origin/master
+
     @Override public String visitRenameTable(PostSQLParser.RenameTableContext ctx) {
         String idTabla = ctx.ID().getText();
 
@@ -320,14 +318,12 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
-<<<<<<< HEAD
+
     
     /**
      * Grammar: SHOW TABLES
      * Method to show every table from a specific DataBase**/
-=======
 
->>>>>>> origin/master
     @Override
     public String visitSTMshowTable(PostSQLParser.STMshowTableContext ctx) {
         //que este seteada la base de datos
@@ -345,15 +341,14 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         }
         return super.visitSTMshowTable(ctx);
     }
-<<<<<<< HEAD
+
 
     @Override
     public String visitSTMalterTable(PostSQLParser.STMalterTableContext ctx) {
         currentTable = ctx.ID().getText();
         return super.visitSTMalterTable(ctx);
     }
-=======
->>>>>>> origin/master
+
 
     public String getError() {
         return error;
