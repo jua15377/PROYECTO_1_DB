@@ -155,10 +155,8 @@ public class PostSQLParser extends Parser {
 				_localctx = new InitProgramContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
-				{
 				setState(30);
 				unitStatement();
-				}
 				setState(35);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
@@ -181,10 +179,8 @@ public class PostSQLParser extends Parser {
 				_localctx = new InitProgramVerboseContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
-				{
 				setState(38);
 				unitStatement();
-				}
 				setState(43);
 				_errHandler.sync(this);
 				_la = _input.LA(1);
