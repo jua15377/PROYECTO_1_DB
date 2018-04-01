@@ -52,7 +52,6 @@ public class Tabla implements Serializable{
         this.nombresDecolumnas = nombresDecolumnas;
     }
 
-
     public ArrayList<String> getTiposDecolumnas() {
         return tiposDecolumnas;
     }

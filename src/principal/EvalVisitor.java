@@ -145,11 +145,88 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
 
     @Override public String visitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx) {
+        String id = ctx.ID().getText();
+        ArrayList<String> encabezados = new ArrayList<>();
+        ArrayList<String> tipos = new ArrayList<>();
+        ArrayList<String> pk = new ArrayList<>();
+        ArrayList<String> fk = new ArrayList<>();
+        String result = visit(ctx.columDeclaration());
+        if(result.contains(",")){
+            String [] parametros = result.split(",");
+            for (String s : parametros){
+                //parte 0 = tipo  parte1 = id
+                String[] partes = result.split(" ");
+                encabezados.add(partes[1]);
+                tipos.add(partes[0]);
+            }
+        }
+        else {
+            //parte 0 = tipo  parte1 = id
+            String[] partes = result.split(" ");
+            encabezados.add(partes[1]);
+            tipos.add(partes[0]);
+        }
+        if(manejador.getCurrentDB()!=null){
+            String idDb= manejador.getCurrentDB();
+            manejador.getASpecificDb(idDb).createTable(id,encabezados,tipos,pk,fk);
+            log += "Table \""+ctx.ID().getText()+"\" created succesfully!.\n";
+            if(verboseEnable){ verbose += "la tabla: " + id + ", fue creada con exito\n";}
+        }
+        else {
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". No Database selected yet!-\n";
+        }
 
         return visitChildren(ctx);
     }
+    @Override public String  visitSimpleColumn(PostSQLParser.SimpleColumnContext ctx) {
+        String id = ctx.ID().getText();
+        String tipo = visit(ctx.varType());
+        visitChildren(ctx);
+        //spara por espacioo
+        return tipo +" "+id;
+    }
 
+    @Override
+    public String visitMultipleColumn(PostSQLParser.MultipleColumnContext ctx) {
+        visitChildren(ctx);
+        return ctx.getText();
+    }
 
+    @Override
+    public String visitPrimaryKeyDeclConstr(PostSQLParser.PrimaryKeyDeclConstrContext ctx) {
+        return super.visitPrimaryKeyDeclConstr(ctx);
+    }
+
+    @Override
+    public String visitForeignKeyDeclConstr(PostSQLParser.ForeignKeyDeclConstrContext ctx) {
+        return super.visitForeignKeyDeclConstr(ctx);
+    }
+
+    @Override
+    public String visitCheckDeclConstr(PostSQLParser.CheckDeclConstrContext ctx) {
+        return super.visitCheckDeclConstr(ctx);
+    }
+
+    @Override
+    public String visitExpDecl(PostSQLParser.ExpDeclContext ctx) {
+        return super.visitExpDecl(ctx);
+    }
+
+    //boolean es float
+    @Override
+    public String visitVarboolean(PostSQLParser.VarbooleanContext ctx) {
+        return "float";
+    }
+
+    @Override
+    public String visitVarchar(PostSQLParser.VarcharContext ctx) {
+        return "char";
+    }
+
+    @Override
+    public String visitVarint(PostSQLParser.VarintContext ctx) {
+        return "int";
+    }
 
     public String getError() {
         return error;

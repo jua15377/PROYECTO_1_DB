@@ -76,7 +76,7 @@ constraints
 
 columDeclaration 
 	: ID varType 																#simpleColumn
-	| ID  varType (','ID  varType)*												#multipleColumn		
+	| ID varType ( ',' ID  varType)*												#multipleColumn
 	;
 
 exp
