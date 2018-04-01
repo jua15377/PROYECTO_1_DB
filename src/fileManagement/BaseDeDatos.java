@@ -92,8 +92,8 @@ public class BaseDeDatos implements Serializable {
      * @param: unused
      * @return  ArrayList<String> nombreDeTablas
      * **/
-    public ArrayList getNombresDeTablas() {
-        return nombresDeTablas;
+    public ArrayList<String> getNombresDeTablas() {
+        return this.nombresDeTablas;
     }
 
     /**

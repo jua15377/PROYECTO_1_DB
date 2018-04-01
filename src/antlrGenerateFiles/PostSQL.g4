@@ -21,7 +21,7 @@ unitStatement
 	: 'CREATE' 'DATABASE' ID													#STMcreateDB
 	| 'DROP' 'DATABASE' ID 														#STMdropDB
 	| 'SHOW' 'DATABASES' 														#STMshowDB
-    | 'SHOW' 'TABLE'															#STMshowTable
+    | 'SHOW' 'TABLES'															#STMshowTable
 	| 'USE' 'DATABASE' ID                                                       #STMuseDB
 	| 'ALTER' 'DATABASE' ID 'RENAME' 'TO' ID                                    #STMalterDB
 	| 'DROP' 'TABLE' ID     													#STMdropTable
