@@ -3,6 +3,7 @@ package GUI;
 import antlrGenerateFiles.PostSQLLexer;
 import antlrGenerateFiles.PostSQLParser;
 import antlrGenerateFiles.ThrowingErrorListener;
+import fileManagement.FolderManager;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -26,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Controller implements Initializable{
+    public EvalVisitor eval = new EvalVisitor();
 
     Stage primaryStage;
 
@@ -56,11 +58,11 @@ public class Controller implements Initializable{
 
 
     public void conectar(){
-
+        eval.manejador.reconstruir();
     }
 
     public void desconectar(){
-
+        FolderManager.toFile(eval.manejador, "DATABASES\\"+eval.manejador.nombreDelManjeado);
     }
 
     public void refresh(){
@@ -155,7 +157,7 @@ public class Controller implements Initializable{
             //parser.addErrorListener(ThrowingErrorListener.INSTANCE);
             ParseTree tree = parser.program();
 
-            EvalVisitor eval = new EvalVisitor();
+
             eval.visit(tree);
 
             if (eval.getError().equals("")) {

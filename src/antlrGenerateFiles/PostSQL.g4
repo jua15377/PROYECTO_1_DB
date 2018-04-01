@@ -13,16 +13,16 @@ RENAME: 'RENAME';
 TO: 'TO';
 ADD: 'ADD';
 COLUMN: 'COLUMN';
-INSERT_INTO: 'INSERT INTO'; 
+INSERT_INTO: 'INSERT INTO';
 VALUES: 'VALUES';
 UPDATE: 'UPDATE';
 SET: 'SET';
 DELETE: 'DELETE';
 WHERE: 'WHERE';
 ORDER_BY: 'ORDER BY';
-ASC: 'ASC'; 
+ASC: 'ASC';
 DESC: 'DESC';
-INT: 'INT'; 
+INT: 'INT';
 CHAR: 'CHAR';
 BOOLEAN: 'BOOLEAN';
 AND: 'AND';
@@ -44,8 +44,8 @@ WS :
     ;
 
 program
-    : ((unitStatement) ';'?)*                                                   #initProgram
-    | ((unitStatement) ';'?)* '-v' 											    #initProgramVerbose
+    : unitStatement  (';' unitStatement)*                                       #initProgram
+    | unitStatement  (';' unitStatement)* '-v'    						        #initProgramVerbose
     ;
 
 unitStatement

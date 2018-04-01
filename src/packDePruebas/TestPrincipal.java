@@ -2,6 +2,7 @@ package packDePruebas;
 
 import  fileManagement.*;
 
+import java.io.File;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +32,9 @@ public class TestPrincipal
         //desccomentar
 //        Manejador manejador1 = (Manejador) FolderManager.toObject("elobjetoTransitivo");
 //        manejador1.generateMetada();
+
+
+/*
         Tabla tabla = new Tabla("latablaDeDiego");
         String[] tipos1 = {"char","char","char","char"};
         ArrayList<String> tipos2= new ArrayList<>(Arrays.asList(tipos1));
@@ -46,7 +50,18 @@ public class TestPrincipal
         }
         System.out.println(tabla.toString());
         FolderManager.toFile(tabla,tabla.getName());
+*/
+        String current = "";
+        //Obtencion del folder principal que contiene todos los folders de la base de datos
+        try {
+            current = new File("./DATABASES").getCanonicalPath();
+            System.out.println(current);
+        }
+        catch (java.io.IOException e ){
 
+        }
+
+        FolderManager.deleteFolder ( "Nuevonombre");
 
 
     }
