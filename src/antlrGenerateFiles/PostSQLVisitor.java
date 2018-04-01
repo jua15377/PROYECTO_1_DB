@@ -151,13 +151,6 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCheckDeclConstr(PostSQLParser.CheckDeclConstrContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code simpleColumn}
-	 * labeled alternative in {@link PostSQLParser#columDeclaration}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitSimpleColumn(PostSQLParser.SimpleColumnContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code multipleColumn}
 	 * labeled alternative in {@link PostSQLParser#columDeclaration}.
 	 * @param ctx the parse tree

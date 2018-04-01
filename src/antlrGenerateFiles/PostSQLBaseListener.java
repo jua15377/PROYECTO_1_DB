@@ -256,18 +256,6 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterSimpleColumn(PostSQLParser.SimpleColumnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSimpleColumn(PostSQLParser.SimpleColumnContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterMultipleColumn(PostSQLParser.MultipleColumnContext ctx) { }
 	/**
 	 * {@inheritDoc}

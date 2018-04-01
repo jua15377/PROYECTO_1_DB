@@ -248,18 +248,6 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitCheckDeclConstr(PostSQLParser.CheckDeclConstrContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code simpleColumn}
-	 * labeled alternative in {@link PostSQLParser#columDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void enterSimpleColumn(PostSQLParser.SimpleColumnContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code simpleColumn}
-	 * labeled alternative in {@link PostSQLParser#columDeclaration}.
-	 * @param ctx the parse tree
-	 */
-	void exitSimpleColumn(PostSQLParser.SimpleColumnContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code multipleColumn}
 	 * labeled alternative in {@link PostSQLParser#columDeclaration}.
 	 * @param ctx the parse tree

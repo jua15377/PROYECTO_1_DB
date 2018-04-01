@@ -155,9 +155,26 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             String [] parametros = result.split(",");
             for (String s : parametros){
                 //parte 0 = tipo  parte1 = id
-                String[] partes = result.split(" ");
-                encabezados.add(partes[1]);
-                tipos.add(partes[0]);
+                if(s.contains("INT")){
+                    encabezados.add(s.substring(0,s.length()-3));
+                    tipos.add("int");
+                }
+                else if(s.contains("CHAR")){
+                    encabezados.add(s.substring(0,s.length()-4));
+                    tipos.add("char");
+                }
+                else if(s.contains("FLOAT")){
+                    encabezados.add(s.substring(0,s.length()-5));
+                    tipos.add("float");
+                }
+                else if(s.contains("DATE")){
+                    encabezados.add(s.substring(0,s.length()-4));
+                    tipos.add("date");
+                }
+                else {
+                    return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Expected INT, DATE, FLOAT or CHAR-\n";
+                }
+
             }
         }
         else {
@@ -178,22 +195,10 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
         return visitChildren(ctx);
     }
-    @Override public String  visitSimpleColumn(PostSQLParser.SimpleColumnContext ctx) {
-        String id = ctx.ID().getText();
-        String tipo = visit(ctx.varType());
-        visitChildren(ctx);
-        //spara por espacioo
-        return tipo +" "+id;
-    }
 
     @Override
     public String visitMultipleColumn(PostSQLParser.MultipleColumnContext ctx) {
-        int indice = ctx.getChildCount();
-        for (int i = 0; )
-
         visitChildren(ctx);
-
-
         return ctx.getText();
     }
 
