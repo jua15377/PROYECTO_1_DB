@@ -684,6 +684,35 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             String idDb = manejador.getCurrentDB();
             if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(idTabla)){
                 currentTable = idTabla;
+                Tabla tablaRef = manejador.getASpecificDb(idDb).getSpecificTable(currentTable);
+                visit(ctx.columnsids());
+                visit(ctx.valuesids());
+
+                if(columnsID.size() >= valuesID.size()){
+
+                    /*int sizeColums = columnsID.size();
+                    int sizeValues = valuesID.size();
+
+                    ArrayList<String> tipoRegistros = new ArrayList<>();
+                    ArrayList<String> valuesRegistros = new ArrayList<>();
+
+                    for(String s: tablaRef.getNombresDecolumnas()){
+                        if(columnsID.contains(s)){
+
+                        }
+                        else{
+                            tipoRegistros.add("NULL");
+                            valuesRegistros.add("NULL");
+                        }
+                    }*/
+
+
+
+
+                }
+                else{
+                    return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Columns declared: " +columnsID.size()+", Values Declared: "+ valuesID.size()+". Values more than ID's!-\n";
+                }
 
 
 
@@ -754,13 +783,76 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     }
 
     /**
-     * Grammar:
-     * Specific:
+     * Grammar: INSERT INTO ID ('(' columnsids ')')? 'VALUES' '(' valuesids')'
+     * Specific: struct (',' struct)
      * Production to identify ID's to be added to a new register**/
     @Override
     public String visitStmvalues(PostSQLParser.StmvaluesContext ctx) {
+
+        /**Revisar si la cantidad de ID's es menor o igual a las columnas de la tabla**/
+        Tabla tablaRef = manejador.getASpecificDb(manejador.getCurrentDB()).getSpecificTable(currentTable);
+        int cantidadColumnas = tablaRef.getNombresDecolumnas().size();
+        int cantProvisional = ctx.getChildCount() -1;
+        int cantStructs = (cantProvisional/2) +1;
+        if(cantidadColumnas >= cantStructs){
+
+            /**Revisar si el tipo de datos es igual a los esperados en columa**/
+            for(int i = 0; i < cantidadColumnas; i++){
+                String struct = visit(ctx.struct(i));
+                valuesID.add(struct);
+            }
+        }
+        else{
+            return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Expected " + cantidadColumnas +" values, recieved "+ cantStructs+" values!-\n";
+
+        }
+
+
         return visit(ctx);
     }
+
+    /**
+     * Grammar: 'DATE'
+     * Production of a type dates**/
+    @Override
+    public String visitStructdate(PostSQLParser.StructdateContext ctx) {
+        return ctx.DATE().getText();
+    }
+
+    /**
+     * Grammar: FLT
+     * Production of a type floats **/
+    @Override
+    public String visitStructflt(PostSQLParser.StructfltContext ctx) {
+        return ctx.FLT().getText();
+    }
+
+    /**
+     * Grammar: 'ID'
+     * Production of a type Characters**/
+    @Override
+    public String visitStructid(PostSQLParser.StructidContext ctx) {
+        return ctx.ID().getText();
+    }
+
+    /**
+     * Grammar: NUM
+     * Production of a type integers**/
+    @Override
+    public String visitStructnum(PostSQLParser.StructnumContext ctx) {
+        return ctx.NUM().getText();
+    }
+
+    /**
+     * Grammar  'SELECT' ('*'|ID (','ID)) 'FROM' ID 'WHERE' condicion 'ORDER' 'BY' ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC'))
+     * Method to select a specific piece of data if a condition is met**/
+    @Override
+    public String visitSTMselect(PostSQLParser.STMselectContext ctx) {
+
+        return super.visitSTMselect(ctx);
+    }
+
+
 
     public String getError() {
         return error;
