@@ -686,6 +686,35 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             String idDb = manejador.getCurrentDB();
             if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(idTabla)){
                 currentTable = idTabla;
+                Tabla tablaRef = manejador.getASpecificDb(idDb).getSpecificTable(currentTable);
+                visit(ctx.columnsids());
+                visit(ctx.valuesids());
+
+                if(columnsID.size() >= valuesID.size()){
+
+                    /*int sizeColums = columnsID.size();
+                    int sizeValues = valuesID.size();
+
+                    ArrayList<String> tipoRegistros = new ArrayList<>();
+                    ArrayList<String> valuesRegistros = new ArrayList<>();
+
+                    for(String s: tablaRef.getNombresDecolumnas()){
+                        if(columnsID.contains(s)){
+
+                        }
+                        else{
+                            tipoRegistros.add("NULL");
+                            valuesRegistros.add("NULL");
+                        }
+                    }*/
+
+
+
+
+                }
+                else{
+                    return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Columns declared: " +columnsID.size()+", Values Declared: "+ valuesID.size()+". Values more than ID's!-\n";
+                }
 
 
 
@@ -756,8 +785,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     }
 
     /**
-     * Grammar:
-     * Specific:
+     * Grammar: INSERT INTO ID ('(' columnsids ')')? 'VALUES' '(' valuesids')'
+     * Specific: struct (',' struct)
      * Production to identify ID's to be added to a new register**/
     @Override
     public String visitStmvalues(PostSQLParser.StmvaluesContext ctx) {
