@@ -165,9 +165,11 @@ public final class FolderManager {
 
     // toFile and toObject are taken from: http://tinyurl.com/69h8l7x
     public static void toFile(Object obj, String locationAndName) {
+        FileOutputStream fileOut = null;
+        ObjectOutputStream out = null;
         try {
-            FileOutputStream fileOut = new FileOutputStream(locationAndName);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            fileOut = new FileOutputStream(locationAndName);
+            out = new ObjectOutputStream(fileOut);
             out.writeObject(obj);
             out.close();
             fileOut.close();
