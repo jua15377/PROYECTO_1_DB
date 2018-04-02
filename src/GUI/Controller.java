@@ -163,8 +163,7 @@ public class Controller implements Initializable{
         FileChooser fileChooser = new FileChooser();
 
         // Set extension filter
-        FileChooser.ExtensionFilter extFilter =
-                new FileChooser.ExtensionFilter("TEXT files (*.txt)", "*.txt");
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("TEXT files (*.txt)", "*.txt");
         fileChooser.getExtensionFilters().add(extFilter);
         extFilter = new FileChooser.ExtensionFilter("SQL files (*.sql)", "*.sql");
         fileChooser.getExtensionFilters().add(extFilter);

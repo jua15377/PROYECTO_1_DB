@@ -14,15 +14,6 @@ import java.util.ArrayList;
 public class Manejador implements Serializable {
     public String nombreDelManjeado;
     private int contadorDeDB = 0;
-
-    public ArrayList<String> getDbsNames() {
-        return dbsNames;
-    }
-
-    public ArrayList<BaseDeDatos> getDbs() {
-        return dbs;
-    }
-
     private ArrayList<String> dbsNames = new ArrayList<>();
     private ArrayList<BaseDeDatos> dbs = new ArrayList<>();
     private String currentDB = null;
@@ -46,8 +37,6 @@ public class Manejador implements Serializable {
             }
 
             //CAMBIAR ARRAYLIST, SERIALIZAR DBNAMES EN UN ARCHIVO ;D
-
-
             ArrayList<String> dbs = (ArrayList<String>) FolderManager.toObject("./DATABASES/MASTER.dsj");
             System.out.println(dbs);
             for (String db : dbs) {
@@ -249,11 +238,25 @@ public class Manejador implements Serializable {
      * Metodo para guardar el ultimo estado del manejador */
     public void saveState() {
         try {
+            FolderManager.deleteMaster();
             FolderManager.toFile(dbsNames, ".\\DATABASES\\MASTER.dsj");
+
+            dbsNames.clear();
+            dbs.clear();
+            currentDB = null;
+            contadorDeDB = 0;
         }
         catch (Exception e){
             System.out.println("NO SE PUDO GUARDAR EL MASTER");
         }
 
+    }
+
+    public ArrayList<String> getDbsNames() {
+        return dbsNames;
+    }
+
+    public ArrayList<BaseDeDatos> getDbs() {
+        return dbs;
     }
 }
