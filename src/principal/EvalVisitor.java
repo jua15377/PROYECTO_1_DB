@@ -782,6 +782,29 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visit(ctx);
     }
 
+    /**
+     * Grammar:
+     * Production of a typ'**/
+    @Override
+    public String visitStructdate(PostSQLParser.StructdateContext ctx) {
+        return super.visitStructdate(ctx);
+    }
+
+    @Override
+    public String visitStructflt(PostSQLParser.StructfltContext ctx) {
+        return super.visitStructflt(ctx);
+    }
+
+    @Override
+    public String visitStructid(PostSQLParser.StructidContext ctx) {
+        return super.visitStructid(ctx);
+    }
+
+    @Override
+    public String visitStructnum(PostSQLParser.StructnumContext ctx) {
+        return super.visitStructnum(ctx);
+    }
+
     public String getError() {
         return error;
     }
