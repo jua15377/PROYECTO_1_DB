@@ -188,5 +188,7 @@ public class BaseDeDatos implements Serializable {
     }
 
 
-
+    public ArrayList<Tabla> getTablas() {
+        return tablas;
+    }
 }
