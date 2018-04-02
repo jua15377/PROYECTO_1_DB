@@ -69,6 +69,7 @@ public class Controller implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        initiateDBM();
         codeArea.setParagraphGraphicFactory(LineNumberFactory.get(codeArea));
         codeArea.setStyle("-fx-font-size: 14");
         textArea.setStyle("-fx-font-size: 14");
@@ -85,6 +86,7 @@ public class Controller implements Initializable{
         //Refreshing the tree view
         refresh();
         primaryStage.setOnCloseRequest(confirmCloseEventHandler);
+
     }
 
     private EventHandler<WindowEvent> confirmCloseEventHandler = event -> {
@@ -107,7 +109,9 @@ public class Controller implements Initializable{
             event.consume();
         }else{
             //Hace aca lo que queres cuando salga
-            desconectar();
+            if(!disconnectMI.isDisable()){
+                desconectar();
+            }
         }
     };
 
@@ -132,6 +136,27 @@ public class Controller implements Initializable{
             System.out.println("Si esta llegando");
         }
 
+    }
+
+    public void initiateDBM(){
+        File theDir = new File("DATABASES");
+
+        //si el folder no existe crea el folder
+        if (!theDir.exists()) {
+            //System.out.println("Creando base de Datos: " + theDir.getName() +"\n");
+            boolean result = false;
+
+            try{
+                theDir.mkdir();
+                result = true;
+            }
+            catch(SecurityException se){
+                //handle it
+            }
+            if (!result) {
+                System.out.println("Error");
+            }
+        }
     }
 
     public void desconectar(){

@@ -189,6 +189,15 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             encabezados.add(partes[1]);
             tipos.add(partes[0]);
         }
+
+        //Checking if it has constraints
+        int cantC = ctx.constraints().size();
+        if(cantC!=0){
+            for(int i=0; i<cantC;i++){
+                System.out.println("Estas son las pk: "+visit(ctx.constraints(i)));
+            }
+        }
+
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
             if(!manejador.getASpecificDb(idDb).getNombresDeTablas().contains(id)) {
@@ -218,7 +227,16 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     @Override
     public String visitPrimaryKeyDeclConstr(PostSQLParser.PrimaryKeyDeclConstrContext ctx) {
-        return super.visitPrimaryKeyDeclConstr(ctx);
+        int cantID = ctx.ID().size();
+        String text = "";
+        if(cantID!=0){
+            for(int i=0; i<cantID;i++){
+                System.out.println(ctx.ID().get(i));
+                text+=ctx.ID().get(i)+", ";
+            }
+        }
+        visitChildren(ctx);
+        return text;
     }
 
     @Override
