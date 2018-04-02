@@ -46,8 +46,6 @@ public class Manejador implements Serializable {
             }
 
             //CAMBIAR ARRAYLIST, SERIALIZAR DBNAMES EN UN ARCHIVO ;D
-
-
             ArrayList<String> dbs = (ArrayList<String>) FolderManager.toObject("./DATABASES/MASTER.dsj");
             System.out.println(dbs);
             for (String db : dbs) {
@@ -249,6 +247,7 @@ public class Manejador implements Serializable {
      * Metodo para guardar el ultimo estado del manejador */
     public void saveState() {
         try {
+            FolderManager.deleteMaster();
             FolderManager.toFile(dbsNames, ".\\DATABASES\\MASTER.dsj");
         }
         catch (Exception e){

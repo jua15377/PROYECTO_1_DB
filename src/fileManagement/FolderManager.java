@@ -134,6 +134,32 @@ public final class FolderManager {
         return "no debe de pasar";
     }
 
+    public static String deleteMaster(){
+        File theTable = new File("DATABASES\\"+"MASTER.dsj");
+
+        //si el folder existe crea el folder
+        if (theTable.exists()) {
+            //System.out.println("BORRANDO base de Datos: " + theDir.getName()+ "\n");
+            boolean result = false;
+
+            try{
+                theTable.delete();
+                result = true;
+            }
+            catch(SecurityException se){
+                //handle it
+            }
+            if(!result) {
+                System.out.println("ERROR: SafeMaster en problemas");
+            }
+
+        }
+        else {
+            return  "MASTER NO ENCONTRADO";
+        }
+        return "no debe de pasar";
+    }
+
 
 //para la serializacion del objetio
 
