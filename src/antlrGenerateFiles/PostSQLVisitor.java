@@ -325,4 +325,11 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVardate(PostSQLParser.VardateContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code varnull}
+	 * labeled alternative in {@link PostSQLParser#varType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarnull(PostSQLParser.VarnullContext ctx);
 }

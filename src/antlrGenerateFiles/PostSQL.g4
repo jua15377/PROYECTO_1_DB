@@ -102,4 +102,5 @@ varType
 	|	'CHAR'				        #varchar
 	|	'FLOAT'				        #varfloat
 	|	'DATE'						#vardate
+	|   'NULL'                      #varnull
 	;

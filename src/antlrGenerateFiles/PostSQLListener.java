@@ -547,4 +547,16 @@ public interface PostSQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVardate(PostSQLParser.VardateContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code varnull}
+	 * labeled alternative in {@link PostSQLParser#varType}.
+	 * @param ctx the parse tree
+	 */
+	void enterVarnull(PostSQLParser.VarnullContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code varnull}
+	 * labeled alternative in {@link PostSQLParser#varType}.
+	 * @param ctx the parse tree
+	 */
+	void exitVarnull(PostSQLParser.VarnullContext ctx);
 }

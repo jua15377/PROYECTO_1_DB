@@ -551,6 +551,18 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitVardate(PostSQLParser.VardateContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterVarnull(PostSQLParser.VarnullContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitVarnull(PostSQLParser.VarnullContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
