@@ -15,6 +15,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     public String log = "";
     public String verbose = "";
     public boolean verboseEnable =  false;
+    public String currentTable = "";
 
     /**
      * Grammar: CREATE DATABASE ID
@@ -288,17 +289,26 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     }
 
 
+    /***
+     * Grammar: ALTER TABLE ID alter_action_table
+     * alter_action_table: RENAME TO ID
+     * Method to rename a table of a specific DataBase*/
+
     @Override public String visitRenameTable(PostSQLParser.RenameTableContext ctx) {
         String idTabla = ctx.ID().getText();
 
         if(manejador.getCurrentDB()!=null){
             String idDb = manejador.getCurrentDB();
-            if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(idTabla)){
-
-
+            if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(currentTable)){
+                manejador.getASpecificDb(idDb).renameTable(currentTable, idTabla);
+                log += "Table \"" + currentTable + "\" renamed succesfully!.\n";
+                if (verboseEnable) {
+                    verbose += "La tabla: " + currentTable + ", fue renombrada a " + idTabla+ " con exito!\n";
+                }
+                currentTable = idTabla;
             }
             else{
-                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Table \""+ctx.ID().getText()+"\". doesn't exist!-\n";
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Table \""+currentTable+"\". doesn't exist!-\n";
             }
         }
         else{
@@ -308,6 +318,11 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
+
+    
+    /**
+     * Grammar: SHOW TABLES
+     * Method to show every table from a specific DataBase**/
 
     @Override
     public String visitSTMshowTable(PostSQLParser.STMshowTableContext ctx) {
@@ -326,6 +341,14 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         }
         return super.visitSTMshowTable(ctx);
     }
+
+
+    @Override
+    public String visitSTMalterTable(PostSQLParser.STMalterTableContext ctx) {
+        currentTable = ctx.ID().getText();
+        return super.visitSTMalterTable(ctx);
+    }
+
 
     public String getError() {
         return error;

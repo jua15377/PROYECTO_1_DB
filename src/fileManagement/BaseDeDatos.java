@@ -135,8 +135,11 @@ public class BaseDeDatos implements Serializable {
         int indice = nombresDeTablas.indexOf(nombre);
         nombresDeTablas.set(indice,nuevoNombre);
         tablas.get(indice).setName(nuevoNombre);
-        Tabla tabaParaArchivNuevo =  tablas.get(indice);
+        Tabla tablaParaArchivNuevo =  tablas.get(indice);
         //falta borrar y recrear el archivo
+        FolderManager.deleteFile(this.name, nombre);
+        FolderManager.toFile(tablaParaArchivNuevo, "DATABASES\\"+this.name + "\\" +nuevoNombre + ".dsj");
+
     }
 
     public void addColumn(String nombreTabla, ArrayList<String> constraints){
