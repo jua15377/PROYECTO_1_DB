@@ -7,6 +7,7 @@ package fileManagement;
  * @since   2018-03-28
  */
 
+import java.awt.image.AreaAveragingScaleFilter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -15,6 +16,7 @@ public class Tabla implements Serializable{
     private String name;
     private ArrayList<String> nombresDecolumnas = new ArrayList<>();
     private ArrayList<String> tiposDecolumnas = new ArrayList<>();
+    private ArrayList<Integer> maxlongitud = new ArrayList<>();
     private ArrayList<String> pk = new ArrayList<>();
     private ArrayList<String> fk = new ArrayList<>();
     private ArrayList<String> ck = new ArrayList<>();
@@ -90,10 +92,6 @@ public class Tabla implements Serializable{
         return contadorDeregistors;
     }
 
-    public void setContadorDeregistors(int contadorDeregistors) {
-        this.contadorDeregistors = contadorDeregistors;
-    }
-
     public ArrayList<String> getCk() {
         return ck;
     }
@@ -102,4 +100,7 @@ public class Tabla implements Serializable{
         return ReferencesFK;
     }
 
+    public void setMaxlongitud(ArrayList<Integer> max){
+        this.maxlongitud = max;
+    }
 }
