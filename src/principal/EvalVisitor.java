@@ -2,7 +2,6 @@ package principal;
 
 import antlrGenerateFiles.PostSQLBaseVisitor;
 import antlrGenerateFiles.PostSQLParser;
-import fileManagement.BaseDeDatos;
 import fileManagement.Manejador;
 import fileManagement.Tabla;
 import javafx.scene.control.Alert;
@@ -391,7 +390,6 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
                 //Revisa Constraints
                 int numero = ctx.getChildCount();
-                System.out.println("La cantidad de Hijos de ADD COLUMN es: " + numero );
 
                 //Se hara siempre y cuando exista al menos 1 constraint
                 if(numero > 4) {
@@ -403,7 +401,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
                         visit(ctx.getChild(i));
                     }
                 }
-                log = "Added column succesfully!\n";
+                FolderManager.actualizarArchivo(manejador.getCurrentDB(), tablaRefeerncia);
+                log += "Added column succesfully!\n";
                 if(verboseEnable){
                     verbose += "Columna " + ctx.ID().getText() + " agregada existosamente en tabla " + currentTable + "\n";
                 }
@@ -418,6 +417,18 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
         return visitChildren(ctx);
     }
+
+    /***
+     * Grammar: ALTER TABLE ID alter_action_table
+     * alter_action_table: ADD constraints*
+     * Method to add a new constraint to the table*/
+    @Override
+    public String visitAddConstraints(PostSQLParser.AddConstraintsContext ctx) {
+
+
+        return super.visitAddConstraints(ctx);
+    }
+
 
     @Override
     public String visitSTMalterTable(PostSQLParser.STMalterTableContext ctx) {
