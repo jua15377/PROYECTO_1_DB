@@ -194,9 +194,31 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         int cantC = ctx.constraints().size();
         if(cantC!=0){
             for(int i=0; i<cantC;i++){
-                System.out.println("Estas son las pk: "+visit(ctx.constraints(i)));
+                if(ctx.constraints(i).getText().contains("PRIMARY")){
+                    String primarykeys = visit(ctx.constraints(i));
+                    String[] pks = primarykeys.split(", ");
+                    for (int j=0;j<pks.length;j++) {
+                        System.out.println(pks[j]);
+                        if(!encabezados.contains(pks[j]) && j!=0){
+                            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+". Column \""+pks[j]+"\" is not defined.\n";
+                        }else{
+                            pk.add(pks[j]);
+                        }
+
+                    }
+                }else if(ctx.constraints(i).getText().contains("FOREIGN")){
+                    //String foreignkeys
+                }else if(ctx.constraints(i).getText().contains("CHECK")){
+
+                }else{
+
+                }
             }
         }
+
+
+
+
 
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
@@ -241,7 +263,16 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     @Override
     public String visitForeignKeyDeclConstr(PostSQLParser.ForeignKeyDeclConstrContext ctx) {
-        return super.visitForeignKeyDeclConstr(ctx);
+        int cantID = ctx.ID().size();
+        String text = "";
+        if(cantID!=0){
+            for(int i=0; i<cantID;i++){
+                System.out.println("FK: " + ctx.ID().get(i));
+                text+=ctx.ID().get(i)+", ";
+            }
+        }
+        visitChildren(ctx);
+        return text;
     }
 
     @Override
