@@ -2,6 +2,8 @@ package principal;
 
 import antlrGenerateFiles.PostSQLBaseVisitor;
 import antlrGenerateFiles.PostSQLParser;
+import fileManagement.BaseDeDatos;
+import fileManagement.FolderManager;
 import fileManagement.Manejador;
 import fileManagement.Tabla;
 import javafx.scene.control.Alert;
