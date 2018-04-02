@@ -3,6 +3,7 @@ package principal;
 import antlrGenerateFiles.PostSQLBaseVisitor;
 import antlrGenerateFiles.PostSQLParser;
 import fileManagement.Manejador;
+import fileManagement.Tabla;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import java.util.ArrayList;
@@ -119,12 +120,11 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             log += s + "\n";
         }
         if (verboseEnable){
-            verbose += "Show Databases displayed succesfully";
+            verbose += "Show Databases displayed succesfully\n";
         }
-        return log += "Show done succesfully";
+        return log += "Show done succesfully\n";
 
     }
-
     /**
      * Grammar: USE DATABASE ID
      * Method to change DataBase currently in use to a different one**/
@@ -146,7 +146,6 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         }
         return visitChildren(ctx);
     }
-
     /**
      * Gramar: CREATE TABLE ID ( columnDeclaration constraints*)
      * Method to create a fully flexed table to use, inside a specficic DataBase**/
@@ -340,8 +339,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     
     /**
      * Grammar: SHOW TABLES
-     * Method to show every table from a specific DataBase**/
-
+     * Method to show every table from a specific DataBase
+     * **/
     @Override
     public String visitSTMshowTable(PostSQLParser.STMshowTableContext ctx) {
         //que este seteada la base de datos
@@ -360,6 +359,54 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return super.visitSTMshowTable(ctx);
     }
 
+    /***
+     * Grammar: ALTER TABLE ID alter_action_table
+     * alter_action_table: ADD COLUMN ID varType constraints*
+     * Method to add a new column with possible constraints to a table*/
+    @Override
+    public String visitAddColumn(PostSQLParser.AddColumnContext ctx) {
+        String idColumn = ctx.ID().getText();
+
+        if(manejador.getCurrentDB()!=null){
+            String idDb = manejador.getCurrentDB();
+            int indexTabla = manejador.getASpecificDb(idDb).getNombresDeTablas().indexOf(currentTable);
+            Tabla tablaRefeerncia = manejador.getASpecificDb(idDb).getTablas().get(indexTabla);
+            //If que revisara si ya existe el nombre de la columna en la tabla
+            if(!tablaRefeerncia.getNombresDecolumnas().contains(ctx.ID().getText())){
+                //Si no existe la columna
+                String type = ctx.varType().getText();
+                tablaRefeerncia.getNombresDecolumnas().add(idColumn);
+                tablaRefeerncia.getTiposDecolumnas().add(type);
+
+                //Revisa Constraints
+                int numero = ctx.getChildCount();
+                System.out.println("La cantidad de Hijos de ADD COLUMN es: " + numero );
+
+                //Se hara siempre y cuando exista al menos 1 constraint
+                if(numero > 4) {
+                    //Por cada uno de los constraints encontrados
+                    for (int i = 4; i < numero - 1; i++) {
+                        /**
+                         * AQUI VISITRARA A CADA CONSTRAINT
+                         * POR CADA UNO QUE EXISTA**/
+                        visit(ctx.getChild(i));
+                    }
+                }
+                log = "Added column succesfully!\n";
+                if(verboseEnable){
+                    verbose += "Columna " + ctx.ID().getText() + " agregada existosamente en tabla " + currentTable + "\n";
+                }
+            }
+            else{
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Column \""+ctx.ID().getText()+"\". already exists!-\n";
+            }
+        }
+        else{
+            return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". No Database selected yet!-\n";
+        }
+
+        return visitChildren(ctx);
+    }
 
     @Override
     public String visitSTMalterTable(PostSQLParser.STMalterTableContext ctx) {

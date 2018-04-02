@@ -37,8 +37,8 @@ unitStatement
 
 
 constraints
-	: 'CONSTRAINT' 'PK_'ID 'PRIMARY' 'KEY' ('(' ID | ID(','ID)* ')')					                    #primaryKeyDeclConstr
-	| 'CONSTRAINT' 'FK_'ID 'FOREIGN' 'KEY' ('(' ID | ID(','ID)* ')' 'REFERENCES' ID '(' ID | ID(','ID)* ')')  #foreignKeyDeclConstr
+	: 'CONSTRAINT' 'PK_'ID 'PRIMARY' 'KEY' '('( ID | ID(','ID)* )')'					                        #primaryKeyDeclConstr
+	| 'CONSTRAINT' 'FK_'ID 'FOREIGN' 'KEY' '('( ID | ID(','ID)*) ')' 'REFERENCES' ID '(' (ID | ID(','ID)*) ')'  #foreignKeyDeclConstr
 	| 'CONSTRAINT' 'CH_'ID 'CHECK' '(' exp ')'										                            #checkDeclConstr
 	;
 
