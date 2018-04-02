@@ -2,7 +2,9 @@ package principal;
 
 import antlrGenerateFiles.PostSQLBaseVisitor;
 import antlrGenerateFiles.PostSQLParser;
+import fileManagement.BaseDeDatos;
 import fileManagement.Manejador;
+import fileManagement.Tabla;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import java.util.ArrayList;
@@ -53,9 +55,16 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         String id = ctx.ID().getText();
         ArrayList<String> nombres = manejador.getDbsNames();
         if(nombres.contains(id)){
+            int nregistro = 0;
+            for ( BaseDeDatos bd : manejador.getDbs()){
+                for (Tabla t : bd.getTablas()){
+                    nregistro += t.getContadorDeregistors();
+                }
+
+            }
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("User Confirmation");
-            alert.setHeaderText("Drop \""+ctx.ID().getText()+"\" database?");
+            alert.setHeaderText("Drop \""+ctx.ID().getText()+"\" database with " + nregistro + "?");
             alert.setContentText("Choose your option.");
             ButtonType buttonTypeOne = new ButtonType("Yes");
             ButtonType buttonTypeCancel = new ButtonType("No");
@@ -63,6 +72,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne){
                 // ... user chose "Drop"
+
+
                 manejador.dropDatabase(id);
                 log += "Database \""+ctx.ID().getText()+"\" has been dropped succesfully!.\n";
                 if(verboseEnable){ verbose += "Base de Datos: " + id + ", eliminada con exito\n";}
@@ -360,6 +371,26 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return super.visitSTMshowTable(ctx);
     }
 
+    @Override
+    public String visitSTMshowColumn(PostSQLParser.STMshowColumnContext ctx) {
+        String id = ctx.ID().getText();
+        if(manejador.getCurrentDB()!=null){
+            String idDb= manejador.getCurrentDB();
+            log = "Columns from "+ id + ":\n";
+            for (String s: manejador.getASpecificDb(idDb).getSpecificTable(id).getNombresDecolumnas()){
+                log += s + "\n";
+            }
+
+            if (verboseEnable) { verbose += "Mostrando las tablas de la base de datos" + manejador.getCurrentDB(); }
+        }
+        else {
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". No Database selected yet!-\n";
+        }
+
+
+
+        return super.visitSTMshowColumn(ctx);
+    }
 
     @Override
     public String visitSTMalterTable(PostSQLParser.STMalterTableContext ctx) {

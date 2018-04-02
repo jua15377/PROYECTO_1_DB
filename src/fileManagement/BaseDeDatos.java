@@ -20,6 +20,11 @@ import java.util.ArrayList;
  */
 public class BaseDeDatos implements Serializable {
     private ArrayList<String> nombresDeTablas = new ArrayList<>();
+
+    public ArrayList<Tabla> getTablas() {
+        return tablas;
+    }
+
     private ArrayList<Tabla> tablas = new ArrayList<>();
     private String name;
 
@@ -175,6 +180,11 @@ public class BaseDeDatos implements Serializable {
         tablas.add(tabla);
         nombresDeTablas.add(tabla.getName());
 
+    }
+
+    public Tabla getSpecificTable(String tabla){
+        int indice = nombresDeTablas.indexOf(tabla);
+        return tablas.get(indice);
     }
 
 
