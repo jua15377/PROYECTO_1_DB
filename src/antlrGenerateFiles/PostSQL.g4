@@ -44,7 +44,7 @@ constraints
 
 
 columDeclaration 
-	: ID varType ( ',' ID  varType)*												#multipleColumn
+	: ID varType ( ',' ID  varType)*											#multipleColumn
 	;
 
 exp
@@ -68,7 +68,7 @@ eq_sgn
 
 action_alter_table
 	: 'ADD' 'COLUMN' ID varType constraints* 										#addColumn
-	| 'ADD' constraints* 															#addConstraints
+	| 'ADD' constraints constraints*												#addConstraints
 	| 'DROP' 'COLUMN' ID 															#dropColumn
 	| 'DROP' 'CONSTRAINT' ID 														#dropConstraints
 	| 'RENAME' 'TO' ID 										                    	#renameTable

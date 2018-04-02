@@ -424,8 +424,20 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Method to add a new constraint to the table*/
     @Override
     public String visitAddConstraints(PostSQLParser.AddConstraintsContext ctx) {
+        int numeroConstraints = ctx.getChildCount();
 
+        for(int i = 1; i< numeroConstraints; i++){
+            String identificador = ctx.getChild(i).getChild(1).getText();
+            if(identificador == "PK_"){
 
+            }
+            else if(identificador == "FK_"){
+
+            }
+            else{
+
+            }
+        }
         return super.visitAddConstraints(ctx);
     }
 
