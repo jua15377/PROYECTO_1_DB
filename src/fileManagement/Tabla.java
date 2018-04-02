@@ -93,4 +93,5 @@ public class Tabla implements Serializable{
     public void setContadorDeregistors(int contadorDeregistors) {
         this.contadorDeregistors = contadorDeregistors;
     }
+
 }

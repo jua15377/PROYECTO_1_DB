@@ -8,7 +8,10 @@ import fileManagement.Manejador;
 import fileManagement.Tabla;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import org.antlr.v4.runtime.tree.TerminalNode;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class EvalVisitor extends PostSQLBaseVisitor<String>{
@@ -19,6 +22,10 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     public String verbose = "";
     public boolean verboseEnable =  false;
     public String currentTable = "";
+    public ArrayList<String> encabezados;
+    public ArrayList<String> tipos;
+    public ArrayList<String> pk ;
+    public ArrayList<String> fk;
 
     /**
      * Grammar: CREATE DATABASE ID
@@ -162,11 +169,12 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Gramar: CREATE TABLE ID ( columnDeclaration constraints*)
      * Method to create a fully flexed table to use, inside a specficic DataBase**/
     @Override public String visitSTMcreateTable(PostSQLParser.STMcreateTableContext ctx) {
+        encabezados =   new ArrayList<>();
+        tipos =new ArrayList<>();
+        pk = new ArrayList<>();
+        fk = new ArrayList<>();
         String id = ctx.ID().getText();
-        ArrayList<String> encabezados = new ArrayList<>();
-        ArrayList<String> tipos = new ArrayList<>();
-        ArrayList<String> pk = new ArrayList<>();
-        ArrayList<String> fk = new ArrayList<>();
+
         String result = visit(ctx.columDeclaration());
         if(result.contains(",")){
             String [] parametros = result.split(",");
@@ -215,7 +223,6 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
                         }else{
                             pk.add(pks[j]);
                         }
-
                     }
                 }else if(ctx.constraints(i).getText().contains("FOREIGN")){
                     //String foreignkeys
@@ -226,11 +233,6 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
                 }
             }
         }
-
-
-
-
-
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
             if(!manejador.getASpecificDb(idDb).getNombresDeTablas().contains(id)) {
@@ -274,13 +276,75 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     @Override
     public String visitForeignKeyDeclConstr(PostSQLParser.ForeignKeyDeclConstrContext ctx) {
-        int cantID = ctx.ID().size();
+        //Creating the string that will contain all of the info for the foreign keys
         String text = "";
-        if(cantID!=0){
-            for(int i=0; i<cantID;i++){
-                System.out.println("FK: " + ctx.ID().get(i));
-                text+=ctx.ID().get(i)+", ";
+
+        int cantID = ctx.ID().size();
+        int c = (cantID/2)-1;
+
+        //Creating two new List of terminal nodes that will store the name of a foreign key and table in which belongs.
+        List<TerminalNode> fkeys = null;
+        List<TerminalNode> fTable = null;
+
+        //Checking that the amount of ID so it is even.
+        if(cantID%2==0 && cantID>2){
+            text+=ctx.ID().get(0)+", ";
+
+            //Getting the name of the table referencing the Foreign key.
+            String tableReference = ctx.ID((cantID/2)).getText();
+
+            //Getting the currentDB thats being checked.
+            BaseDeDatos currentDB = null;
+            currentDB = manejador.getASpecificDb(manejador.getCurrentDB());
+
+            //Tables of the current database
+            ArrayList<String> tableNames = currentDB.getNombresDeTablas();
+            ArrayList<String> namesOfCurrentTable = new ArrayList<>();
+            ArrayList<String> namesOfReferencedTable = new ArrayList<>();
+            ArrayList<String> typesOfCurrentTable = new ArrayList<>();
+            ArrayList<String> typesOfReferencedTable = new ArrayList<>();
+
+            if(tableNames.contains(tableReference)){
+                Tabla referencedTable = null;
+                //Getting the referenced table
+                for (Tabla t:currentDB.getTablas()) {
+                    if(t.getName().equals(tableReference)){
+                        referencedTable=t;
+                    }
+                }
+                //Getting the primary keys of that table
+                for(int i=1; i<(cantID/2);i++){
+                    if(encabezados.contains(ctx.ID(i).getText())){
+                        int pkLocation = encabezados.indexOf(ctx.ID(i).getText());
+                        typesOfCurrentTable.add(tipos.get(pkLocation));
+                        namesOfCurrentTable.add(ctx.ID(i).getText());
+                    }else{
+                        return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Primary key \""+ ctx.ID(i).getText()+"\" not found.\n";
+                    }
+                }
+                ArrayList<String> pkOfTable = referencedTable.getPk();
+                for(int i=(cantID/2)+1; i<cantID;i++){
+                    if(pkOfTable.contains(ctx.ID(i).getText())){
+                        int pkLocation = referencedTable.getNombresDecolumnas().indexOf(ctx.ID(i).getText());
+                        typesOfReferencedTable.add(referencedTable.getTiposDecolumnas().get(pkLocation));
+                        namesOfReferencedTable.add(ctx.ID(i).getText());
+                    }else{
+                        return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Primary key \""+ ctx.ID(i).getText()+"\" not found.\n";
+                    }
+                }
+
+                for (int i=0;i<typesOfCurrentTable.size();i++){
+                    if(typesOfCurrentTable.get(i).equals(typesOfReferencedTable.get(i))){
+                        text+=namesOfCurrentTable+", ";
+                    }else{
+                        return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Mismatch of types in ID given. \""+ namesOfCurrentTable.get(i)+"\" is type "+typesOfCurrentTable.get(i)+", \""+namesOfReferencedTable.get(i)+"\" is type "+typesOfReferencedTable.get(i)+".\n";
+                    }
+                }
+            }else{
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Table \""+ tableReference+"\" not found.\n";
             }
+        }else{
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Expected "+c+" foreign keys and "+c+" tables\n";
         }
         visitChildren(ctx);
         return text;

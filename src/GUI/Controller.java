@@ -363,7 +363,7 @@ public class Controller implements Initializable{
 
 
     public TreeItem<String> getNodesForDirectory(File directory) { //Returns a TreeItem representation of the specified directory
-        TreeItem<String> root = new TreeItem<String>(directory.getName(), new ImageView(folderIcon));
+        TreeItem<String> root = new TreeItem<String>(directory.getName(), new ImageView(dbIcon));
         root.setExpanded(true);
         for(File f : directory.listFiles()) {
             if(f.isDirectory()) { //Then we call the function recursively
@@ -376,7 +376,7 @@ public class Controller implements Initializable{
                 }else if(getFileExtension(f).equals("sql")){
                     root.getChildren().add(new TreeItem<String>(f.getName(), new ImageView(sqlIcon)));
                 }else if(getFileExtension(f).equals("dsj")){
-                    root.getChildren().add(new TreeItem<String>(f.getName(), new ImageView(dbIcon)));
+                    root.getChildren().add(new TreeItem<String>(f.getName(), new ImageView(textIcon)));
                 }else {
                     root.getChildren().add(new TreeItem<String>(f.getName(), new ImageView(unkIcon)));
                 }

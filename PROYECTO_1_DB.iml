@@ -13,7 +13,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/javaLib/antlr-4.7.1-complete.jar!/" />
+          <root url="jar://C:/Javalib/antlr-4.7.1-complete.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -22,7 +22,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/javaLib/richtextfx-fat-0.8.2.jar!/" />
+          <root url="jar://C:/Javalib/richtextfx-fat-0.8.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -41,7 +41,7 @@
       <library>
         <CLASSES />
         <JAVADOC>
-          <root url="jar://C:/javaLib/commons-io-2.6-bin.zip!/commons-io-2.6/docs" />
+          <root url="jar://C:/Javalib/commons-io-2.6-bin.zip!/commons-io-2.6/docs" />
         </JAVADOC>
         <SOURCES />
       </library>
@@ -68,6 +68,15 @@
       <library>
         <CLASSES>
           <root url="jar://$MODULE_DIR$/../commons-io-2.6.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://C:/Javalib/commons-io-2.6/commons-io-2.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
