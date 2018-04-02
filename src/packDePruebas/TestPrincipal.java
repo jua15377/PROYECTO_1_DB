@@ -34,7 +34,6 @@ public class TestPrincipal
 //        manejador1.generateMetada();
 
 
-/*
         Tabla tabla = new Tabla("latablaDeDiego");
         String[] tipos1 = {"char","char","char","char"};
         ArrayList<String> tipos2= new ArrayList<>(Arrays.asList(tipos1));
@@ -45,23 +44,13 @@ public class TestPrincipal
             arr.add("val3");
             arr.add("val3");
             arr.add("val4");
+            arr.add("val4");
             Registro r = new Registro(arr, tipos2);
             tabla.addRegistro(r);
         }
-        System.out.println(tabla.toString());
+        //System.out.println(tabla.toString());
         FolderManager.toFile(tabla,tabla.getName());
-*/
-        String current = "";
-        //Obtencion del folder principal que contiene todos los folders de la base de datos
-        try {
-            current = new File("./DATABASES").getCanonicalPath();
-            System.out.println(current);
-        }
-        catch (java.io.IOException e ){
 
-        }
-
-        FolderManager.deleteFolder ( "Nuevonombre");
 
 
     }

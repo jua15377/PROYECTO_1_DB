@@ -161,9 +161,11 @@ public final class FolderManager {
     }
 
 
-//para la serializacion del objetio
-
     // toFile and toObject are taken from: http://tinyurl.com/69h8l7x
+    /*
+    * Metodo para serializar un objeto y guardar sus atributos en un arcchivo. desj
+    * @param obj objeto a serializar
+    * @retun void */
     public static void toFile(Object obj, String locationAndName) {
         FileOutputStream fileOut = null;
         ObjectOutputStream out = null;
@@ -173,13 +175,17 @@ public final class FolderManager {
             out.writeObject(obj);
             out.close();
             fileOut.close();
-            System.out.println("Serialized data is saved in" + locationAndName +"\n");
+            //System.out.println("Serialized data is saved in" + locationAndName +"\n");
         }
         catch (IOException i) {
             i.printStackTrace();
         }
 
     }
+    /*
+     * Metodo para deserializar un archivo y guardar su contenido en un objeto
+     * @param String locationAndName del archivo .dsj
+     * @retun Object obj objeto a ser casteado */
 
     public static Object toObject(String locationAndName){
         Object obj = null;

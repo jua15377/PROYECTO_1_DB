@@ -42,7 +42,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     @Override public String visitSTMcreateDB(PostSQLParser.STMcreateDBContext ctx) {
         String id = ctx.ID().getText();
         ArrayList<String> nombres = manejador.getDbsNames();
-        if(!nombres.contains(id)){
+        if(!nombres.contains(id) || !nombres.contains(id.toUpperCase()) || !nombres.contains(id.toLowerCase())){
             manejador.createDataBase(id);
             log += "Database \""+ctx.ID().getText()+"\" has been created succesfully!.\n";
             if(verboseEnable){
@@ -107,7 +107,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
                     ". Database " + ctx.ID(0).getText()+" does not exists.\n";
         }
 
-        else if(manejador.getDbsNames().contains(idNuevo)){
+        else if(manejador.getDbsNames().contains(idNuevo) || manejador.getDbsNames().contains(idNuevo.toLowerCase()) || manejador.getDbsNames().contains(idNuevo.toUpperCase())){
             //Error
             return error = "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+
                     ". Name  " + ctx.ID(1).getText()+" already in use .\n";
