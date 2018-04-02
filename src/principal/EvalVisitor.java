@@ -8,7 +8,6 @@ import fileManagement.Manejador;
 import fileManagement.Tabla;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
-import jdk.nashorn.internal.ir.Terminal;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
@@ -29,6 +28,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     public ArrayList<String> fk;
     public ArrayList<String> columnsID;
     public ArrayList<String> valuesID;
+    public ArrayList<Integer> maximo;
 
     /**
      * Grammar: CREATE DATABASE ID
@@ -176,6 +176,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         tipos =new ArrayList<>();
         pk = new ArrayList<>();
         fk = new ArrayList<>();
+        maximo = new ArrayList<>();
         String id = ctx.ID().getText();
 
         String result = visit(ctx.columDeclaration());
@@ -186,18 +187,24 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
                 if(s.contains("INT")){
                     encabezados.add(s.substring(0,s.length()-3));
                     tipos.add("int");
+                    maximo.add(-1);
                 }
                 else if(s.contains("CHAR")){
-                    encabezados.add(s.substring(0,s.length()-4));
+                    int indicedeChar  = s.indexOf("CHAR(");
+                    encabezados.add(s.substring(0,indicedeChar));
                     tipos.add("char");
+                    String cant =  s.substring(s.indexOf("(")+1,s.indexOf(")"));
+                    maximo.add(Integer.parseInt(cant));
                 }
                 else if(s.contains("FLOAT")){
                     encabezados.add(s.substring(0,s.length()-5));
                     tipos.add("float");
+                    maximo.add(-1);
                 }
                 else if(s.contains("DATE")){
                     encabezados.add(s.substring(0,s.length()-4));
                     tipos.add("date");
+                    maximo.add(10);
                 }
                 else {
                     return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Expected INT, DATE, FLOAT or CHAR-\n";
