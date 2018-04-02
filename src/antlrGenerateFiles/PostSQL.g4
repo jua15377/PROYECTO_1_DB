@@ -5,8 +5,9 @@ fragment DIGIT :'0'..'9' ;
 
 
 ID : LETTER ( LETTER | DIGIT )* ;
-NUM : DIGIT ( DIGIT )* ;
-Char : LETTER;
+NUM : '-'?DIGIT ( DIGIT )* ;
+FLT : '-'?NUM'.'NUM;
+DATE : NUM'-'NUM'-'NUM;
 
 WS :
     [ \t\r\n]+ -> skip
@@ -29,12 +30,26 @@ unitStatement
 	| 'CREATE' 'TABLE' ID '(' columDeclaration  constraints* ')' 				                        #STMcreateTable
 	| 'SHOW' 'COLUMNS' 'FROM' ID	                                                                    #STMshowColumn
     | 'ALTER' 'TABLE' ID action_alter_table  									                        #STMalterTable
-	| 'INSERT' 'INTO' ID ('(' ID (',' ID)* ')')? 'VALUES' '(' varType (',' varType)* ')'	                  #STMinsertInto
+	| 'INSERT' 'INTO' ID  ('(' columnsids ')')? 'VALUES' '(' valuesids')'	                  #STMinsertInto
 	| 'UPDATE' ID 'SET' ID '=' '(' varType (',' varType)* ')' 'WHERE' condicion (eq_op condicion)*      #STMupdate
 	| 'DELETE' 'FROM' ID 'WHERE' condicion (eq_op condicion)* 										    #STMdelete
 	| 'SELECT' ('*'|ID (','ID)) 'FROM' ID 'WHERE' condicion 'ORDER' 'BY' ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC')) 	#STMselect
 	;
 
+columnsids:
+    ID (',' ID)*                                                                                    #stmcolumsid
+    ;
+
+valuesids:
+    struct (',' struct)*  #stmvalues
+    ;
+
+struct
+    : '\'' ID '\''                #structid
+    | NUM               #structnum
+    | FLT               #structflt
+    | '\'' DATE '\''              #structdate
+    ;
 
 constraints
 	: 'CONSTRAINT' 'PK_'ID 'PRIMARY' 'KEY' '('( ID | ID(','ID)* )')'					                        #primaryKeyDeclConstr
@@ -82,8 +97,12 @@ condicion
 
 varType
 	: 	'INT'				        #varint
-	|	'CHAR'				        #varchar
+	|	typechar				    #varchar
 	|	'FLOAT'				        #varfloat
 	|	'DATE'						#vardate
 	|   'NULL'                      #varnull
 	;
+
+typechar
+    :'CHAR' '(' NUM ')'             #typecharDeclaration
+    ;

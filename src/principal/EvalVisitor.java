@@ -669,9 +669,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Method that allows the insert**/
     @Override
     public String visitSTMinsertInto(PostSQLParser.STMinsertIntoContext ctx) {
-        List<TerminalNode> ids = ctx.ID();
-        String idTabla = ids.get(0).getText();
-        int cantidadID = ids.size();
+        String idTabla = "";
 
         if(manejador.getCurrentDB()!=null){
             String idDb = manejador.getCurrentDB();

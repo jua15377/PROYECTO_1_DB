@@ -130,6 +130,48 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSTMselect(PostSQLParser.STMselectContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code stmcolumsid}
+	 * labeled alternative in {@link PostSQLParser#columnsids}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStmcolumsid(PostSQLParser.StmcolumsidContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code stmvalues}
+	 * labeled alternative in {@link PostSQLParser#valuesids}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStmvalues(PostSQLParser.StmvaluesContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code structid}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructid(PostSQLParser.StructidContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code structnum}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructnum(PostSQLParser.StructnumContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code structflt}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructflt(PostSQLParser.StructfltContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code structdate}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStructdate(PostSQLParser.StructdateContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code primaryKeyDeclConstr}
 	 * labeled alternative in {@link PostSQLParser#constraints}.
 	 * @param ctx the parse tree
@@ -304,4 +346,11 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitVarnull(PostSQLParser.VarnullContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code typecharDeclaration}
+	 * labeled alternative in {@link PostSQLParser#typechar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTypecharDeclaration(PostSQLParser.TypecharDeclarationContext ctx);
 }

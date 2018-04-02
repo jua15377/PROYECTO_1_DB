@@ -212,6 +212,78 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitSTMselect(PostSQLParser.STMselectContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code stmcolumsid}
+	 * labeled alternative in {@link PostSQLParser#columnsids}.
+	 * @param ctx the parse tree
+	 */
+	void enterStmcolumsid(PostSQLParser.StmcolumsidContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code stmcolumsid}
+	 * labeled alternative in {@link PostSQLParser#columnsids}.
+	 * @param ctx the parse tree
+	 */
+	void exitStmcolumsid(PostSQLParser.StmcolumsidContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code stmvalues}
+	 * labeled alternative in {@link PostSQLParser#valuesids}.
+	 * @param ctx the parse tree
+	 */
+	void enterStmvalues(PostSQLParser.StmvaluesContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code stmvalues}
+	 * labeled alternative in {@link PostSQLParser#valuesids}.
+	 * @param ctx the parse tree
+	 */
+	void exitStmvalues(PostSQLParser.StmvaluesContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code structid}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 */
+	void enterStructid(PostSQLParser.StructidContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code structid}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 */
+	void exitStructid(PostSQLParser.StructidContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code structnum}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 */
+	void enterStructnum(PostSQLParser.StructnumContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code structnum}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 */
+	void exitStructnum(PostSQLParser.StructnumContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code structflt}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 */
+	void enterStructflt(PostSQLParser.StructfltContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code structflt}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 */
+	void exitStructflt(PostSQLParser.StructfltContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code structdate}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 */
+	void enterStructdate(PostSQLParser.StructdateContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code structdate}
+	 * labeled alternative in {@link PostSQLParser#struct}.
+	 * @param ctx the parse tree
+	 */
+	void exitStructdate(PostSQLParser.StructdateContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code primaryKeyDeclConstr}
 	 * labeled alternative in {@link PostSQLParser#constraints}.
 	 * @param ctx the parse tree
@@ -511,4 +583,16 @@ public interface PostSQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitVarnull(PostSQLParser.VarnullContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code typecharDeclaration}
+	 * labeled alternative in {@link PostSQLParser#typechar}.
+	 * @param ctx the parse tree
+	 */
+	void enterTypecharDeclaration(PostSQLParser.TypecharDeclarationContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code typecharDeclaration}
+	 * labeled alternative in {@link PostSQLParser#typechar}.
+	 * @param ctx the parse tree
+	 */
+	void exitTypecharDeclaration(PostSQLParser.TypecharDeclarationContext ctx);
 }
