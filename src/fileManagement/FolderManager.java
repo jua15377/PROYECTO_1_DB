@@ -7,6 +7,8 @@ package fileManagement;
  * @since   2018-03-28
  */
 
+import org.apache.commons.io.FileUtils;
+
 import java.io.*;
 
 public final class FolderManager {
@@ -79,15 +81,17 @@ public final class FolderManager {
 
         //si el folder existe crea el folder
         if (theDir.exists()) {
-            //System.out.println("BORRANDO base de Datos: " + theDir.getName()+ "\n");
+            System.out.println("BORRANDO base de Datos: " + theDir.getName()+ "\n");
             boolean result = false;
 
             try{
-                theDir.delete();
+                FileUtils.deleteDirectory(theDir);
                 result = true;
             }
             catch(SecurityException se){
                 //handle it
+            } catch (IOException e) {
+                e.printStackTrace();
             }
             if(result) {
                 return "Se BORRO la base de datos: \t" + dataBaseName;
