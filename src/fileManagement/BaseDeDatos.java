@@ -48,13 +48,14 @@ public class BaseDeDatos implements Serializable {
      * @param: String tableName, the name of the Table and File
      * @return  nothing
      * **/
-    public void createTable(String tableName, ArrayList<String> encabezado, ArrayList<String> tipos,ArrayList<String> pk, ArrayList<String> fk ) {
+    public void createTable(String tableName, ArrayList<String> encabezado, ArrayList<String> tipos,ArrayList<String> pk, ArrayList<String> fk , ArrayList<Integer> maximo) {
         String path = FolderManager.createPath(this.name, tableName);
         Tabla tabla = new Tabla(tableName);
         tabla.setNombresDecolumnas(encabezado);
         tabla.setTiposDecolumnas(tipos);
         tabla.setPk(pk);
         tabla.setFk(fk);
+        tabla.setMaxlongitud(maximo);
         FolderManager.toFile(tabla, path);
         tablas.add(tabla);
         nombresDeTablas.add(tableName);

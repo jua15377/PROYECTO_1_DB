@@ -103,4 +103,21 @@ public class Tabla implements Serializable{
     public void setMaxlongitud(ArrayList<Integer> max){
         this.maxlongitud = max;
     }
+
+    /**
+     *
+     * @return retornala cadena con dscripcoin de las columnas de la tabla
+     */
+    public String  getColumnsDescription(){
+        int size = nombresDecolumnas.size();
+        String resul  = "Column\tType\tSizeRestriction\n";
+        for (int i = 0; i < size; i ++){
+            resul += nombresDecolumnas.get(i)+ "\t" +  tiposDecolumnas.get(i) + "\t" ;
+            if(maxlongitud.get(i) == -1){ resul += maxlongitud.get(i) +"\n";}
+            else {resul += "\tN/A\n";}
+        }
+
+        return resul;
+
+    }
 }

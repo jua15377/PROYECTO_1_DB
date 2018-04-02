@@ -246,7 +246,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
             if(!manejador.getASpecificDb(idDb).getNombresDeTablas().contains(id)) {
-                manejador.getASpecificDb(idDb).createTable(id, encabezados, tipos, pk, fk);
+                manejador.getASpecificDb(idDb).createTable(id, encabezados, tipos, pk, fk, maximo);
                 log += "Table \"" + ctx.ID().getText() + "\" created succesfully!.\n";
                 if (verboseEnable) {
                     verbose += "la tabla: " + id + ", fue creada con exito\n";
@@ -611,9 +611,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
             log += "Columns from "+ id + ":\n";
-            for (String s: manejador.getASpecificDb(idDb).getSpecificTable(id).getNombresDecolumnas()){
-                log += s + "\n";
-            }
+            log += manejador.getASpecificDb(idDb).getSpecificTable(id).getColumnsDescription();
 
             if (verboseEnable) { verbose += "Mostrando las tablas de la base de datos" + manejador.getCurrentDB(); }
         }
