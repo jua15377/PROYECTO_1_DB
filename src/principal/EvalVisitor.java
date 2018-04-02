@@ -754,6 +754,31 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Production to identify ID's to be added to a new register**/
     @Override
     public String visitStmvalues(PostSQLParser.StmvaluesContext ctx) {
+
+        /**Revisar si la cantidad de ID's es menor o igual a las columnas de la tabla**/
+        Tabla tablaRef = manejador.getASpecificDb(manejador.getCurrentDB()).getSpecificTable(currentTable);
+        int cantidadColumnas = tablaRef.getNombresDecolumnas().size();
+        int cantProvisional = ctx.getChildCount() -1;
+        int cantStructs = (cantProvisional/2) +1;
+        if(cantidadColumnas >= cantStructs){
+
+            /**Revisar si el tipo de datos es igual a los esperados en columa**/
+            for(int i = 0; i < cantidadColumnas; i++){
+                String struct = ctx.struct(i).getText();
+                String possApos = Character.toString(struct.charAt(0));
+                if(possApos.equals("'")){
+                    String nuevo = struct.substring(1,struct.length() -1);
+                    struct = nuevo;
+                }
+                valuesID.add(struct);
+            }
+        }
+        else{
+            return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Expected " + cantidadColumnas +" values, recieved "+ cantStructs+" values!-\n";
+
+        }
+
+
         return visit(ctx);
     }
 
