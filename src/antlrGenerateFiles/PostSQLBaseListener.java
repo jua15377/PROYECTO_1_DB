@@ -448,30 +448,6 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterInsertInto(PostSQLParser.InsertIntoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitInsertInto(PostSQLParser.InsertIntoContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUpdateDecl(PostSQLParser.UpdateDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUpdateDecl(PostSQLParser.UpdateDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterCondicionDecl(PostSQLParser.CondicionDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -479,30 +455,6 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCondicionDecl(PostSQLParser.CondicionDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterDeleteDecl(PostSQLParser.DeleteDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitDeleteDecl(PostSQLParser.DeleteDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterSelectDecl(PostSQLParser.SelectDeclContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitSelectDecl(PostSQLParser.SelectDeclContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -440,30 +440,6 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitRenameTable(PostSQLParser.RenameTableContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code insertInto}
-	 * labeled alternative in {@link PostSQLParser#insert_into}.
-	 * @param ctx the parse tree
-	 */
-	void enterInsertInto(PostSQLParser.InsertIntoContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code insertInto}
-	 * labeled alternative in {@link PostSQLParser#insert_into}.
-	 * @param ctx the parse tree
-	 */
-	void exitInsertInto(PostSQLParser.InsertIntoContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code updateDecl}
-	 * labeled alternative in {@link PostSQLParser#update}.
-	 * @param ctx the parse tree
-	 */
-	void enterUpdateDecl(PostSQLParser.UpdateDeclContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code updateDecl}
-	 * labeled alternative in {@link PostSQLParser#update}.
-	 * @param ctx the parse tree
-	 */
-	void exitUpdateDecl(PostSQLParser.UpdateDeclContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code condicionDecl}
 	 * labeled alternative in {@link PostSQLParser#condicion}.
 	 * @param ctx the parse tree
@@ -475,30 +451,6 @@ public interface PostSQLListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCondicionDecl(PostSQLParser.CondicionDeclContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code deleteDecl}
-	 * labeled alternative in {@link PostSQLParser#delete}.
-	 * @param ctx the parse tree
-	 */
-	void enterDeleteDecl(PostSQLParser.DeleteDeclContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code deleteDecl}
-	 * labeled alternative in {@link PostSQLParser#delete}.
-	 * @param ctx the parse tree
-	 */
-	void exitDeleteDecl(PostSQLParser.DeleteDeclContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code selectDecl}
-	 * labeled alternative in {@link PostSQLParser#select}.
-	 * @param ctx the parse tree
-	 */
-	void enterSelectDecl(PostSQLParser.SelectDeclContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code selectDecl}
-	 * labeled alternative in {@link PostSQLParser#select}.
-	 * @param ctx the parse tree
-	 */
-	void exitSelectDecl(PostSQLParser.SelectDeclContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code varint}
 	 * labeled alternative in {@link PostSQLParser#varType}.

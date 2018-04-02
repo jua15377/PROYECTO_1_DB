@@ -600,6 +600,16 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return visitChildren(ctx);
     }
 
+    /**
+     * Grammar: inset_into
+     * Method that allows the insert**/
+    @Override
+    public String visitSTMinsertInto(PostSQLParser.STMinsertIntoContext ctx) {
+        return super.visitSTMinsertInto(ctx);
+    }
+
+
+
     public String getError() {
         return error;
     }

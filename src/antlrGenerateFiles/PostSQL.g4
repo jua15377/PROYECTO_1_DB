@@ -29,10 +29,10 @@ unitStatement
 	| 'CREATE' 'TABLE' ID '(' columDeclaration  constraints* ')' 				#STMcreateTable
 	| 'SHOW' 'COLUMNS' 'FROM' ID	                                            #STMshowColumn
     | 'ALTER' 'TABLE' ID action_alter_table  									#STMalterTable
-	| insert_into 																#STMinsertInto
-	| update 																	#STMupdate
-	| delete 																	#STMdelete
-	| select 																	#STMselect
+	| 'INSERT' 'INTO' ID '(' ID (',' ID)* ')' 'VALUES' '(' varType (',' varType)* ')'		            #STMinsertInto
+	| 'UPDATE' ID 'SET' ID '=' '(' varType (',' varType)* ')' 'WHERE' condicion (eq_op condicion)*      #STMupdate
+	| 'DELETE' 'FROM' ID 'WHERE' condicion (eq_op condicion)* 										    #STMdelete
+	| 'SELECT' ('*'|ID (','ID)) 'FROM' ID 'WHERE' condicion 'ORDER' 'BY' ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC')) 	#STMselect
 	;
 
 
@@ -74,28 +74,10 @@ action_alter_table
 	| 'RENAME' 'TO' ID 										                    	#renameTable
 	;
 
-
-
-
-insert_into
-	: 'INSERT' 'INTO' ID '(' ID (',' ID)* ')' 'VALUES' '(' varType (',' varType)* ')'					#insertInto
-	;
-
-update
-	: 'UPDATE' ID 'SET' ID '=' '(' varType (',' varType)* ')' 'WHERE' condicion (eq_op condicion)* 	#updateDecl
-	;
-
 condicion
 	: ID eq_sgn ID																				#condicionDecl
 	;
 
-delete
-	: 'DELETE' 'FROM' ID 'WHERE' condicion (eq_op condicion)* 										#deleteDecl
-	;
-
-select
-	: 'SELECT' ('*'|ID (','ID)) 'FROM' ID 'WHERE' condicion 'ORDER' 'BY' ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC')) 	#selectDecl
-	;
 
 varType
 	: 	'INT'				        #varint
