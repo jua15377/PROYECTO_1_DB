@@ -33,12 +33,21 @@ unitStatement
 	| 'INSERT' 'INTO' ID  ('(' columnsids ')')? 'VALUES' '(' valuesids')'	                  #STMinsertInto
 	| 'UPDATE' ID 'SET' ID '=' '(' varType (',' varType)* ')' 'WHERE' condicion (eq_op condicion)*      #STMupdate
 	| 'DELETE' 'FROM' ID 'WHERE' condicion (eq_op condicion)* 										    #STMdelete
-	| 'SELECT' ('*'|ID (','ID)) 'FROM' ID 'WHERE' condicion 'ORDER' 'BY' ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC')) 	#STMselect
+	| 'SELECT' selectIds 'FROM' ID 'WHERE' condicion 'ORDER' 'BY' ascDscIds                          	#STMselect
 	;
 
 columnsids:
     ID (',' ID)*                                                                                    #stmcolumsid
     ;
+
+selectIds
+    :('*'|ID (','ID))                                                               #STMselectIDS
+    ;
+
+ascDscIds
+    : ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC'))                                   #STMAscDscIDS
+    ;
+
 
 valuesids:
     struct (',' struct)*  #stmvalues

@@ -137,6 +137,20 @@ public interface PostSQLVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStmcolumsid(PostSQLParser.StmcolumsidContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code STMselectIDS}
+	 * labeled alternative in {@link PostSQLParser#selectIds}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTMselectIDS(PostSQLParser.STMselectIDSContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code STMAscDscIDS}
+	 * labeled alternative in {@link PostSQLParser#ascDscIds}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSTMAscDscIDS(PostSQLParser.STMAscDscIDSContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code stmvalues}
 	 * labeled alternative in {@link PostSQLParser#valuesids}.
 	 * @param ctx the parse tree

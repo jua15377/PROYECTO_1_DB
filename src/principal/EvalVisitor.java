@@ -845,6 +845,17 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return ctx.NUM().getText();
     }
 
+    /**
+     * Grammar  'SELECT' ('*'|ID (','ID)) 'FROM' ID 'WHERE' condicion 'ORDER' 'BY' ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC'))
+     * Method to select a specific piece of data if a condition is met**/
+    @Override
+    public String visitSTMselect(PostSQLParser.STMselectContext ctx) {
+
+        return super.visitSTMselect(ctx);
+    }
+
+
+
     public String getError() {
         return error;
     }
