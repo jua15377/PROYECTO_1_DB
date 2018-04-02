@@ -771,12 +771,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
             /**Revisar si el tipo de datos es igual a los esperados en columa**/
             for(int i = 0; i < cantidadColumnas; i++){
-                String struct = ctx.struct(i).getText();
-                String possApos = Character.toString(struct.charAt(0));
-                if(possApos.equals("'")){
-                    String nuevo = struct.substring(1,struct.length() -1);
-                    struct = nuevo;
-                }
+                String struct = visit(ctx.struct(i));
                 valuesID.add(struct);
             }
         }
@@ -790,26 +785,35 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     }
 
     /**
-     * Grammar:
-     * Production of a typ'**/
+     * Grammar: 'DATE'
+     * Production of a type dates**/
     @Override
     public String visitStructdate(PostSQLParser.StructdateContext ctx) {
-        return super.visitStructdate(ctx);
+        return ctx.DATE().getText();
     }
 
+    /**
+     * Grammar: FLT
+     * Production of a type floats **/
     @Override
     public String visitStructflt(PostSQLParser.StructfltContext ctx) {
-        return super.visitStructflt(ctx);
+        return ctx.FLT().getText();
     }
 
+    /**
+     * Grammar: 'ID'
+     * Production of a type Characters**/
     @Override
     public String visitStructid(PostSQLParser.StructidContext ctx) {
-        return super.visitStructid(ctx);
+        return ctx.ID().getText();
     }
 
+    /**
+     * Grammar: NUM
+     * Production of a type integers**/
     @Override
     public String visitStructnum(PostSQLParser.StructnumContext ctx) {
-        return super.visitStructnum(ctx);
+        return ctx.NUM().getText();
     }
 
     public String getError() {
