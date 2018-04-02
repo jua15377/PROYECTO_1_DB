@@ -17,6 +17,8 @@ public class Tabla implements Serializable{
     private ArrayList<String> tiposDecolumnas = new ArrayList<>();
     private ArrayList<String> pk = new ArrayList<>();
     private ArrayList<String> fk = new ArrayList<>();
+    private ArrayList<String> ck = new ArrayList<>();
+    private ArrayList<String> ReferencesFK = new ArrayList<>();
     private Hashtable<Integer, Registro> registros = new Hashtable<>();
     private int contadorDeregistors = 0;
 

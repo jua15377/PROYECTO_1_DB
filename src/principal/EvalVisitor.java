@@ -2,7 +2,10 @@ package principal;
 
 import antlrGenerateFiles.PostSQLBaseVisitor;
 import antlrGenerateFiles.PostSQLParser;
+import fileManagement.BaseDeDatos;
+import fileManagement.FolderManager;
 import fileManagement.Manejador;
+import fileManagement.Tabla;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import java.util.ArrayList;
@@ -53,9 +56,16 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         String id = ctx.ID().getText();
         ArrayList<String> nombres = manejador.getDbsNames();
         if(nombres.contains(id)){
+            int nregistro = 0;
+            for ( BaseDeDatos bd : manejador.getDbs()){
+                for (Tabla t : bd.getTablas()){
+                    nregistro += t.getContadorDeregistors();
+                }
+
+            }
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("User Confirmation");
-            alert.setHeaderText("Drop \""+ctx.ID().getText()+"\" database?");
+            alert.setHeaderText("Drop \""+ctx.ID().getText()+"\" database with " + nregistro + "?");
             alert.setContentText("Choose your option.");
             ButtonType buttonTypeOne = new ButtonType("Yes");
             ButtonType buttonTypeCancel = new ButtonType("No");
@@ -63,6 +73,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == buttonTypeOne){
                 // ... user chose "Drop"
+
+
                 manejador.dropDatabase(id);
                 log += "Database \""+ctx.ID().getText()+"\" has been dropped succesfully!.\n";
                 if(verboseEnable){ verbose += "Base de Datos: " + id + ", eliminada con exito\n";}
@@ -119,9 +131,9 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             log += s + "\n";
         }
         if (verboseEnable){
-            verbose += "Show Databases displayed succesfully";
+            verbose += "Show Databases displayed succesfully\n";
         }
-        return log += "Show done succesfully";
+        return log += "Show done succesfully\n";
 
     }
 
@@ -146,7 +158,6 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         }
         return visitChildren(ctx);
     }
-
     /**
      * Gramar: CREATE TABLE ID ( columnDeclaration constraints*)
      * Method to create a fully flexed table to use, inside a specficic DataBase**/
@@ -371,8 +382,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     
     /**
      * Grammar: SHOW TABLES
-     * Method to show every table from a specific DataBase**/
-
+     * Method to show every table from a specific DataBase
+     * **/
     @Override
     public String visitSTMshowTable(PostSQLParser.STMshowTableContext ctx) {
         //que este seteada la base de datos
@@ -391,11 +402,104 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         return super.visitSTMshowTable(ctx);
     }
 
+    /***
+     * Grammar: ALTER TABLE ID alter_action_table
+     * alter_action_table: ADD COLUMN ID varType constraints*
+     * Method to add a new column with possible constraints to a table*/
+    @Override
+    public String visitAddColumn(PostSQLParser.AddColumnContext ctx) {
+        String idColumn = ctx.ID().getText();
+
+        if(manejador.getCurrentDB()!=null){
+            String idDb = manejador.getCurrentDB();
+            int indexTabla = manejador.getASpecificDb(idDb).getNombresDeTablas().indexOf(currentTable);
+            Tabla tablaRefeerncia = manejador.getASpecificDb(idDb).getTablas().get(indexTabla);
+            //If que revisara si ya existe el nombre de la columna en la tabla
+            if(!tablaRefeerncia.getNombresDecolumnas().contains(ctx.ID().getText())){
+                //Si no existe la columna
+                String type = ctx.varType().getText();
+                tablaRefeerncia.getNombresDecolumnas().add(idColumn);
+                tablaRefeerncia.getTiposDecolumnas().add(type);
+
+                //Revisa Constraints
+                int numero = ctx.getChildCount();
+
+                //Se hara siempre y cuando exista al menos 1 constraint
+                if(numero > 4) {
+                    //Por cada uno de los constraints encontrados
+                    for (int i = 4; i < numero - 1; i++) {
+                        /**
+                         * AQUI VISITRARA A CADA CONSTRAINT
+                         * POR CADA UNO QUE EXISTA**/
+                        visit(ctx.getChild(i));
+                    }
+                }
+                FolderManager.actualizarArchivo(manejador.getCurrentDB(), tablaRefeerncia);
+                log += "Added column succesfully!\n";
+                if(verboseEnable){
+                    verbose += "Columna " + ctx.ID().getText() + " agregada existosamente en tabla " + currentTable + "\n";
+                }
+            }
+            else{
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Column \""+ctx.ID().getText()+"\". already exists!-\n";
+            }
+        }
+        else{
+            return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". No Database selected yet!-\n";
+        }
+
+        return visitChildren(ctx);
+    }
+
+    /***
+     * Grammar: ALTER TABLE ID alter_action_table
+     * alter_action_table: ADD constraints*
+     * Method to add a new constraint to the table*/
+    @Override
+    public String visitAddConstraints(PostSQLParser.AddConstraintsContext ctx) {
+        int numeroConstraints = ctx.getChildCount();
+
+        for(int i = 1; i< numeroConstraints; i++){
+            String identificador = ctx.getChild(i).getChild(1).getText();
+            if(identificador == "PK_"){
+
+            }
+            else if(identificador == "FK_"){
+
+            }
+            else{
+
+            }
+        }
+        return super.visitAddConstraints(ctx);
+    }
+
 
     @Override
     public String visitSTMalterTable(PostSQLParser.STMalterTableContext ctx) {
         currentTable = ctx.ID().getText();
         return super.visitSTMalterTable(ctx);
+    }
+
+    @Override
+    public String visitSTMshowColumn(PostSQLParser.STMshowColumnContext ctx) {
+        String id = ctx.ID().getText();
+        if(manejador.getCurrentDB()!=null){
+            String idDb= manejador.getCurrentDB();
+            log = "Columns from "+ id + ":\n";
+            for (String s: manejador.getASpecificDb(idDb).getSpecificTable(id).getNombresDecolumnas()){
+                log += s + "\n";
+            }
+
+            if (verboseEnable) { verbose += "Mostrando las tablas de la base de datos" + manejador.getCurrentDB(); }
+        }
+        else {
+            return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". No Database selected yet!-\n";
+        }
+
+
+
+        return super.visitSTMshowColumn(ctx);
     }
 
 

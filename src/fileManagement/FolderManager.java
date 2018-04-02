@@ -209,6 +209,13 @@ public final class FolderManager {
 
     }
 
+    /**
+     * Method to rename in the files the TABLE with changed values**/
+    public static void actualizarArchivo(String currentDB, Tabla tablaActualizar){
+        FolderManager.deleteFile(currentDB, tablaActualizar.getName());
+        FolderManager.toFile(tablaActualizar, "DATABASES\\"+currentDB+ "\\" +tablaActualizar.getName()+ ".dsj");
+    }
+
     public static String toString(byte[] bytes) {
         return new String(bytes);
     }
