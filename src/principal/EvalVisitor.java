@@ -8,6 +8,7 @@ import fileManagement.Manejador;
 import fileManagement.Tabla;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import jdk.nashorn.internal.ir.Terminal;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.ArrayList;
@@ -26,6 +27,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     public ArrayList<String> tipos;
     public ArrayList<String> pk ;
     public ArrayList<String> fk;
+    public ArrayList<String> columnsID;
+    public ArrayList<String> valuesID;
 
     /**
      * Grammar: CREATE DATABASE ID
@@ -669,13 +672,13 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Method that allows the insert**/
     @Override
     public String visitSTMinsertInto(PostSQLParser.STMinsertIntoContext ctx) {
-        String idTabla = "";
+        String idTabla = ctx.ID().getText();
+
 
         if(manejador.getCurrentDB()!=null){
             String idDb = manejador.getCurrentDB();
             if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(idTabla)){
-
-
+                currentTable = idTabla;
 
 
 
@@ -697,7 +700,62 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
     }
 
+    /**
+     * Grammar: 'INSERT' 'INTO' ID  ('(' columnsids ')')? 'VALUES' '(' valuesids')'
+     * Specific: ID (',' ID)*
+     * Production for columns in a table**/
+    @Override
+    public String visitStmcolumsid(PostSQLParser.StmcolumsidContext ctx) {
 
+        /**Revisar si la cantidad de ID's es menor o igual a las columnas de la tabla**/
+        Tabla tablaRef = manejador.getASpecificDb(manejador.getCurrentDB()).getSpecificTable(currentTable);
+        int cantidadColumnas = tablaRef.getNombresDecolumnas().size();
+        List<TerminalNode> addedColumns = ctx.ID();
+        int cantidadColumnasRedactadas = addedColumns.size();
+        if(cantidadColumnas >= cantidadColumnasRedactadas){
+
+            /**Reviar si todos los ID's nombrados son columnas**/
+            ArrayList<String> columasTabla = tablaRef.getNombresDecolumnas();
+            boolean contenidas = true;
+            ArrayList<String> noContenidas = new ArrayList<>();
+            for(TerminalNode t: addedColumns){
+                if(!columasTabla.contains(t.getText())){
+                    contenidas = false;
+                    noContenidas.add(t.getText());
+                }
+            }
+            if(contenidas){
+                columnsID = new ArrayList<>();
+                List<TerminalNode> ids = ctx.ID();
+                for(TerminalNode Tn: ids){
+                    columnsID.add(Tn.getText());
+                }
+
+            }
+            else{
+                String noContenidasLiterales = "";
+                for(String s: noContenidas){
+                    noContenidasLiterales = noContenidasLiterales + s + "\n";
+                }
+                return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ "." +
+                        "Columns: " + noContenidasLiterales+" not found!-\n";
+            }
+
+        }
+        else{
+            return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Expected " + cantidadColumnas +" columns, recieved "+ cantidadColumnasRedactadas+" columns!-\n";
+        }
+        return visitChildren(ctx);
+    }
+
+    /**
+     * Grammar:
+     * Specific:
+     * Production to identify ID's to be added to a new register**/
+    @Override
+    public String visitStmvalues(PostSQLParser.StmvaluesContext ctx) {
+        return visit(ctx);
+    }
 
     public String getError() {
         return error;
