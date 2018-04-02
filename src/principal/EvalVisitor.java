@@ -462,18 +462,62 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         for(int i = 1; i< numeroConstraints; i++){
             String identificador = ctx.getChild(i).getChild(1).getText();
             if(identificador == "PK_"){
+                /**
+                 *VisitarConstraint
+                 **/
 
             }
             else if(identificador == "FK_"){
-
+                /**
+                 *VisitarConstraint
+                 **/
             }
             else{
+                /**
+                 *VisitarConstraint
+                 **/
 
             }
         }
         return super.visitAddConstraints(ctx);
     }
 
+    /***
+     * Grammar: ALTER TABLE ID alter_action_table
+     * alter_action_table: DROP COLUMN ID
+     * Method to eliminate a column from a certain table*/
+    @Override
+    public String visitDropColumn(PostSQLParser.DropColumnContext ctx) {
+        String idColumn = ctx.ID().getText();
+
+        if(manejador.getCurrentDB()!=null){
+            String idDb = manejador.getCurrentDB();
+            int indexTabla = manejador.getASpecificDb(idDb).getNombresDeTablas().indexOf(currentTable);
+            Tabla tablaReferncia = manejador.getASpecificDb(idDb).getTablas().get(indexTabla);
+            //If que revisara si ya existe el nombre de la columna en la tabla
+            if(tablaReferncia.getNombresDecolumnas().contains(idColumn)){
+                //Si existe la columna
+
+                int indexColumn = tablaReferncia.getNombresDecolumnas().indexOf(idColumn);
+                tablaReferncia.getTiposDecolumnas().remove(indexColumn);
+                tablaReferncia.getNombresDecolumnas().remove(indexColumn);
+
+                FolderManager.actualizarArchivo(manejador.getCurrentDB(), tablaReferncia);
+                log += "Column eliminated succesfully!\n";
+                if(verboseEnable){
+                    verbose += "Columna " + ctx.ID().getText() + " eliminada existosamente en tabla " + currentTable + "\n";
+                }
+            }
+            else{
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Column \""+ctx.ID().getText()+"\". doesn't exists!-\n";
+            }
+        }
+        else{
+            return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". No Database selected yet!-\n";
+        }
+
+        return visitChildren(ctx);
+    }
 
     @Override
     public String visitSTMalterTable(PostSQLParser.STMalterTableContext ctx) {
@@ -486,7 +530,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         String id = ctx.ID().getText();
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
-            log = "Columns from "+ id + ":\n";
+            log += "Columns from "+ id + ":\n";
             for (String s: manejador.getASpecificDb(idDb).getSpecificTable(id).getNombresDecolumnas()){
                 log += s + "\n";
             }
