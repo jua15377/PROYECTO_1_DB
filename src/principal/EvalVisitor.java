@@ -669,7 +669,34 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Method that allows the insert**/
     @Override
     public String visitSTMinsertInto(PostSQLParser.STMinsertIntoContext ctx) {
-        return super.visitSTMinsertInto(ctx);
+        List<TerminalNode> ids = ctx.ID();
+        String idTabla = ids.get(0).getText();
+        int cantidadID = ids.size();
+
+        if(manejador.getCurrentDB()!=null){
+            String idDb = manejador.getCurrentDB();
+            if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(idTabla)){
+
+
+
+
+
+                log += "Table \"" + currentTable + "\" renamed succesfully!.\n";
+                if (verboseEnable) {
+                    verbose += "La tabla: " + currentTable + ", fue renombrada a " + idTabla+ " con exito!\n";
+                }
+            }
+            else{
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Table \""+currentTable+"\". doesn't exist!-\n";
+            }
+        }
+        else{
+            return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+idTabla+"\". No Database selected yet!-\n";
+        }
+
+        return visitChildren(ctx);
+
+
     }
 
 

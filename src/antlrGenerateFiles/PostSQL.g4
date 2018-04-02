@@ -18,18 +18,18 @@ program
     ;
 
 unitStatement
-	: 'CREATE' 'DATABASE' ID													#STMcreateDB
-	| 'DROP' 'DATABASE' ID 														#STMdropDB
-	| 'SHOW' 'DATABASES' 														#STMshowDB
-    | 'SHOW' 'TABLES'															#STMshowTable
-	| 'USE' 'DATABASE' ID                                                       #STMuseDB
-	| 'ALTER' 'DATABASE' ID 'RENAME' 'TO' ID                                    #STMalterDB
-	| 'DROP' 'TABLE' ID     													#STMdropTable
-	| 'FUCK' 'DATABASE' 														#STMfuckTable
-	| 'CREATE' 'TABLE' ID '(' columDeclaration  constraints* ')' 				#STMcreateTable
-	| 'SHOW' 'COLUMNS' 'FROM' ID	                                            #STMshowColumn
-    | 'ALTER' 'TABLE' ID action_alter_table  									#STMalterTable
-	| 'INSERT' 'INTO' ID '(' ID (',' ID)* ')' 'VALUES' '(' varType (',' varType)* ')'		            #STMinsertInto
+	: 'CREATE' 'DATABASE' ID													                        #STMcreateDB
+	| 'DROP' 'DATABASE' ID 														                        #STMdropDB
+	| 'SHOW' 'DATABASES' 														                        #STMshowDB
+    | 'SHOW' 'TABLES'															                        #STMshowTable
+	| 'USE' 'DATABASE' ID                                                                               #STMuseDB
+	| 'ALTER' 'DATABASE' ID 'RENAME' 'TO' ID                                                            #STMalterDB
+	| 'DROP' 'TABLE' ID     													                        #STMdropTable
+	| 'FUCK' 'DATABASE' 														                        #STMfuckTable
+	| 'CREATE' 'TABLE' ID '(' columDeclaration  constraints* ')' 				                        #STMcreateTable
+	| 'SHOW' 'COLUMNS' 'FROM' ID	                                                                    #STMshowColumn
+    | 'ALTER' 'TABLE' ID action_alter_table  									                        #STMalterTable
+	| 'INSERT' 'INTO' ID ('(' ID (',' ID)* ')')? 'VALUES' '(' varType (',' varType)* ')'	                  #STMinsertInto
 	| 'UPDATE' ID 'SET' ID '=' '(' varType (',' varType)* ')' 'WHERE' condicion (eq_op condicion)*      #STMupdate
 	| 'DELETE' 'FROM' ID 'WHERE' condicion (eq_op condicion)* 										    #STMdelete
 	| 'SELECT' ('*'|ID (','ID)) 'FROM' ID 'WHERE' condicion 'ORDER' 'BY' ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC')) 	#STMselect
@@ -73,6 +73,7 @@ action_alter_table
 	| 'DROP' 'CONSTRAINT' ID 														#dropConstraints
 	| 'RENAME' 'TO' ID 										                    	#renameTable
 	;
+
 
 condicion
 	: ID eq_sgn ID																				#condicionDecl
