@@ -1,5 +1,13 @@
 package GUI;
 
+/*
+ * Controller class for the GUI .fxml file.
+ * @author  Jonnathan Juarez, Diego Castaneda, Sebastian Galindo
+ * @version 1.0
+ * @since   2018-03-28
+ */
+
+
 import antlrGenerateFiles.PostSQLLexer;
 import antlrGenerateFiles.PostSQLParser;
 import antlrGenerateFiles.ThrowingErrorListener;
@@ -39,6 +47,11 @@ public class Controller implements Initializable{
 
     Stage primaryStage;
 
+    /**
+     * Controller
+     * COnstructor for class
+     * @param: Stage primaryStage
+     * **/
     public Controller(Stage primaryStage) {
         this.primaryStage = primaryStage;
     }
@@ -67,6 +80,11 @@ public class Controller implements Initializable{
     Image unkIcon = new Image(getClass().getResourceAsStream("/Icons/unk.png"));
     Image dbIcon = new Image(getClass().getResourceAsStream("/Icons/db.png"));
 
+    /**
+     * initialize
+     * Initializes the controller for the GUI.
+     * @param: URL location, ResourceBundle resources
+     * **/
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         initiateDBM();
@@ -89,6 +107,10 @@ public class Controller implements Initializable{
 
     }
 
+    /**
+     * EventHandler
+     * Shows a closeConfirm dialog to check if the user really wants to exit.
+     * **/
     private EventHandler<WindowEvent> confirmCloseEventHandler = event -> {
         Alert closeConfirmation = new Alert(
                 Alert.AlertType.CONFIRMATION,
@@ -115,7 +137,10 @@ public class Controller implements Initializable{
         }
     };
 
-
+    /**
+     * conectar
+     * Initializes disable values for the MenuItems in the GUI
+     * **/
     public void conectar(){
         runMI.setDisable(false);
         disconnectMI.setDisable(false);
@@ -138,6 +163,9 @@ public class Controller implements Initializable{
 
     }
 
+    /**
+     * Method that checks if the path DATABASES exist, if not it creates the directory.
+     */
     public void initiateDBM(){
         File theDir = new File("DATABASES");
 
@@ -159,6 +187,9 @@ public class Controller implements Initializable{
         }
     }
 
+    /**
+     * Method desconectar set disable values of MenuItems to false so no action can be done.
+     */
     public void desconectar(){
         runMI.setDisable(true);
         connectMI.setDisable(false);
@@ -174,6 +205,9 @@ public class Controller implements Initializable{
         eval.manejador.saveState();
     }
 
+    /**
+     * Refresh method, rebuilds the directory tree displayed in the TreeView
+     */
     public void refresh(){
         String current ="";
         try {
@@ -184,6 +218,9 @@ public class Controller implements Initializable{
         treeView.setRoot(getNodesForDirectory(new File(current)));
     }
 
+    /**
+     * loadQuerys method calls a FileChooser to import querys from a .txt or .sql file.
+     */
     public void loadQuerys(){
         FileChooser fileChooser = new FileChooser();
 
@@ -203,6 +240,9 @@ public class Controller implements Initializable{
 
     }
 
+    /**
+     * fontSize method displays a TextInputDialog so the user can introduce the desired fontSize for the TextAreas.
+     */
     public void fontSize(){
         TextInputDialog dialog = new TextInputDialog(""+fontSize);
         dialog.setTitle("Font Size");
@@ -233,6 +273,12 @@ public class Controller implements Initializable{
         }
     }
 
+    /**
+     * errorDialog method show a Alert dialog that displays the message in text, and sets the header and window title.
+     * @param title
+     * @param header
+     * @param text
+     */
     public void errorDialog(String title, String header, String text) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -241,6 +287,9 @@ public class Controller implements Initializable{
         alert.showAndWait();
     }
 
+    /**
+     * run method executes the compilation method with the input of the CodeArea. Then refreshes the TreeView.
+     */
     public void run(){
         eval.setError("");
         eval.log = "";
@@ -250,6 +299,10 @@ public class Controller implements Initializable{
         refresh();
     }
 
+    /**
+     * Executes the parsing and lexing process of the input given in expression and generates a parseTree and its tokens.
+     * @param expression
+     */
     public void compile(String expression) {
 
         try {
@@ -286,7 +339,9 @@ public class Controller implements Initializable{
     }
 
 
-
+    /**
+     * Initializes a fileChooser to select a directory and creates a .txt or .sql file in it.
+     */
     public void saveQuerys(){
         FileChooser fileChooser = new FileChooser();
 
@@ -305,6 +360,11 @@ public class Controller implements Initializable{
         }
     }
 
+    /**
+     * Writes a file with the content given in the file directory given.
+     * @param content
+     * @param file
+     */
     private void SaveFile(String content, File file){
         try {
             FileWriter fileWriter;
@@ -318,6 +378,11 @@ public class Controller implements Initializable{
 
     }
 
+    /**
+     * Creates a buffer that readesthe content of a file and returns a String with its content.
+     * @param file
+     * @return Content of file
+     */
     private String readFile(File file){
         StringBuilder stringBuffer = new StringBuilder();
         BufferedReader bufferedReader = null;
@@ -348,7 +413,9 @@ public class Controller implements Initializable{
         return cadena;
     }
 
-
+    /**
+     * Initializes and displays a new Scene of the about MenuItem.
+     */
     public void about(){
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("aboutController.fxml"));
@@ -361,7 +428,11 @@ public class Controller implements Initializable{
         }
     }
 
-
+    /**
+     * Recursively calls and store the name of the children of a file directory.
+     * @param directory
+     * @return Generated root fot the TreeView
+     */
     public TreeItem<String> getNodesForDirectory(File directory) { //Returns a TreeItem representation of the specified directory
         TreeItem<String> root = new TreeItem<String>(directory.getName(), new ImageView(dbIcon));
         root.setExpanded(true);
@@ -386,15 +457,15 @@ public class Controller implements Initializable{
         return root;
     }
 
+    /**
+     * Gets the file extension of a specific file.
+     * @param file
+     * @return String containing the extension of a file.
+     */
     private static String getFileExtension(File file) {
         String fileName = file.getName();
         if(fileName.lastIndexOf(".") != -1 && fileName.lastIndexOf(".") != 0)
             return fileName.substring(fileName.lastIndexOf(".")+1);
         else return "";
     }
-
-
-
-
-
 }

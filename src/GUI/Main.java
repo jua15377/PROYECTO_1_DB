@@ -1,5 +1,12 @@
 package GUI;
 
+/*
+ * Main class that initiates the GUI for the DBMS. It creates a new Scene and it´s displayed.
+ * @author  Jonnathan Juarez, Diego Castaneda, Sebastian Galindo
+ * @version 1.0
+ * @since   2018-03-28
+ */
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,9 +15,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
+    /**
+     * start
+     * Creates a new stage of javaFX and displays a new Scene
+     * @param: primaryStage
+     * @return void
+     * **/
     @Override
     public void start(Stage primaryStage) throws Exception{
-
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("sample.fxml"));
         Controller controller = new Controller(primaryStage);

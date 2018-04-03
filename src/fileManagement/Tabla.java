@@ -24,38 +24,69 @@ public class Tabla implements Serializable{
     private Hashtable<Integer, Registro> registros = new Hashtable<>();
     private int contadorDeregistors = 0;
 
+    /**
+     * Tabla constructor
+     * @param name
+     */
     public Tabla(String name){
         this.name = name;
     }
 
+    /**
+     * Adds a register to the table
+     * @param r
+     */
     public void addRegistro(Registro r){
         registros.put(contadorDeregistors, r);
         contadorDeregistors ++;
 
     }
 
+    /**
+     * toString method of Tabla
+     * @return String
+     */
     @Override
     public String toString() {
         return "soy una tabla y me llamo " + name +"\n" + registros;
     }
 
-
+    /**
+     *
+     * @return Name of the table
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Sets a the name of the table.
+     * @param name
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Returns the names of all columms saved in the table.
+     * @return ArrayList<String>
+     */
     public ArrayList<String> getNombresDecolumnas() {
         return nombresDecolumnas;
     }
 
+    /**
+     * Sets names for all the columns
+     * @param nombresDecolumnas
+     */
     public void setNombresDecolumnas(ArrayList<String> nombresDecolumnas) {
         this.nombresDecolumnas = nombresDecolumnas;
     }
 
+    /**
+     * Returns arraylist of string of all the types of the table columns.
+     * @return
+     */
     public ArrayList<String> getTiposDecolumnas() {
         return tiposDecolumnas;
     }

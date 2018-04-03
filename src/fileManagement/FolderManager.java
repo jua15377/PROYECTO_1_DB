@@ -1,21 +1,24 @@
 package fileManagement;
 
 /*
- * Clase encargada  lo relacionado al mejo de archivos
+ * Class that handles files and folders.
  * @author  Jonnathan Juarez
  * @version 1.0
  * @since   2018-03-28
  */
 
 import org.apache.commons.io.FileUtils;
-
 import java.io.*;
 
 public final class FolderManager {
     private String dataBaseName;
     private String filepath;
 
-
+    /**
+     * Creates a new directory with the given name
+     * @param dataBaseName
+     * @return Message
+     */
     public static String createFolder(String dataBaseName){
         File theDir = new File("DATABASES\\"+dataBaseName);
 
@@ -44,7 +47,12 @@ public final class FolderManager {
         return "no debe de pasar";
     }
 
-
+    /**
+     * Renames the directory of a database. Replaces viejoNombre with nuevoNombre
+     * @param viejoNombre
+     * @param nuevoNombre
+     * @return Status Message
+     */
     public static String renameFolder(String viejoNombre, String nuevoNombre){
         File dir = new File("DATABASES\\"+ viejoNombre);
         File newName = new File("DATABASES\\"+nuevoNombre);
@@ -75,7 +83,11 @@ public final class FolderManager {
 
     }
 
-
+    /**
+     * Deletes the directory of the given dataBaseName
+     * @param dataBaseName
+     * @return Status Message
+     */
     public static String deleteFolder(String dataBaseName){
         File theDir = new File("DATABASES\\"+dataBaseName);
 
@@ -106,6 +118,12 @@ public final class FolderManager {
         return "no debe de pasar";
     }
 
+    /**
+     * Deletes a file of the database
+     * @param dataBaseName
+     * @param tabla
+     * @return Status Message
+     */
     public static String deleteFile(String dataBaseName, String tabla){
         File theTable = new File("DATABASES\\"+dataBaseName + "\\" +tabla + ".dsj");
 
@@ -134,6 +152,10 @@ public final class FolderManager {
         return "no debe de pasar";
     }
 
+    /**
+     * Deletes master.dsj file to rebuild it with the new changes to the database.
+     * @return Status Message
+     */
     public static String deleteMaster(){
         File theTable = new File("DATABASES\\"+"MASTER.dsj");
 
@@ -210,18 +232,32 @@ public final class FolderManager {
         return obj;
     }
 
+    /**
+     * Creates a path for a table in a specific database directory.
+     * @param dataBaseName
+     * @param tableName
+     * @return Status Message
+     */
     public static String createPath(String dataBaseName, String tableName){
         return  "DATABASES\\" + dataBaseName + "\\" + tableName + ".dsj";
 
     }
 
     /**
-     * Method to rename in the files the TABLE with changed values**/
+     * Method to rename in the files the TABLE with changed values
+     * @param currentDB
+     * @param tablaActualizar
+     */
     public static void actualizarArchivo(String currentDB, Tabla tablaActualizar){
         FolderManager.deleteFile(currentDB, tablaActualizar.getName());
         FolderManager.toFile(tablaActualizar, "DATABASES\\"+currentDB+ "\\" +tablaActualizar.getName()+ ".dsj");
     }
 
+    /**
+     * Generates string
+     * @param bytes
+     * @return Status Meesage
+     */
     public static String toString(byte[] bytes) {
         return new String(bytes);
     }

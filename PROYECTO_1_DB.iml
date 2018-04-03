@@ -8,12 +8,10 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="antlr-4.7.1-complete" level="project" />
-    <orderEntry type="library" name="richtextfx-fat-0.8.2" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/JavaLib/antlr-4.7.1-complete.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/antlr-4.7.1-complete.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -22,7 +20,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://C:/Javalib/richtextfx-fat-0.8.2.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/richtextfx-fat-0.8.2.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -31,70 +29,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$MODULE_DIR$/../richtextfx-fat-0.8.2.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES />
-        <JAVADOC>
-          <root url="jar://C:/Javalib/commons-io-2.6-bin.zip!/commons-io-2.6/docs" />
-        </JAVADOC>
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/javaLib/commons-io-2.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/Downloads/commons-io-2.6/commons-io-2.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../commons-io-2.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://C:/Javalib/commons-io-2.6/commons-io-2.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../jar/commons-io-2.6.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$MODULE_DIR$/../../../jar/richtextfx-fat-0.8.2.jar!/" />
+          <root url="jar://$USER_HOME$/Downloads/commons-io-2.6.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -1,5 +1,12 @@
 package GUI;
 
+/*
+ * Class that controlls all actions os the aboutController.fxml file.
+ * @author  Jonnathan Juarez
+ * @version 1.0
+ * @since   2018-03-28
+ */
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,6 +23,9 @@ public class AboutController {
 
     @FXML Hyperlink link;
 
+    /**
+     * Creates a Hyperlink to display the project github repository.
+     */
     public void hiperLink(){
         if(Desktop.isDesktopSupported())
         {

@@ -252,10 +252,18 @@ public class Manejador implements Serializable {
 
     }
 
+    /**
+     * Gets and returns all the names of the created databases
+     * @return
+     */
     public ArrayList<String> getDbsNames() {
         return dbsNames;
     }
 
+    /**
+     * Gets and return all the databases objects.
+     * @return
+     */
     public ArrayList<BaseDeDatos> getDbs() {
         return dbs;
     }

@@ -1,10 +1,4 @@
 package fileManagement;
-/*
-* clase que contiene las tablas y metodos para alterar sus valores.
-* @author  Jonnathan Juarez, Diego Castaneda, Sebastian Galindo
-* @version 1.0
-* @since   2018-03-28
-*/
 
 import java.io.File;
 import java.io.Serializable;
@@ -147,21 +141,6 @@ public class BaseDeDatos implements Serializable {
 
     }
 
-    public void addColumn(String nombreTabla, ArrayList<String> constraints){
-
-    }
-
-    public void addConstraint(){
-
-    }
-
-    public void dropColumn(){
-
-    }
-
-    public void dropConstraint(){
-
-    }
 
     public String showColumn(String nombre ){
         String path = FolderManager.createPath (this.name, nombre);
@@ -182,6 +161,11 @@ public class BaseDeDatos implements Serializable {
 
     }
 
+    /**
+     * Searches for a table in the current database by its name
+     * @param tabla
+     * @return Object type Tabla
+     */
     public Tabla getSpecificTable(String tabla){
         int indice = nombresDeTablas.indexOf(tabla);
         return tablas.get(indice);

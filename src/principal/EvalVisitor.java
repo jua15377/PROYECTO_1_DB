@@ -9,7 +9,6 @@ import fileManagement.Tabla;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import org.antlr.v4.runtime.tree.TerminalNode;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -214,9 +213,31 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         }
         else {
             //parte 0 = tipo  parte1 = id
-            String[] partes = result.split(" ");
-            encabezados.add(partes[1]);
-            tipos.add(partes[0]);
+            if(result.contains("INT")){
+                encabezados.add(result.substring(0,result.length()-3));
+                tipos.add("int");
+                maximo.add(-1);
+            }
+            else if(result.contains("CHAR")){
+                int indicedeChar  = result.indexOf("CHAR(");
+                encabezados.add(result.substring(0,indicedeChar));
+                tipos.add("char");
+                String cant =  result.substring(result.indexOf("(")+1,result.indexOf(")"));
+                maximo.add(Integer.parseInt(cant));
+            }
+            else if(result.contains("FLOAT")){
+                encabezados.add(result.substring(0,result.length()-5));
+                tipos.add("float");
+                maximo.add(-1);
+            }
+            else if(result.contains("DATE")){
+                encabezados.add(result.substring(0,result.length()-4));
+                tipos.add("date");
+                maximo.add(10);
+            }
+            else {
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". Expected INT, DATE, FLOAT or CHAR-\n";
+            }
         }
 
         //Checking if it has constraints
@@ -236,6 +257,13 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
                     }
                 }else if(ctx.constraints(i).getText().contains("FOREIGN")){
                     //String foreignkeys
+                    String foreignKeys = visit(ctx.constraints(i));
+                    String[] fks = foreignKeys.split(", ");
+                    for (int j=0;j<fks.length;j++) {
+                        System.out.println(fks[j]);
+                            fk.add(fks[j]);
+
+                    }
                 }else if(ctx.constraints(i).getText().contains("CHECK")){
 
                 }else{
