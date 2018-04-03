@@ -2,10 +2,7 @@ package principal;
 
 import antlrGenerateFiles.PostSQLBaseVisitor;
 import antlrGenerateFiles.PostSQLParser;
-import fileManagement.BaseDeDatos;
-import fileManagement.FolderManager;
-import fileManagement.Manejador;
-import fileManagement.Tabla;
+import fileManagement.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import org.antlr.v4.runtime.tree.TerminalNode;
@@ -26,8 +23,10 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     public ArrayList<String> tipos;
     public ArrayList<String> pk ;
     public ArrayList<String> fk;
-    public ArrayList<String> columnsID;
-    public ArrayList<String> valuesID;
+    public ArrayList<String> columnsID = new ArrayList<>();
+    public ArrayList<String> valuesID = new ArrayList<>();
+    public ArrayList<String> selectID = new ArrayList<>();
+    public ArrayList<String> AscID = new ArrayList<>();
     public ArrayList<Integer> maximo;
 
     /**
@@ -742,6 +741,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Production for columns in a table**/
     @Override
     public String visitStmcolumsid(PostSQLParser.StmcolumsidContext ctx) {
+        columnsID.clear();
 
         /**Revisar si la cantidad de ID's es menor o igual a las columnas de la tabla**/
         Tabla tablaRef = manejador.getASpecificDb(manejador.getCurrentDB()).getSpecificTable(currentTable);
@@ -790,6 +790,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Production to identify ID's to be added to a new register**/
     @Override
     public String visitStmvalues(PostSQLParser.StmvaluesContext ctx) {
+        valuesID.clear();
 
         /**Revisar si la cantidad de ID's es menor o igual a las columnas de la tabla**/
         Tabla tablaRef = manejador.getASpecificDb(manejador.getCurrentDB()).getSpecificTable(currentTable);
@@ -850,11 +851,87 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
      * Method to select a specific piece of data if a condition is met**/
     @Override
     public String visitSTMselect(PostSQLParser.STMselectContext ctx) {
+        String idTabla = ctx.ID().getText();
+
+        if(manejador.getCurrentDB()!=null){
+            String idDb = manejador.getCurrentDB();
+            if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(currentTable)){
+                currentTable = idTabla;
+                visit(ctx.selectIds());
+                visit(ctx.ascDscIds());
+
+                Tabla tablaRef = manejador.getASpecificDb(idDb).getSpecificTable(currentTable);
+                ArrayList<String> nuevasColums = new ArrayList<>();
+                ArrayList<Integer> indices = new ArrayList<>();
+
+                if(!selectID.contains("*")) {
+                    for (String s : selectID) {
+                        int index = tablaRef.getNombresDecolumnas().indexOf(s);
+                        nuevasColums.add(tablaRef.getNombresDecolumnas().get(index));
+                        indices.add(index);
+                    }
+
+                    log += nuevasColums + "\n";
+
+                    for (int i = 0; i < tablaRef.getRegistros().size(); i++) {
+                        ArrayList<String> datos = new ArrayList<>();
+                        Registro prueba = tablaRef.getRegistros().get(i);
+                        for (int x : indices) {
+                            datos.add(prueba.valores.get(x));
+                        }
+                        log += datos + "\n";
+
+                    }
+                }
+                else{
+
+
+                }
+
+
+                if (verboseEnable) {
+                    verbose += "Select hecho con exito: !\n";
+                }
+                currentTable = idTabla;
+            }
+            else{
+                return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Table \""+currentTable+"\". doesn't exist!-\n";
+            }
+        }
+        else{
+            return error += "Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ". \""+ctx.ID().getText()+"\". No Database selected yet!-\n";
+        }
+
+
+
+
 
         return super.visitSTMselect(ctx);
     }
 
+    /**
+     * Grammar: ('*'|ID (','ID))
+     * Method to separate specific ID's in select**/
+    @Override
+    public String visitSTMselectIDS(PostSQLParser.STMselectIDSContext ctx) {
+        List<TerminalNode> temporal = ctx.ID();
+        for(TerminalNode n: temporal){
+            selectID.add(n.getText());
+        }
+        return super.visitSTMselectIDS(ctx);
+    }
 
+    /***
+     * Grammar: ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC'))
+     * Method to separate specific ID's in select*/
+    @Override
+    public String visitSTMAscDscIDS(PostSQLParser.STMAscDscIDSContext ctx) {
+        List<TerminalNode> temporal = ctx.ID();
+        for(TerminalNode n: temporal){
+            AscID.add(n.getText());
+        }
+        return super.visitSTMAscDscIDS(ctx);
+    }
 
     public String getError() {
         return error;
