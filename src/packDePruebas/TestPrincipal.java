@@ -34,22 +34,22 @@ public class TestPrincipal
 //        manejador1.generateMetada();
 
 
-        Tabla tabla = new Tabla("latablaDeDiego");
-        String[] tipos1 = {"char","char","char","char"};
-        ArrayList<String> tipos2= new ArrayList<>(Arrays.asList(tipos1));
-        for (int i = 0; i< 300000; i++){
-            ArrayList<String> arr = new ArrayList<>();
-            arr.add("val1");
-            arr.add("val2");
-            arr.add("val3");
-            arr.add("val3");
-            arr.add("val4");
-            arr.add("val4");
-            Registro r = new Registro(arr, tipos2);
-            tabla.addRegistro(r);
-        }
-        //System.out.println(tabla.toString());
-        FolderManager.toFile(tabla,tabla.getName());
+//        Tabla tabla = new Tabla("latablaDeDiego");
+//        String[] tipos1 = {"char","char","char","char"};
+//        ArrayList<String> tipos2= new ArrayList<>(Arrays.asList(tipos1));
+//        for (int i = 0; i< 300000; i++){
+//            ArrayList<String> arr = new ArrayList<>();
+//            arr.add("val1");
+//            arr.add("val2");
+//            arr.add("val3");
+//            arr.add("val3");
+//            arr.add("val4");
+//            arr.add("val4");
+//            //Registro r = new Registro(arr, tipos2);
+//            //tabla.addRegistro(r);
+//        }
+//        //System.out.println(tabla.toString());
+//        FolderManager.toFile(tabla,tabla.getName());
 
 
 

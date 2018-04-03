@@ -28,7 +28,18 @@ public class Tabla implements Serializable{
         this.name = name;
     }
 
-    public void addRegistro(Registro r){
+    public void addRegistro(ArrayList<String> nombres, ArrayList<String> valores){
+        ArrayList<String> resultante = new ArrayList<>();
+        for (int i = 0; i < nombresDecolumnas.size(); i++ ){
+            resultante.add(null);
+        }
+        int contadordeVal =0;
+        for (String str: nombres){
+            int indice = nombresDecolumnas.indexOf(str);
+            resultante.set(indice, valores.get(contadordeVal));
+            contadordeVal++;
+        }
+        Registro r = new Registro(resultante);
         registros.put(contadorDeregistors, r);
         contadorDeregistors ++;
 
@@ -102,5 +113,22 @@ public class Tabla implements Serializable{
 
     public void setMaxlongitud(ArrayList<Integer> max){
         this.maxlongitud = max;
+    }
+
+    /**
+     *
+     * @return retornala cadena con dscripcoin de las columnas de la tabla
+     */
+    public String  getColumnsDescription(){
+        int size = nombresDecolumnas.size();
+        String resul  = "Column\tType\tSizeRestriction\n";
+        for (int i = 0; i < size; i ++){
+            resul += nombresDecolumnas.get(i)+ "\t" +  tiposDecolumnas.get(i) + "\t" ;
+            if(maxlongitud.get(i) == -1){ resul += maxlongitud.get(i) +"\n";}
+            else {resul += "\tN/A\n";}
+        }
+
+        return resul;
+
     }
 }
