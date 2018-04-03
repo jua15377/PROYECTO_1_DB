@@ -14,14 +14,9 @@ public class Registro implements Serializable {
     public ArrayList<String> valores;
     public ArrayList<String> tipo;
 
-    /**
-     * Registro class constructor
-     * @param valores
-     * @param tipos
-     */
-    public Registro(ArrayList<String> valores, ArrayList<String> tipos){
+    public Registro(ArrayList<String> valores){
         this.valores = valores;
-        this.tipo = tipos;
+
     }
 
     /**

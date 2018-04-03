@@ -232,6 +232,30 @@ public class PostSQLBaseListener implements PostSQLListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterSTMselectIDS(PostSQLParser.STMselectIDSContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSTMselectIDS(PostSQLParser.STMselectIDSContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterSTMAscDscIDS(PostSQLParser.STMAscDscIDSContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitSTMAscDscIDS(PostSQLParser.STMAscDscIDSContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterStmvalues(PostSQLParser.StmvaluesContext ctx) { }
 	/**
 	 * {@inheritDoc}

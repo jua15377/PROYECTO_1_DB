@@ -274,7 +274,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
             if(!manejador.getASpecificDb(idDb).getNombresDeTablas().contains(id)) {
-                manejador.getASpecificDb(idDb).createTable(id, encabezados, tipos, pk, fk);
+                manejador.getASpecificDb(idDb).createTable(id, encabezados, tipos, pk, fk, maximo);
                 log += "Table \"" + ctx.ID().getText() + "\" created succesfully!.\n";
                 if (verboseEnable) {
                     verbose += "la tabla: " + id + ", fue creada con exito\n";
@@ -639,9 +639,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
         if(manejador.getCurrentDB()!=null){
             String idDb= manejador.getCurrentDB();
             log += "Columns from "+ id + ":\n";
-            for (String s: manejador.getASpecificDb(idDb).getSpecificTable(id).getNombresDecolumnas()){
-                log += s + "\n";
-            }
+            log += manejador.getASpecificDb(idDb).getSpecificTable(id).getColumnsDescription();
 
             if (verboseEnable) { verbose += "Mostrando las tablas de la base de datos" + manejador.getCurrentDB(); }
         }
@@ -714,6 +712,36 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             String idDb = manejador.getCurrentDB();
             if(manejador.getASpecificDb(idDb).getNombresDeTablas().contains(idTabla)){
                 currentTable = idTabla;
+                Tabla tablaRef = manejador.getASpecificDb(idDb).getSpecificTable(currentTable);
+                visit(ctx.columnsids());
+                visit(ctx.valuesids());
+
+                if(columnsID.size() >= valuesID.size()){
+                    tablaRef.addRegistro(columnsID,valuesID);
+                    FolderManager.actualizarArchivo(idDb,tablaRef);
+                    /*int sizeColums = columnsID.size();
+                    int sizeValues = valuesID.size();
+
+                    ArrayList<String> tipoRegistros = new ArrayList<>();
+                    ArrayList<String> valuesRegistros = new ArrayList<>();
+
+                    for(String s: tablaRef.getNombresDecolumnas()){
+                        if(columnsID.contains(s)){
+
+                        }
+                        else{
+                            tipoRegistros.add("NULL");
+                            valuesRegistros.add("NULL");
+                        }
+                    }*/
+
+
+
+
+                }
+                else{
+                    return error+="Error in line:" + ctx.getStart().getLine()+", "+ ctx.getStart().getCharPositionInLine()+ ".Columns declared: " +columnsID.size()+", Values Declared: "+ valuesID.size()+". Values more than ID's!-\n";
+                }
 
 
 
@@ -784,8 +812,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     }
 
     /**
-     * Grammar:
-     * Specific:
+     * Grammar: INSERT INTO ID ('(' columnsids ')')? 'VALUES' '(' valuesids')'
+     * Specific: struct (',' struct)
      * Production to identify ID's to be added to a new register**/
     @Override
     public String visitStmvalues(PostSQLParser.StmvaluesContext ctx) {
@@ -800,11 +828,6 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
             /**Revisar si el tipo de datos es igual a los esperados en columa**/
             for(int i = 0; i < cantidadColumnas; i++){
                 String struct = ctx.struct(i).getText();
-                String possApos = Character.toString(struct.charAt(0));
-                if(possApos.equals("'")){
-                    String nuevo = struct.substring(1,struct.length() -1);
-                    struct = nuevo;
-                }
                 valuesID.add(struct);
             }
         }
@@ -818,27 +841,47 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
     }
 
     /**
-     * Grammar:
-     * Production of a typ'**/
+     * Grammar: 'DATE'
+     * Production of a type dates**/
     @Override
     public String visitStructdate(PostSQLParser.StructdateContext ctx) {
-        return super.visitStructdate(ctx);
+        return ctx.DATE().getText();
     }
 
+    /**
+     * Grammar: FLT
+     * Production of a type floats **/
     @Override
     public String visitStructflt(PostSQLParser.StructfltContext ctx) {
-        return super.visitStructflt(ctx);
+        return ctx.FLT().getText();
     }
 
+    /**
+     * Grammar: 'ID'
+     * Production of a type Characters**/
     @Override
     public String visitStructid(PostSQLParser.StructidContext ctx) {
-        return super.visitStructid(ctx);
+        return ctx.ID().getText();
     }
 
+    /**
+     * Grammar: NUM
+     * Production of a type integers**/
     @Override
     public String visitStructnum(PostSQLParser.StructnumContext ctx) {
-        return super.visitStructnum(ctx);
+        return ctx.NUM().getText();
     }
+
+    /**
+     * Grammar  'SELECT' ('*'|ID (','ID)) 'FROM' ID 'WHERE' condicion 'ORDER' 'BY' ID ('ASC' |'DESC') (',' ID ('ASC' |'DESC'))
+     * Method to select a specific piece of data if a condition is met**/
+    @Override
+    public String visitSTMselect(PostSQLParser.STMselectContext ctx) {
+
+        return super.visitSTMselect(ctx);
+    }
+
+
 
     public String getError() {
         return error;

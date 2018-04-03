@@ -224,6 +224,30 @@ public interface PostSQLListener extends ParseTreeListener {
 	 */
 	void exitStmcolumsid(PostSQLParser.StmcolumsidContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code STMselectIDS}
+	 * labeled alternative in {@link PostSQLParser#selectIds}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTMselectIDS(PostSQLParser.STMselectIDSContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STMselectIDS}
+	 * labeled alternative in {@link PostSQLParser#selectIds}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTMselectIDS(PostSQLParser.STMselectIDSContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code STMAscDscIDS}
+	 * labeled alternative in {@link PostSQLParser#ascDscIds}.
+	 * @param ctx the parse tree
+	 */
+	void enterSTMAscDscIDS(PostSQLParser.STMAscDscIDSContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code STMAscDscIDS}
+	 * labeled alternative in {@link PostSQLParser#ascDscIds}.
+	 * @param ctx the parse tree
+	 */
+	void exitSTMAscDscIDS(PostSQLParser.STMAscDscIDSContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code stmvalues}
 	 * labeled alternative in {@link PostSQLParser#valuesids}.
 	 * @param ctx the parse tree
