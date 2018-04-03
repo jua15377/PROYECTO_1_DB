@@ -296,6 +296,7 @@ public class Controller implements Initializable{
         textArea.setText("");
         String program = codeArea.getText();
         compile(program);
+        eval.manejador.generateMetada();
         refresh();
     }
 
