@@ -28,7 +28,18 @@ public class Tabla implements Serializable{
         this.name = name;
     }
 
-    public void addRegistro(Registro r){
+    public void addRegistro(ArrayList<String> nombres, ArrayList<String> valores){
+        ArrayList<String> resultante = new ArrayList<>();
+        for (int i = 0; i < nombresDecolumnas.size(); i++ ){
+            resultante.add(null);
+        }
+        int contadordeVal =0;
+        for (String str: nombres){
+            int indice = nombresDecolumnas.indexOf(str);
+            resultante.set(indice, valores.get(contadordeVal));
+            contadordeVal++;
+        }
+        Registro r = new Registro(resultante);
         registros.put(contadorDeregistors, r);
         contadorDeregistors ++;
 

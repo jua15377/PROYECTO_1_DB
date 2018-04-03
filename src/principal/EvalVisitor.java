@@ -689,7 +689,8 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
                 visit(ctx.valuesids());
 
                 if(columnsID.size() >= valuesID.size()){
-
+                    tablaRef.addRegistro(columnsID,valuesID);
+                    FolderManager.actualizarArchivo(idDb,tablaRef);
                     /*int sizeColums = columnsID.size();
                     int sizeValues = valuesID.size();
 
@@ -798,7 +799,7 @@ public class EvalVisitor extends PostSQLBaseVisitor<String>{
 
             /**Revisar si el tipo de datos es igual a los esperados en columa**/
             for(int i = 0; i < cantidadColumnas; i++){
-                String struct = visit(ctx.struct(i));
+                String struct = ctx.struct(i).getText();
                 valuesID.add(struct);
             }
         }
